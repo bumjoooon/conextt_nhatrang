@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Conextt - 생활용어</title>
+
+  <style>
+    :root { --bg:#ffffff; --text:#111; --muted:#666; --line:#eee; --card:#fafafa; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background:var(--bg); color:var(--text); }
+    .topbar{
+      position: sticky; top: 0; z-index: 999;
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .brand{ font-weight: 800; letter-spacing: 0.2px; }
+    .nav{ display:flex; gap:10px; }
+    .nav a{
+      text-decoration:none; color:#333;
+      padding: 8px 10px; border-radius: 10px;
+      border: 1px solid transparent;
+    }
+    .nav a:hover{ background:#f6f6f6; }
+    .nav a.active{
+      font-weight: 800;
+      background: #f2f2f2;
+      border-color: #e6e6e6;
+    }
+
+    .page{ padding: 16px; max-width: 900px; margin: 0 auto; }
+    h1{ font-size: 22px; margin: 10px 0 6px; }
+    p{ margin: 8px 0; color: var(--muted); line-height: 1.5; }
+
+    .section{ margin-top: 18px; }
+    .cards{ display:grid; grid-template-columns: 1fr; gap: 10px; margin-top: 10px; }
+    @media (min-width: 720px){
+      .cards{ grid-template-columns: 1fr 1fr; }
+    }
+    .card{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 14px;
+    }
+    .kr{ font-weight: 800; margin-bottom: 6px; }
+    .row{ display:flex; gap:10px; flex-wrap:wrap; }
+    .pill{
+      display:inline-block;
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background:#fff;
+      border:1px solid var(--line);
+      color:#333;
+    }
+    .phrase{ margin-top: 10px; }
+    .phrase .vn{ font-size: 16px; font-weight: 700; }
+    .phrase .en{ margin-top: 4px; color: var(--muted); }
+    .note{
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--muted);
+      border-left: 3px solid #ddd;
+      padding-left: 10px;
+    }
+  </style>
+</head>
+
+<body data-page="life">
+  <header class="topbar">
+    <div class="brand">Conextt</div>
+    <nav class="nav">
+      <a href="photos.html" data-page="photos">사진</a>
+      <a href="videos.html" data-page="videos">영상</a>
+      <a href="life.html"   data-page="life">생활용어</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <h1>베트남 여행 생활용어</h1>
+    <p>자주 쓰는 표현을 빠르게 찾아볼 수 있게 정리해둘게요. (아래에 주석 달아둔 곳에 계속 추가하면 됩니다)</p>
+
+    <section class="section">
+      <div class="cards">
+        <div class="card">
+          <div class="kr">기본 인사</div>
+          <div class="row">
+            <span class="pill">발음은 대충 가이드</span>
+            <span class="pill">상황별로 추가 가능</span>
+          </div>
+
+          <div class="phrase">
+            <div class="vn">Xin chào (씬 짜오)</div>
+            <div class="en">안녕하세요 / Hello</div>
+          </div>
+          <div class="phrase">
+            <div class="vn">Cảm ơn (깜 언)</div>
+            <div class="en">감사합니다 / Thank you</div>
+          </div>
+          <div class="phrase">
+            <div class="vn">Xin lỗi (씬 로이)</div>
+            <div class="en">죄송합니다 / Excuse me / Sorry</div>
+          </div>
+
+          <!-- TODO: 여기 아래에 “기본 인사” 표현을 더 추가하세요 -->
+        </div>
+
+        <div class="card">
+          <div class="kr">가게 / 주문</div>
+          <div class="phrase">
+            <div class="vn">Cho tôi cái này (쪼 또이 까이 나이)</div>
+            <div class="en">이거 주세요 / Please give me this</div>
+          </div>
+          <div class="phrase">
+            <div class="vn">Bao nhiêu tiền? (바오 니에우 띠엔?)</div>
+            <div class="en">얼마예요? / How much?</div>
+          </div>
+          <div class="phrase">
+            <div class="vn">Không cay (콩 까이)</div>
+            <div class="en">안 맵게요 / Not spicy</div>
+          </div>
+
+          <!-- TODO: 음식/카페/시장 표현을 여기에 추가하세요 -->
+        </div>
+
+        <div class="card">
+          <div class="kr">교통 / 이동</div>
+          <div class="phrase">
+            <div class="vn">Đi đến đây (디 덴 데이)</div>
+            <div class="en">여기로 가주세요 / Please go here</div>
+          </div>
+          <div class="phrase">
+            <div class="vn">Dừng lại (중 라이)</div>
+            <div class="en">여기서 세워주세요 / Stop here</div>
+          </div>
+          <div class="phrase">
+            <div class="vn">Tôi muốn đi ... (또이 무온 디 ...)</div>
+            <div class="en">…에 가고 싶어요 / I want to go to ...</div>
+          </div>
+
+          <!-- TODO: 택시/그랩/버스 관련 표현 추가 -->
+        </div>
+
+        <div class="card">
+          <div class="kr">숙소 / 응급</div>
+          <div class="phrase">
+            <div class="vn">Tôi bị đau (또이 비 다우)</div>
+            <div class="en">아파요 / I'm hurt / I'm in pain</div>
+          </div>
+          <div class="phrase">
+            <div class="vn">Giúp tôi với! (줍 또이 보이!)</div>
+            <div class="en">도와주세요! / Help me!</div>
+          </div>
+          <div class="phrase">
+            <div class="vn">Tôi bị lạc (또이 비 락)</div>
+            <div class="en">길을 잃었어요 / I'm lost</div>
+          </div>
+
+          <!-- TODO: 약국/병원/체크인/체크아웃 표현 추가 -->
+        </div>
+      </div>
+
+      <div class="note">
+        ✅ 팁: “표현 추가”는 카드 안에 <code>&lt;div class="phrase"&gt; ... &lt;/div&gt;</code> 블록만 복붙해서 늘리면 됩니다.
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // ✅ 현재 페이지 메뉴 active 처리
+    const current = document.body.dataset.page;
+    document.querySelectorAll(".nav a").forEach(a => {
+      if (a.dataset.page === current) {
+        a.classList.add("active");
+        a.setAttribute("aria
