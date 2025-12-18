@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Conextt - 사진</title>
+  <style>
+    :root{ --border:#e5e7eb; --muted:#6b7280; --bg:#ffffff; --ink:#111827; --radius:14px; }
+    *{ box-sizing:border-box; }
+    body{ margin:0; font-family:system-ui,-apple-system,sans-serif; color:var(--ink); background:var(--bg); }
+    a{ color:inherit; text-decoration:none; }
+    header{
+      position:sticky; top:0; z-index:1000;
+      background:rgba(255,255,255,.92); backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .hwrap{ max-width:1100px; margin:0 auto; padding:12px 14px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .title{ font-weight:800; }
+    .nav{ display:flex; gap:10px; flex-wrap:wrap; }
+    .pill{ border:1px solid var(--border); padding:8px 10px; border-radius:999px; font-size:13px; background:#fff; }
+    .pill:hover{ background:#f3f4f6; }
+    .wrap{ max-width:1100px; margin:0 auto; padding:14px; }
+    .muted{ color:var(--muted); font-size:12px; line-height:1.4; }
+    .grid{ display:grid; gap:10px; grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 900px){ .grid{ grid-template-columns: repeat(4, 1fr); } }
+    .img{ width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:var(--radius); border:1px solid var(--border); background:#f3f4f6; }
+    .card{ border:1px solid var(--border); border-radius:var(--radius); padding:12px; background:#f9fafb; margin-bottom:12px; }
+    .hidden{ display:none !important; }
+  </style>
+</head>
+<body>
+<header id="topbar">
+  <div class="hwrap">
+    <div class="title">Conextt</div>
+    <nav class="nav" id="nav">
+      <a class="pill" href="index.html">Main</a>
+      <a class="pill" href="photos.html">사진</a>
+      <a class="pill" href="videos.html">영상</a>
+      <a class="pill" href="phrases.html">생활 용어</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="card">
+    <div style="font-weight:700;">사진</div>
+    <div class="muted" style="margin-top:6px;">
+      여행 전이라 임시 이미지로 채워두었습니다. 나중에 실제 사진으로 교체하시면 됩니다.
+      <!-- 실제 사진을 넣고 싶다면 아래 img 태그를 복사해서 src만 바꾸세요. -->
+    </div>
+  </div>
+
+  <div class="grid">
+    <img class="img" src="https://picsum.photos/seed/conextt1/600/600" alt="placeholder 1" />
+    <img class="img" src="https://picsum.photos/seed/conextt2/600/600" alt="placeholder 2" />
+    <img class="img" src="https://picsum.photos/seed/conextt3/600/600" alt="placeholder 3" />
+    <img class="img" src="https://picsum.photos/seed/conextt4/600/600" alt="placeholder 4" />
+    <img class="img" src="https://picsum.photos/seed/conextt5/600/600" alt="placeholder 5" />
+    <img class="img" src="https://picsum.photos/seed/conextt6/600/600" alt="placeholder 6" />
+    <img class="img" src="https://picsum.photos/seed/conextt7/600/600" alt="placeholder 7" />
+    <img class="img" src="https://picsum.photos/seed/conextt8/600/600" alt="placeholder 8" />
+  </div>
+</div>
+
+<script>
+  // embed=1이면 상단 헤더/네비 숨김 (Main에서 iframe으로 띄울 때 중복 제거)
+  const params = new URLSearchParams(location.search);
+  if (params.get("embed") === "1") {
+    document.getElementById("topbar").classList.add("hidden");
+    document.body.style.margin = "0";
+  }
+</script>
+</body>
+</html>

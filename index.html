@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Conextt</title>
+  <style>
+    :root{
+      --border:#e5e7eb; --muted:#6b7280; --bg:#ffffff; --ink:#111827; --card:#f9fafb;
+      --radius:14px;
+    }
+    *{ box-sizing:border-box; }
+    body{ margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; color:var(--ink); background:var(--bg); }
+    a{ color:inherit; text-decoration:none; }
+    .app{ min-height:100vh; display:flex; flex-direction:column; }
+    header{
+      position:sticky; top:0; z-index:1000;
+      background:rgba(255,255,255,.92); backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .hwrap{ max-width:1100px; margin:0 auto; padding:12px 14px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .title{ font-weight:800; letter-spacing:.2px; }
+    .nav{ display:flex; gap:10px; flex-wrap:wrap; }
+    .pill{
+      border:1px solid var(--border);
+      padding:8px 10px; border-radius:999px; font-size:13px;
+      background:#fff;
+    }
+    .pill:hover{ background:#f3f4f6; }
+    main{ flex:1; }
+    .wrap{ max-width:1100px; margin:0 auto; padding:14px; display:flex; flex-direction:column; gap:12px; }
+    .card{ border:1px solid var(--border); border-radius:var(--radius); background:var(--card); padding:12px; }
+    .row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    select, button{
+      border:1px solid var(--border); border-radius:12px; padding:10px 12px; font-size:14px; background:#fff;
+    }
+    button{ cursor:pointer; }
+    button.primary{ background:#111827; color:#fff; border-color:#111827; }
+    .muted{ color:var(--muted); font-size:12px; line-height:1.4; }
+    .viewer{
+      border:1px solid var(--border); border-radius:var(--radius);
+      overflow:hidden; background:#fff;
+      height: calc(100vh - 170px); /* 모바일에서도 꽉 차게 */
+      min-height: 420px;
+    }
+    iframe{ width:100%; height:100%; border:0; background:#fff; }
+    @media (max-width:420px){
+      .viewer{ height: calc(100vh - 220px); }
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="hwrap">
+      <div class="title">Conextt</div>
+      <nav class="nav">
+        <a class="pill" href="index.html">Main</a>
+        <a class="pill" href="photos.html">사진</a>
+        <a class="pill" href="videos.html">영상</a>
+        <a class="pill" href="phrases.html">생활 용어</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div class="card">
+        <div class="row" style="justify-content:space-between;">
+          <div>
+            <div style="font-weight:700;">Main에 기본으로 띄울 페이지</div>
+            <div class="muted">선택한 페이지가 아래에 자동으로 표시됩니다. (NFC로 열면 여기서 바로 시작)</div>
+          </div>
+
+          <div class="row">
+            <select id="defaultPage">
+              <option value="photos">사진</option>
+              <option value="videos">영상</option>
+              <option value="phrases">생활 용어</option>
+            </select>
+            <button class="primary" id="saveBtn">저장</button>
+          </div>
+        </div>
+
+        <div class="muted" style="margin-top:10px;">
+          - 팁: 나중에 여행 중엔 “생활 용어”를 기본으로 해두면 편합니다.<br/>
+          - 이 설정은 이 기기/브라우저에 저장됩니다(localStorage).
+        </div>
+      </div>
+
+      <div class="viewer">
+        <iframe id="frame" title="Conextt Viewer"></iframe>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+  const KEY = "conextt_default_page";
+
+  const mapToUrl = (v) => {
+    if (v === "photos") return "photos.html?embed=1";
+    if (v === "videos") return "videos.html?embed=1";
+    return "phrases.html?embed=1";
+  };
+
+  const select = document.getElementById("defaultPage");
+  const frame = document.getElementById("frame");
+  const saveBtn = document.getElementById("saveBtn");
+
+  function loadDefault(){
+    const v = localStorage.getItem(KEY) || "photos";
+    select.value = v;
+    frame.src = mapToUrl(v);
+  }
+
+  saveBtn.addEventListener("click", () => {
+    localStorage.setItem(KEY, select.value);
+    frame.src = mapToUrl(select.value);
+  });
+
+  // 선택만 바꿔도 미리보기 갱신(원치 않으면 이 줄 삭제 가능)
+  select.addEventListener("change", () => frame.src = mapToUrl(select.value));
+
+  loadDefault();
+</script>
+</body>
+</html>

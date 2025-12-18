@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Conextt - 생활 용어</title>
+  <style>
+    :root{ --border:#e5e7eb; --muted:#6b7280; --bg:#ffffff; --ink:#111827; --radius:14px; }
+    *{ box-sizing:border-box; }
+    body{ margin:0; font-family:system-ui,-apple-system,sans-serif; color:var(--ink); background:var(--bg); }
+    a{ color:inherit; text-decoration:none; }
+    header{
+      position:sticky; top:0; z-index:1000;
+      background:rgba(255,255,255,.92); backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .hwrap{ max-width:1100px; margin:0 auto; padding:12px 14px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .title{ font-weight:800; }
+    .nav{ display:flex; gap:10px; flex-wrap:wrap; }
+    .pill{ border:1px solid var(--border); padding:8px 10px; border-radius:999px; font-size:13px; background:#fff; }
+    .pill:hover{ background:#f3f4f6; }
+    .wrap{ max-width:1100px; margin:0 auto; padding:14px; display:grid; gap:12px; grid-template-columns: 1fr; }
+    @media (min-width: 980px){ .wrap{ grid-template-columns: 0.9fr 1.1fr; } }
+    .muted{ color:var(--muted); font-size:12px; line-height:1.4; }
+    .card{ border:1px solid var(--border); border-radius:var(--radius); padding:12px; background:#f9fafb; }
+    label{ display:block; font-size:12px; color:#374151; margin:10px 0 6px; }
+    input, select, textarea, button{
+      width:100%; border:1px solid var(--border); border-radius:12px; padding:10px 12px; font-size:14px; background:#fff;
+    }
+    textarea{ min-height:90px; resize:vertical; }
+    button{ cursor:pointer; }
+    button.primary{ background:#111827; color:#fff; border-color:#111827; }
+    .row{ display:flex; gap:10px; }
+    .row > *{ flex:1; }
+    .list{ display:grid; gap:10px; }
+    .item{ background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:10px; }
+    .top{ display:flex; justify-content:space-between; gap:10px; align-items:flex-start; }
+    .badge{ font-size:12px; padding:3px 8px; border-radius:999px; background:#eef2ff; color:#3730a3; white-space:nowrap; }
+    .kovi{ display:grid; gap:6px; margin-top:6px; }
+    .kovi div{ padding:8px; border-radius:12px; background:#f9fafb; border:1px solid #f3f4f6; }
+    .actions{ display:flex; justify-content:flex-end; gap:8px; margin-top:8px; }
+    .smallbtn{ width:auto; padding:8px 10px; }
+    .hidden{ display:none !important; }
+  </style>
+</head>
+<body>
+<header id="topbar">
+  <div class="hwrap">
+    <div class="title">Conextt</div>
+    <nav class="nav" id="nav">
+      <a class="pill" href="index.html">Main</a>
+      <a class="pill" href="photos.html">사진</a>
+      <a class="pill" href="videos.html">영상</a>
+      <a class="pill" href="phrases.html">생활 용어</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <!-- 입력 -->
+  <section class="card">
+    <div style="font-weight:800;">베트남 여행 생활 용어</div>
+    <div class="muted" style="margin-top:6px;">
+      아래 폼으로 계속 추가할 수 있습니다(저장됨).<br/>
+      <!-- 기본 예시 문구를 코드에 더 넣고 싶다면: 아래 JS의 DEFAULT_PHRASES 배열에 항목을 추가하세요. -->
+    </div>
+
+    <label>카테고리</label>
+    <select id="cat">
+      <option>인사</option>
+      <option>식당</option>
+      <option>교통</option>
+      <option>쇼핑</option>
+      <option>긴급</option>
+      <option>기타</option>
+    </select>
+
+    <label>한국어</label>
+    <input id="ko" placeholder="예) 화장실이 어디예요?" />
+
+    <label>베트남어</label>
+    <input id="vi" placeholder="예) Nhà vệ sinh ở đâu?" />
+
+    <label>발음/메모(선택)</label>
+    <textarea id="memo" placeholder="예) 냐 베 씬 어 더우"></textarea>
+
+    <div class="row" style="margin-top:10px;">
+      <button class="primary" id="addBtn">추가</button>
+      <button id="resetBtn">예시로 초기화</button>
+    </div>
+
+    <div class="muted" style="margin-top:10px;">
+      ※ 저장 위치: 이 브라우저의 localStorage (같은 기기/브라우저에서 유지)
+    </div>
+  </section>
+
+  <!-- 목록 -->
+  <section class="card">
+    <div class="row" style="align-items:center;">
+      <input id="search" placeholder="검색(한국어/베트남어/메모)" />
+      <select id="filter">
+        <option value="ALL">전체</option>
+        <option>인사</option><option>식당</option><option>교통</option>
+        <option>쇼핑</option><option>긴급</option><option>기타</option>
+      </select>
+    </div>
+
+    <div class="muted" id="count" style="margin-top:8px;"></div>
+    <div class="list" id="list" style="margin-top:10px;"></div>
+  </section>
+</div>
+
+<script>
+  const params = new URLSearchParams(location.search);
+  if (params.get("embed") === "1") {
+    document.getElementById("topbar").classList.add("hidden");
+    document.body.style.margin = "0";
+  }
+
+  const KEY = "conextt_phrases_v1";
+
+  // ✅ 기본 예시 문구(원하시면 여기 더 추가 가능)
+  const DEFAULT_PHRASES = [
+    { cat:"인사", ko:"안녕하세요", vi:"Xin chào", memo:"씬 짜오" },
+    { cat:"식당", ko:"이거 하나 주세요", vi:"Cho tôi cái này", memo:"초 또이 까이 나이" },
+    { cat:"식당", ko:"물 한 병 주세요", vi:"Cho tôi một chai nước", memo:"초 또이 못 차이 느억" },
+    { cat:"교통", ko:"여기까지 얼마예요?", vi:"Đến đây bao nhiêu tiền?", memo:"덴 더이 바오 니에우 띠엔" },
+    { cat:"쇼핑", ko:"좀 깎아주세요", vi:"Giảm giá một chút được không?", memo:"잠 자 못 쭛 드억 콩" },
+    { cat:"긴급", ko:"도와주세요", vi:"Cứu tôi với!", memo:"끄우 또이 버이" },
+    { cat:"기타", ko:"화장실이 어디예요?", vi:"Nhà vệ sinh ở đâu?", memo:"냐 베 씬 어 더우" },
+  ];
+
+  const $ = (id) => document.getElementById(id);
+
+  function load(){
+    try{
+      const raw = localStorage.getItem(KEY);
+      if (!raw) return null;
+      const v = JSON.parse(raw);
+      return Array.isArray(v) ? v : null;
+    }catch{ return null; }
+  }
+
+  function save(items){
+    localStorage.setItem(KEY, JSON.stringify(items));
+  }
+
+  let items = load();
+  if (!items) {
+    items = DEFAULT_PHRASES.map((x, idx) => ({ id: crypto.randomUUID?.() || String(Date.now()+idx), ...x }));
+    save(items);
+  }
+
+  function render(){
+    const q = $("search").value.trim().toLowerCase();
+    const f = $("filter").value;
+
+    const filtered = items.filter(it => {
+      const hit = (it.ko + " " + it.vi + " " + (it.memo||"")).toLowerCase().includes(q);
+      const catOk = (f === "ALL") || (it.cat === f);
+      return hit && catOk;
+    });
+
+    $("count").textContent = `표현 ${filtered.length}개 (전체 ${items.length}개)`;
+
+    $("list").innerHTML = filtered.map(it => `
+      <div class="item">
+        <div class="top">
+          <div style="font-weight:800;">${escapeHtml(it.cat)}</div>
+          <div class="badge">VN</div>
+        </div>
+        <div class="kovi">
+          <div><b>KR</b> · ${escapeHtml(it.ko)}</div>
+          <div><b>VI</b> · ${escapeHtml(it.vi)}</div>
+          ${it.memo ? `<div class="muted"><b>메모</b> · ${escapeHtml(it.memo)}</div>` : ``}
+        </div>
+        <div class="actions">
+          <button class="smallbtn" data-del="${it.id}">삭제</button>
+        </div>
+      </div>
+    `).join("");
+
+    // 삭제 핸들
+    document.querySelectorAll("[data-del]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const id = btn.getAttribute("data-del");
+        items = items.filter(x => x.id !== id);
+        save(items);
+        render();
+      });
+    });
+  }
+
+  function escapeHtml(s){
+    return (s ?? "").replace(/[&<>"']/g, m => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"
+    }[m]));
+  }
+
+  $("addBtn").addEventListener("click", () => {
+    const cat = $("cat").value;
+    const ko = $("ko").value.trim();
+    const vi = $("vi").value.trim();
+    const memo = $("memo").value.trim();
+
+    if (!ko || !vi) {
+      alert("한국어/베트남어는 필수입니다.");
+      return;
+    }
+    items.unshift({ id: crypto.randomUUID?.() || String(Date.now()), cat, ko, vi, memo });
+    save(items);
+
+    $("ko").value = ""; $("vi").value = ""; $("memo").value = "";
+    render();
+  });
+
+  $("resetBtn").addEventListener("click", () => {
+    items = DEFAULT_PHRASES.map((x, idx) => ({ id: crypto.randomUUID?.() || String(Date.now()+idx), ...x }));
+    save(items);
+    render();
+  });
+
+  $("search").addEventListener("input", render);
+  $("filter").addEventListener("change", render);
+
+  render();
+</script>
+</body>
+</html>
