@@ -4,72 +4,125 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Conextt - 사진</title>
+
   <style>
-    :root{ --border:#e5e7eb; --muted:#6b7280; --bg:#ffffff; --ink:#111827; --radius:14px; }
-    *{ box-sizing:border-box; }
-    body{ margin:0; font-family:system-ui,-apple-system,sans-serif; color:var(--ink); background:var(--bg); }
-    a{ color:inherit; text-decoration:none; }
-    header{
-      position:sticky; top:0; z-index:1000;
-      background:rgba(255,255,255,.92); backdrop-filter: blur(10px);
-      border-bottom:1px solid var(--border);
+    :root { --bg:#ffffff; --text:#111; --muted:#666; --line:#eee; --card:#fafafa; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background:var(--bg); color:var(--text); }
+    .topbar{
+      position: sticky; top: 0; z-index: 999;
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
     }
-    .hwrap{ max-width:1100px; margin:0 auto; padding:12px 14px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
-    .title{ font-weight:800; }
-    .nav{ display:flex; gap:10px; flex-wrap:wrap; }
-    .pill{ border:1px solid var(--border); padding:8px 10px; border-radius:999px; font-size:13px; background:#fff; }
-    .pill:hover{ background:#f3f4f6; }
-    .wrap{ max-width:1100px; margin:0 auto; padding:14px; }
-    .muted{ color:var(--muted); font-size:12px; line-height:1.4; }
-    .grid{ display:grid; gap:10px; grid-template-columns: repeat(2, 1fr); }
-    @media (min-width: 900px){ .grid{ grid-template-columns: repeat(4, 1fr); } }
-    .img{ width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:var(--radius); border:1px solid var(--border); background:#f3f4f6; }
-    .card{ border:1px solid var(--border); border-radius:var(--radius); padding:12px; background:#f9fafb; margin-bottom:12px; }
-    .hidden{ display:none !important; }
+    .brand{ font-weight: 800; letter-spacing: 0.2px; }
+    .nav{ display:flex; gap:10px; }
+    .nav a{
+      text-decoration:none; color:#333;
+      padding: 8px 10px; border-radius: 10px;
+      border: 1px solid transparent;
+    }
+    .nav a:hover{ background:#f6f6f6; }
+    .nav a.active{
+      font-weight: 800;
+      background: #f2f2f2;
+      border-color: #e6e6e6;
+    }
+
+    .page{ padding: 16px; max-width: 980px; margin: 0 auto; }
+    h1{ font-size: 22px; margin: 10px 0 6px; }
+    p{ margin: 8px 0 14px; color: var(--muted); line-height: 1.5; }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    @media (min-width: 720px){
+      .grid{ grid-template-columns: repeat(3, 1fr); }
+    }
+    .tile{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow:hidden;
+    }
+    .tile img{ width:100%; height: 180px; object-fit: cover; display:block; }
+    .cap{ padding: 10px 12px; font-size: 13px; color: var(--muted); }
+    code{ background:#f3f3f3; padding: 1px 6px; border-radius: 6px; }
   </style>
 </head>
-<body>
-<header id="topbar">
-  <div class="hwrap">
-    <div class="title">Conextt</div>
-    <nav class="nav" id="nav">
-      <a class="pill" href="index.html">Main</a>
-      <a class="pill" href="photos.html">사진</a>
-      <a class="pill" href="videos.html">영상</a>
-      <a class="pill" href="phrases.html">생활 용어</a>
+
+<body data-page="photos">
+  <header class="topbar">
+    <div class="brand">Conextt</div>
+    <nav class="nav">
+      <a href="photos.html" data-page="photos">사진</a>
+      <a href="videos.html" data-page="videos">영상</a>
+      <a href="life.html"   data-page="life">생활용어</a>
     </nav>
-  </div>
-</header>
+  </header>
 
-<div class="wrap">
-  <div class="card">
-    <div style="font-weight:700;">사진</div>
-    <div class="muted" style="margin-top:6px;">
-      여행 전이라 임시 이미지로 채워두었습니다. 여행이 끝나고 만나요!
-      <!-- 실제 사진을 넣고 싶다면 아래 img 태그를 복사해서 src만 바꾸세요. -->
-    </div>
-  </div>
+  <main class="page">
+    <h1>사진</h1>
+    <p>여행 전이라 임시 이미지를 넣어뒀어요. 나중에 본인 사진으로 바꾸려면 <code>&lt;img src="..."&gt;</code>만 교체하면 됩니다.</p>
 
-  <div class="grid">
-    <img class="img" src="https://picsum.photos/seed/conextt1/600/600" alt="placeholder 1" />
-    <img class="img" src="https://picsum.photos/seed/conextt2/600/600" alt="placeholder 2" />
-    <img class="img" src="https://picsum.photos/seed/conextt3/600/600" alt="placeholder 3" />
-    <img class="img" src="https://picsum.photos/seed/conextt4/600/600" alt="placeholder 4" />
-    <img class="img" src="https://picsum.photos/seed/conextt5/600/600" alt="placeholder 5" />
-    <img class="img" src="https://picsum.photos/seed/conextt6/600/600" alt="placeholder 6" />
-    <img class="img" src="https://picsum.photos/seed/conextt7/600/600" alt="placeholder 7" />
-    <img class="img" src="https://picsum.photos/seed/conextt8/600/600" alt="placeholder 8" />
-  </div>
-</div>
+    <section class="grid">
+      <!-- 임시 이미지: SVG data URL (외부 이미지 없이도 표시됨) -->
+      <div class="tile">
+        <img alt="placeholder 1"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23ff8a8a'/%3E%3Cstop offset='1' stop-color='%23ffd36b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='800' fill='url(%23g)'/%3E%3Ctext x='60' y='120' font-size='64' font-family='Arial' fill='white'%3EConextt Photo 01%3C/text%3E%3C/svg%3E" />
+        <div class="cap">임시 이미지 01 (나중에 교체)</div>
+      </div>
 
-<script>
-  // embed=1이면 상단 헤더/네비 숨김 (Main에서 iframe으로 띄울 때 중복 제거)
-  const params = new URLSearchParams(location.search);
-  if (params.get("embed") === "1") {
-    document.getElementById("topbar").classList.add("hidden");
-    document.body.style.margin = "0";
-  }
-</script>
+      <div class="tile">
+        <img alt="placeholder 2"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%238ad4ff'/%3E%3Cstop offset='1' stop-color='%238affc2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='800' fill='url(%23g)'/%3E%3Ctext x='60' y='120' font-size='64' font-family='Arial' fill='white'%3EConextt Photo 02%3C/text%3E%3C/svg%3E" />
+        <div class="cap">임시 이미지 02</div>
+      </div>
+
+      <div class="tile">
+        <img alt="placeholder 3"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23b18aff'/%3E%3Cstop offset='1' stop-color='%23ff8ad6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='800' fill='url(%23g)'/%3E%3Ctext x='60' y='120' font-size='64' font-family='Arial' fill='white'%3EConextt Photo 03%3C/text%3E%3C/svg%3E" />
+        <div class="cap">임시 이미지 03</div>
+      </div>
+
+      <div class="tile">
+        <img alt="placeholder 4"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23ffcf8a'/%3E%3Cstop offset='1' stop-color='%23a0ff8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='800' fill='url(%23g)'/%3E%3Ctext x='60' y='120' font-size='64' font-family='Arial' fill='white'%3EConextt Photo 04%3C/text%3E%3C/svg%3E" />
+        <div class="cap">임시 이미지 04</div>
+      </div>
+
+      <div class="tile">
+        <img alt="placeholder 5"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%2390a4ff'/%3E%3Cstop offset='1' stop-color='%23ffe890'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='800' fill='url(%23g)'/%3E%3Ctext x='60' y='120' font-size='64' font-family='Arial' fill='white'%3EConextt Photo 05%3C/text%3E%3C/svg%3E" />
+        <div class="cap">임시 이미지 05</div>
+      </div>
+
+      <div class="tile">
+        <img alt="placeholder 6"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%238afff0'/%3E%3Cstop offset='1' stop-color='%23ff8a8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='800' fill='url(%23g)'/%3E%3Ctext x='60' y='120' font-size='64' font-family='Arial' fill='white'%3EConextt Photo 06%3C/text%3E%3C/svg%3E" />
+        <div class="cap">임시 이미지 06</div>
+      </div>
+
+      <!-- TODO: 본인 사진 추가 시, 아래 형태로 tile 복붙해서 늘리세요
+      <div class="tile">
+        <img src="images/xxx.jpg" alt="..." />
+        <div class="cap">설명</div>
+      </div>
+      -->
+    </section>
+  </main>
+
+  <script>
+    const current = document.body.dataset.page;
+    document.querySelectorAll(".nav a").forEach(a => {
+      if (a.dataset.page === current) {
+        a.classList.add("active");
+        a.setAttribute("aria-current", "page");
+      }
+    });
+  </script>
 </body>
 </html>
-
