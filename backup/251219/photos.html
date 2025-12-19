@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Conextt - 사진</title>
+
+  <style>
+    :root { --bg:#ffffff; --text:#111; --muted:#666; --line:#eee; --card:#fafafa; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background:var(--bg); color:var(--text); }
+    .topbar{
+      position: sticky; top: 0; z-index: 999;
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .brand{ font-weight: 800; letter-spacing: 0.2px; }
+    .nav{ display:flex; gap:10px; }
+    .nav a{
+      text-decoration:none; color:#333;
+      padding: 8px 10px; border-radius: 10px;
+      border: 1px solid transparent;
+    }
+    .nav a:hover{ background:#f6f6f6; }
+    .nav a.active{
+      font-weight: 800;
+      background: #f2f2f2;
+      border-color: #e6e6e6;
+    }
+
+    .page{ padding: 16px; max-width: 980px; margin: 0 auto; }
+    h1{ font-size: 22px; margin: 10px 0 6px; }
+    p{ margin: 8px 0 14px; color: var(--muted); line-height: 1.5; }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    @media (min-width: 720px){
+      .grid{ grid-template-columns: repeat(3, 1fr); }
+    }
+    .tile{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow:hidden;
+    }
+    .tile img{ width:100%; height: 180px; object-fit: cover; display:block; }
+    .cap{ padding: 10px 12px; font-size: 13px; color: var(--muted); }
+    code{ background:#f3f3f3; padding: 1px 6px; border-radius: 6px; }
+  </style>
+</head>
+
+<body data-page="photos">
+  <header class="topbar">
+    <div class="brand">Conextt</div>
+    <nav class="nav">
+      <a href="photos.html" data-page="photos">사진</a>
+      <a href="videos.html" data-page="videos">영상</a>
+      <a href="life.html"   data-page="life">생활용어</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <h1>사진</h1>
+    <p>여행 전이라 임시 이미지를 넣어뒀어요. 나중에 본인 사진으로 바꾸려면 <code>&lt;img src="..."&gt;</code>만 교체하면 됩니다.</p>
+
+    <section class="grid">
+      <!-- 임시 이미지: SVG data URL (외부 이미지 없이도 표시됨) -->
+      <div class="tile">
+        <img alt="placeholder 1"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23ff8a8a'/%3E%3Cstop offset='1' stop-color='%23ffd36b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='800' fill='url(%23g)'/%3E%3Ctext x='60' y='120' font-size='64' font-family='Arial' fill='white'%3EConextt Photo 01%3C/text%3E%3C/svg%3E" />
+        <div class="cap">임시 이미지 01 (나중에 교체)</div>
+      </div>
+
+      <div class="tile">
+        <img alt="placeholder 2"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%238ad4ff'/%3E%3Cstop offset='1' stop-color='%238affc2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='800' fill='url(%23g)'/%3E%3Ctext x='60' y='120' font-size='64' font-family='Arial' fill='white'%3EConextt Photo 02%3C/text%3E%3C/svg%3E" />
+        <div class="cap">임시 이미지 02</div>
+      </div>
+
+      <div class="tile">
+        <img alt="placeholder 3"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23b18aff'/%3E%3Cstop offset='1' stop-color='%23ff8ad6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='800' fill='url(%23g)'/%3E%3Ctext x='60' y='120' font-size='64' font-family='Arial' fill='white'%3EConextt Photo 03%3C/text%3E%3C/svg%3E" />
+        <div class="cap">임시 이미지 03</div>
+      </div>
+
+      <div class="tile">
+        <img alt="placeholder 4"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23ffcf8a'/%3E%3Cstop offset='1' stop-color='%23a0ff8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='800' fill='url(%23g)'/%3E%3Ctext x='60' y='120' font-size='64' font-family='Arial' fill='white'%3EConextt Photo 04%3C/text%3E%3C/svg%3E" />
+        <div class="cap">임시 이미지 04</div>
+      </div>
+
+      <div class="tile">
+        <img alt="placeholder 5"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%2390a4ff'/%3E%3Cstop offset='1' stop-color='%23ffe890'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='800' fill='url(%23g)'/%3E%3Ctext x='60' y='120' font-size='64' font-family='Arial' fill='white'%3EConextt Photo 05%3C/text%3E%3C/svg%3E" />
+        <div class="cap">임시 이미지 05</div>
+      </div>
+
+      <div class="tile">
+        <img alt="placeholder 6"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%238afff0'/%3E%3Cstop offset='1' stop-color='%23ff8a8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='800' fill='url(%23g)'/%3E%3Ctext x='60' y='120' font-size='64' font-family='Arial' fill='white'%3EConextt Photo 06%3C/text%3E%3C/svg%3E" />
+        <div class="cap">임시 이미지 06</div>
+      </div>
+
+      <!-- TODO: 본인 사진 추가 시, 아래 형태로 tile 복붙해서 늘리세요
+      <div class="tile">
+        <img src="images/xxx.jpg" alt="..." />
+        <div class="cap">설명</div>
+      </div>
+      -->
+    </section>
+  </main>
+
+  <script>
+    const current = document.body.dataset.page;
+    document.querySelectorAll(".nav a").forEach(a => {
+      if (a.dataset.page === current) {
+        a.classList.add("active");
+        a.setAttribute("aria-current", "page");
+      }
+    });
+  </script>
+</body>
+</html>

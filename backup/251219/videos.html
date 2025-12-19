@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Conextt - 영상</title>
+
+  <style>
+    :root { --bg:#ffffff; --text:#111; --muted:#666; --line:#eee; --card:#fafafa; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background:var(--bg); color:var(--text); }
+    .topbar{
+      position: sticky; top: 0; z-index: 999;
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .brand{ font-weight: 800; letter-spacing: 0.2px; }
+    .nav{ display:flex; gap:10px; }
+    .nav a{
+      text-decoration:none; color:#333;
+      padding: 8px 10px; border-radius: 10px;
+      border: 1px solid transparent;
+    }
+    .nav a:hover{ background:#f6f6f6; }
+    .nav a.active{
+      font-weight: 800;
+      background: #f2f2f2;
+      border-color: #e6e6e6;
+    }
+
+    .page{ padding: 16px; max-width: 900px; margin: 0 auto; }
+    h1{ font-size: 22px; margin: 10px 0 6px; }
+    p{ margin: 8px 0 14px; color: var(--muted); line-height: 1.5; }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px;
+    }
+    video{ width: 100%; border-radius: 12px; background: #000; }
+    .cap{ margin-top: 10px; font-size: 13px; color: var(--muted); }
+    code{ background:#f3f3f3; padding: 1px 6px; border-radius: 6px; }
+  </style>
+</head>
+
+<body data-page="videos">
+  <header class="topbar">
+    <div class="brand">Conextt</div>
+    <nav class="nav">
+      <a href="photos.html" data-page="photos">사진</a>
+      <a href="videos.html" data-page="videos">영상</a>
+      <a href="life.html"   data-page="life">생활용어</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <h1>영상</h1>
+    <p>여행 전이라 임시 영상을 넣어뒀어요. 나중에 본인 영상으로 바꾸려면 <code>&lt;source src="..."&gt;</code>만 교체하면 됩니다.</p>
+
+    <div class="card">
+      <!-- 임시 영상(외부 샘플). 나중에 본인 mp4 파일로 교체하세요. -->
+      <video controls playsinline>
+        <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+        브라우저가 video 태그를 지원하지 않습니다.
+      </video>
+      <div class="cap">임시 영상 (샘플). 추후 <code>videos/your_video.mp4</code> 같은 로컬 파일로 교체 추천</div>
+
+      <!-- TODO: 영상 추가 시, 아래처럼 video 블록을 복붙해서 늘리세요
+      <video controls playsinline>
+        <source src="videos/xxx.mp4" type="video/mp4" />
+      </video>
+      -->
+    </div>
+  </main>
+
+  <script>
+    const current = document.body.dataset.page;
+    document.querySelectorAll(".nav a").forEach(a => {
+      if (a.dataset.page === current) {
+        a.classList.add("active");
+        a.setAttribute("aria-current", "page");
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Conextt</title>
+
+  <script>
+    // ✅ 처음 접속 시 띄울 페이지를 여기서만 바꾸면 됩니다.
+    // "life.html" / "photos.html" / "videos.html"
+    const DEFAULT_PAGE = "life.html";
+
+    // ✅ index는 보이지 않게 하고, 기본 페이지로 바로 이동
+    location.replace(DEFAULT_PAGE);
+  </script>
+</head>
+<body>
+  <!-- JS가 차단된 환경 대비 -->
+  <p>이동 중입니다… <a href="life.html">생활용어로 이동</a></p>
+</body>
+</html>
