@@ -60,7 +60,7 @@ small{ color:var(--muted); }
 
 .nav{
   display:flex;
-  gap:8px;
+  gap:13px;
   flex-wrap:wrap;
   justify-content:flex-end;
 }
