@@ -33,14 +33,7 @@
     <div class="container">
       <section class="card">
         <h2>여행</h2>
-        <div class="pills">
-          <span class="pill primary">베트남(나트랑)</span>
-          <span class="pill"><span class="kbd" data-clock="vn">-</span></span>
-          <span class="pill">한국</span>
-          <span class="pill"><span class="kbd" data-clock="kr">-</span></span>
-        </div>
-        <div class="hr"></div>
-
+        
         <h3>현재 일정</h3>
         <div data-current-schedule></div>
       </section>
@@ -58,7 +51,7 @@
         <!-- 1) 준비물 -->
         <div class="tabpanel" role="tabpanel" data-panel="prep">
           <div class="notice">
-            ★ 2025년 3월 1일부터 베트남 모든 공항에서 “긴급여권” 입국이 제한됩니다.<br/>
+            ★ 2025년 3월 1일부터 베트남 모든 공항에서 "긴급여권" 입국이 제한됩니다.<br/>
             (긴급여권으로 베트남 입국 불가)
           </div>
 
@@ -68,75 +61,276 @@
           <p>체크는 브라우저에 저장됩니다.</p>
 
           <div class="checklist">
+            <!-- 필수 서류 -->
             <div class="check">
               <input id="p1" type="checkbox" data-store="prep.passport" />
               <label for="p1">
-                여권 / 항공권 / 일정표 / 확정서 / 비상연락처
-                <span class="sub">출발/리턴에 필요한 필수 서류</span>
+                여권
+                <span class="sub">유효기간 6개월 이상 확인 필수</span>
               </label>
             </div>
 
             <div class="check">
-              <input id="p2" type="checkbox" data-store="prep.bag1" />
+              <input id="p2" type="checkbox" data-store="prep.ticket" />
               <label for="p2">
-                캐리어(바퀴) + 보조가방(가볍게 멜 것)
-                <span class="sub">짐 분리/이동 편하게</span>
+                항공권 (e-티켓)
+                <span class="sub">출력 또는 모바일에 저장</span>
               </label>
             </div>
 
             <div class="check">
-              <input id="p3" type="checkbox" data-store="prep.toiletry" />
+              <input id="p3" type="checkbox" data-store="prep.schedule" />
               <label for="p3">
-                세면도구(치약/칫솔/빗/면도기/샴푸/린스)
-                <span class="sub">호텔에도 있지만 개인 준비 추천</span>
+                일정표 및 확정서
+                <span class="sub">오프라인 저장 권장 (인쇄 또는 캡처)</span>
               </label>
             </div>
 
             <div class="check">
-              <input id="p4" type="checkbox" data-store="prep.clothes" />
+              <input id="p4" type="checkbox" data-store="prep.emergency" />
               <label for="p4">
-                의류(반팔/바지/모자/운동화/속옷/양말/가디건/선글라스/외투)
-                <span class="sub">12월 나트랑: 평균 23~27℃(서울 여름 수준)</span>
+                비상연락처 메모
+                <span class="sub">대사관/병원/가이드 번호</span>
               </label>
             </div>
 
+            <!-- 가방/짐 -->
             <div class="check">
-              <input id="p5" type="checkbox" data-store="prep.cosmetic" />
+              <input id="p5" type="checkbox" data-store="prep.carrier" />
               <label for="p5">
-                화장품(기초/헤어/자외선차단제)
-                <span class="sub">야외활동 많아서 자외선 차단 필수</span>
+                캐리어 (바퀴 확인)
+                <span class="sub">바퀴 상태 점검, 무게 제한 확인</span>
               </label>
             </div>
 
             <div class="check">
-              <input id="p6" type="checkbox" data-store="prep.med" />
+              <input id="p6" type="checkbox" data-store="prep.backpack" />
               <label for="p6">
-                의약품(감기약/소화제/여행용 약/일회용 밴드)
-                <span class="sub">지병 약은 처방전 지참 권장</span>
+                보조가방 (가볍게 멜 것)
+                <span class="sub">기내 반입용, 귀중품 보관</span>
               </label>
             </div>
 
+            <!-- 세면도구 -->
             <div class="check">
-              <input id="p7" type="checkbox" data-store="prep.food" />
+              <input id="p7" type="checkbox" data-store="prep.toothbrush" />
               <label for="p7">
-                음식(컵라면/김/튜브고추장)
-                <span class="sub">현지 음식 적응이 어려울 때 대비</span>
+                칫솔 / 치약
+                <span class="sub">호텔 제공 품질이 낮을 수 있음</span>
               </label>
             </div>
 
             <div class="check">
-              <input id="p8" type="checkbox" data-store="prep.etc" />
+              <input id="p8" type="checkbox" data-store="prep.shampoo" />
               <label for="p8">
-                기타(카메라/충전기/콘센트/손선풍기/비닐봉투/계산기/손목시계)
-                <span class="sub">비닐봉투: 젖은 옷/짐 분리</span>
+                샴푸 / 린스 / 바디워시
+                <span class="sub">개인 피부에 맞는 제품 권장</span>
               </label>
             </div>
 
             <div class="check">
-              <input id="p9" type="checkbox" data-store="prep.money" />
+              <input id="p9" type="checkbox" data-store="prep.comb" />
               <label for="p9">
-                환전(현지화폐) + 카드(VISA/MASTER)
-                <span class="sub">한국에서 USD100 환전 → 현지에서 VND로 재환전 추천</span>
+                빗 / 면도기
+                <span class="sub">개인 위생용품</span>
+              </label>
+            </div>
+
+            <!-- 의류 -->
+            <div class="check">
+              <input id="p10" type="checkbox" data-store="prep.tshirt" />
+              <label for="p10">
+                반팔 티셔츠 (3~4벌)
+                <span class="sub">12월 나트랑: 평균 23~27℃</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p11" type="checkbox" data-store="prep.pants" />
+              <label for="p11">
+                바지 / 반바지 (2~3벌)
+                <span class="sub">편한 활동복 권장</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p12" type="checkbox" data-store="prep.shoes" />
+              <label for="p12">
+                운동화 / 슬리퍼
+                <span class="sub">워터파크·해변용 슬리퍼 필수</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p13" type="checkbox" data-store="prep.underwear" />
+              <label for="p13">
+                속옷 / 양말 (여유있게)
+                <span class="sub">일정 일수 +1~2벌 권장</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p14" type="checkbox" data-store="prep.outer" />
+              <label for="p14">
+                얇은 가디건 / 외투
+                <span class="sub">실내 에어컨 대비용</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p15" type="checkbox" data-store="prep.hat" />
+              <label for="p15">
+                모자 / 선글라스
+                <span class="sub">강한 햇빛 차단용</span>
+              </label>
+            </div>
+
+            <!-- 화장품 -->
+            <div class="check">
+              <input id="p16" type="checkbox" data-store="prep.skincare" />
+              <label for="p16">
+                기초 화장품 (스킨/로션)
+                <span class="sub">여행용 소용량 추천</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p17" type="checkbox" data-store="prep.sunscreen" />
+              <label for="p17">
+                자외선 차단제 (SPF50+)
+                <span class="sub">야외활동 많아서 필수</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p18" type="checkbox" data-store="prep.hair" />
+              <label for="p18">
+                헤어 제품 (왁스/스프레이)
+                <span class="sub">습도 높아 헤어 관리 필요</span>
+              </label>
+            </div>
+
+            <!-- 의약품 -->
+            <div class="check">
+              <input id="p19" type="checkbox" data-store="prep.coldmed" />
+              <label for="p19">
+                감기약 / 해열제
+                <span class="sub">냉방병 대비</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p20" type="checkbox" data-store="prep.digest" />
+              <label for="p20">
+                소화제 / 지사제
+                <span class="sub">현지 음식 적응 대비</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p21" type="checkbox" data-store="prep.bandaid" />
+              <label for="p21">
+                밴드 / 연고
+                <span class="sub">가벼운 상처 치료용</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p22" type="checkbox" data-store="prep.personal" />
+              <label for="p22">
+                개인 처방약 (지병 약)
+                <span class="sub">여유있게 준비, 처방전 지참 권장</span>
+              </label>
+            </div>
+
+            <!-- 음식 -->
+            <div class="check">
+              <input id="p23" type="checkbox" data-store="prep.ramen" />
+              <label for="p23">
+                컵라면 (1~2개)
+                <span class="sub">현지 음식 적응 어려울 때 대비</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p24" type="checkbox" data-store="prep.snack" />
+              <label for="p24">
+                김 / 과자 간식
+                <span class="sub">한국 음식 그리울 때</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p25" type="checkbox" data-store="prep.gochujang" />
+              <label for="p25">
+                튜브 고추장 / 간장
+                <span class="sub">현지 음식에 한국 맛 추가용</span>
+              </label>
+            </div>
+
+            <!-- 기타 -->
+            <div class="check">
+              <input id="p26" type="checkbox" data-store="prep.camera" />
+              <label for="p26">
+                카메라 / 충전기
+                <span class="sub">추억 기록용</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p27" type="checkbox" data-store="prep.charger" />
+              <label for="p27">
+                스마트폰 충전기 / 보조배터리
+                <span class="sub">하루 종일 사용 대비</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p28" type="checkbox" data-store="prep.adapter" />
+              <label for="p28">
+                멀티탭 / 충전 케이블
+                <span class="sub">여러 기기 동시 충전용</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p29" type="checkbox" data-store="prep.fan" />
+              <label for="p29">
+                손선풍기 (선택)
+                <span class="sub">더울 때 유용</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p30" type="checkbox" data-store="prep.plastic" />
+              <label for="p30">
+                비닐봉투 (여러 장)
+                <span class="sub">젖은 옷/짐 분리용</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p31" type="checkbox" data-store="prep.watch" />
+              <label for="p31">
+                손목시계 (방수)
+                <span class="sub">워터파크/해변 활동용</span>
+              </label>
+            </div>
+
+            <!-- 환전/카드 -->
+            <div class="check">
+              <input id="p32" type="checkbox" data-store="prep.usd" />
+              <label for="p32">
+                환전 (USD 100달러)
+                <span class="sub">한국에서 USD 환전 → 현지에서 VND로 재환전 추천</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p33" type="checkbox" data-store="prep.card" />
+              <label for="p33">
+                카드 (VISA/MASTER)
+                <span class="sub">해외결제 가능 카드 2장 이상 권장</span>
               </label>
             </div>
           </div>
@@ -145,7 +339,7 @@
         <!-- 2) 일정표 -->
         <div class="tabpanel" role="tabpanel" data-panel="itinerary">
           <h3>일정 타임라인 (핵심)</h3>
-          <p>상단 “현재 일정” 카드와 연동되어, 진행중인 이벤트는 보라색으로 표시됩니다.</p>
+          <p>상단 "현재 일정" 카드와 연동되어, 진행중인 이벤트는 보라색으로 표시됩니다.</p>
 
           <div class="timeline">
             <!-- 1일차 -->
@@ -173,7 +367,7 @@
               <div class="title">골프조: 빈펄CC 18홀 / 관광조: 빈원더스 자유</div>
               <div class="desc">
                 골프조: 18홀 라운딩 1회 (중식: 클럽식)<br/>
-                관광조: 빈원더스(구 빈펄랜드) 자유시간 (케이블카/워터파크/아쿠아리움/놀이공원 등)
+                관광조: 빈원더스(구 빈펄랜드) 자유 시간 (케이블카/워터파크/아쿠아리움/놀이공원 등)
               </div>
             </div>
 
@@ -246,7 +440,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr><td>1</td><td>공명석(골프)</td><td>강진수</td><td>강수석</td><td>박상준</td><td>김윤호</td><td>조현욱</td></tr>
+                <tr><td>1</td><td>공명선(골프)</td><td>강진수</td><td>강수선</td><td>박상준</td><td>김윤호</td><td>조현욱</td></tr>
                 <tr><td>2</td><td>김한겸(골프)</td><td>이유진</td><td>길종호</td><td>이민철</td><td>홍준기</td><td>강현모</td></tr>
                 <tr><td>3</td><td>나종현(골프)</td><td>이준호</td><td>김성연</td><td>유철기</td><td>최승원</td><td>김주호</td></tr>
                 <tr><td>4</td><td>홍종옥(골프)</td><td>장다현</td><td>김재우</td><td>오태현</td><td>김우림</td><td>김동현</td></tr>
@@ -313,7 +507,7 @@
                   <td>석식</td>
                   <td>현지식</td>
                   <td>
-                    군신씨푸드(★4.0): https://g.co/kgs/W1Akbi6<br/>
+                    군신 씨푸드(★4.0): https://g.co/kgs/W1Akbi6<br/>
                     게살스프, 샐러드, 해산물 스프링롤, 생선찜, 해산물볶음밥,
                     마늘 야채 볶음, 디저트(아이스크림), 차
                   </td>
@@ -377,126 +571,3 @@
 
           <h3>워터파크 조 (13명)</h3>
           <div class="card" style="box-shadow:none;">
-            강수석, 김범준, 김윤호, 김정호, 오태현, 홍건호, 유철기, 이한나,
-            최성연, 최예준, 홍준기, 조아라, 김우림
-          </div>
-
-          <div class="hr"></div>
-
-          <h3>워터파크 준비물</h3>
-          <div class="pills">
-            <span class="pill primary">수영복/래쉬가드</span>
-            <span class="pill primary">방수팩</span>
-            <span class="pill primary">아쿠아슈즈/슬리퍼</span>
-            <span class="pill primary">선크림</span>
-            <span class="pill">모자</span>
-            <span class="pill">세면도구</span>
-            <span class="pill">현금</span>
-            <span class="pill danger">락커/수건대여는 현금만 가능</span>
-          </div>
-
-          <div class="hr"></div>
-
-          <h3>골프장 정보</h3>
-          <div class="grid grid-2">
-            <div class="card" style="box-shadow:none;">
-              <h3>Vinpearl Golf Club</h3>
-              <p><b>주소</b><br/>Hon Tre island, Vĩnh Nguyên, Tp. Nha Trang, Khánh Hòa, Vietnam</p>
-              <p><b>전화</b><br/>+84 814 982 828</p>
-              <p><b>편의시설</b><br/>프로샵/드라이빙레인지/치핑·퍼팅그린/연습벙커/레스토랑(06:00~18:00)</p>
-              <p><b>홈페이지</b><br/>https://vinpearl.com/vi/vinpearl-golf</p>
-            </div>
-
-            <div class="card" style="box-shadow:none;">
-              <h3>KN Golf Links – Cam Ranh</h3>
-              <p><b>주소</b><br/>KN Paradise / KN Golf Links Road, Cam Nghĩa, Cam Ranh, Khánh Hòa</p>
-              <p><b>전화</b><br/>+84 258 3999 666</p>
-              <p><b>편의시설</b><br/>프로샵/드라이빙레인지/치핑·퍼팅그린/연습벙커/레스토랑(05:30~19:00)</p>
-              <p><b>홈페이지</b><br/>https://www.kngolflinks.com/</p>
-            </div>
-          </div>
-
-          <div class="hr"></div>
-
-          <h3>관광 포인트 요약</h3>
-          <div class="grid grid-2">
-            <div class="card" style="box-shadow:none;">
-              <h3>콩카페</h3>
-              <p>나트랑 대표 카페. 코코넛커피/연유커피가 유명.</p>
-            </div>
-            <div class="card" style="box-shadow:none;">
-              <h3>원숭이섬</h3>
-              <p>약 1,200마리 원숭이 서식. 체험/공연/포토 포인트.</p>
-            </div>
-            <div class="card" style="box-shadow:none;">
-              <h3>혼총곶</h3>
-              <p>바위 해변 명소. 파도+바다 풍경이 좋은 포인트.</p>
-            </div>
-            <div class="card" style="box-shadow:none;">
-              <h3>호핑투어</h3>
-              <p>스노클링/해변 휴식/BBQ 등. 젖는 일정이니 방수 대비 필수.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- 6) 비상연락처 -->
-        <div class="tabpanel" role="tabpanel" data-panel="emergency">
-          <h3>응급상황 시 비상 연락처</h3>
-
-          <div class="grid grid-2">
-            <div class="card" style="box-shadow:none;">
-              <h3>주베트남 대한민국 대사관(하노이)</h3>
-              <p><b>주소</b><br/>S4Q, Do Nhuan, Khu Ngoai Giao Doan, Xuan Tao, Bac Tu Liem, Hanoi, Vietnam</p>
-              <p><b>대표(근무시간)</b><br/>(84) 24-3771-0404</p>
-              <p><b>긴급(24시간)</b><br/>(84) 90-402-6126</p>
-              <p><b>Email</b><br/>korembviet@mofa.go.kr</p>
-            </div>
-
-            <div class="card" style="box-shadow:none;">
-              <h3>주호치민 대한민국 총영사관</h3>
-              <p><b>주소</b><br/>107 Nguyen Du St., Dist 1, Ho Chi Minh city, VietNam</p>
-              <p><b>대표(근무시간)</b><br/>(84) 28-3822-5757</p>
-              <p><b>긴급(24시간)</b><br/>(84) 93-850-0238</p>
-              <p><b>Email</b><br/>hcm02@mofa.go.kr</p>
-            </div>
-          </div>
-
-          <div class="hr"></div>
-
-          <div class="card" style="box-shadow:none;">
-            <h3>현지 긴급번호</h3>
-            <div class="pills">
-              <span class="pill">범죄신고: <b>113</b></span>
-              <span class="pill">화재신고: <b>114</b></span>
-              <span class="pill">응급환자(앰뷸런스): <b>115</b></span>
-            </div>
-            <p><small>※ 대부분 베트남어 대응이며, 구급차 이용 요금이 발생할 수 있습니다.</small></p>
-          </div>
-
-          <div class="hr"></div>
-
-          <h3>나트랑 종합병원</h3>
-          <div class="grid grid-2">
-            <div class="card" style="box-shadow:none;">
-              <h3>나트랑 빈멕 국제종합병원</h3>
-              <p><b>주소</b><br/>Vĩnh Nguyên, Nha Trang, Khánh Hòa 650000</p>
-              <p><b>운영</b><br/>24시간</p>
-              <p><b>전화</b><br/>+84 258 3900 168</p>
-              <p><b>이동</b><br/>모벤픽 호텔 차량 약 40분</p>
-            </div>
-
-            <div class="card" style="box-shadow:none;">
-              <h3>22-12 Hospital</h3>
-              <p><b>주소</b><br/>34/4 Nguyễn Thiện Thuật, Tân Tiến, Nha Trang, Khánh Hòa 650000</p>
-              <p><b>운영</b><br/>24시간</p>
-              <p><b>전화</b><br/>+84 258 3528 857</p>
-              <p><b>이동</b><br/>모벤픽 호텔 차량 약 45분</p>
-            </div>
-          </div>
-        </div>
-
-      </section>
-    </div>
-  </main>
-</body>
-</html>
