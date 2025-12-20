@@ -58,7 +58,7 @@
   }
 
   function formatInVN(iso) {
-    // iso에 timezone이 들어있어도, 표시는 VN 기준으로 통일
+    // "VN" 제거하고 시간만 표시
     const d = new Date(iso);
     return new Intl.DateTimeFormat("ko-KR", {
       timeZone: "Asia/Ho_Chi_Minh",
@@ -85,14 +85,20 @@
       type === "next"    ? `<span class="pill">다음 일정</span>` :
                            `<span class="pill">마지막 일정</span>`;
 
+    // "다음 일정" 버튼 추가
+    const nextBtn = type === "next" || type === "current" 
+      ? `<div style="margin-top:12px;"><a class="btn primary" href="schedule.html#tab=itinerary">일정표 바로가기</a></div>`
+      : '';
+
     host.innerHTML = `
       <div class="event ${type==='current' ? 'current':''}">
         <div class="meta">
           ${badge}
-          <span class="tag">VN ${formatInVN(ev.start)} ~ ${formatInVN(ev.end)}</span>
+          <span class="tag">${formatInVN(ev.start)} ~ ${formatInVN(ev.end)}</span>
         </div>
         <div class="title">${ev.title}</div>
         <div class="desc">${ev.place || ""}${ev.note ? `<br><small>※ ${ev.note}</small>` : ""}</div>
+        ${nextBtn}
       </div>
     `;
   }
@@ -165,11 +171,11 @@
       { cat:"기본 인사", ko:"죄송합니다", vi:"Xin lỗi", pr:"씬로이", note:"미안/실례 모두 가능" },
 
       { cat:"가게/주문", ko:"이거 얼마예요?", vi:"Cái này bao nhiêu tiền?", pr:"까이 나이 바오 니에우 띠엔?", note:"가격 물어볼 때" },
-      { cat:"가게/주문", ko:"안 맵게 해주세요", vi:"Không cay", pr:"콩 까이", note:"'Ít cay(잇 까이)'=조금 맵게" },
-      { cat:"가게/주문", ko:"계산해 주세요", vi:"Tính tiền", pr:"띵 띠엔", note:"" },
+      { cat:"가게/주문", ko:"안 맵게 해주세요", vi:"Không cay", pr:"콤 까이", note:"'Ít cay(잇 까이)'=조금 맵게" },
+      { cat:"가게/주문", ko:"계산해 주세요", vi:"Tính tiền", pr:"띤 띠엔", note:"" },
 
-      { cat:"교통/이동", ko:"여기서 내려주세요", vi:"Dừng ở đây", pr:"증 어다이", note:"택시/그랩" },
-      { cat:"교통/이동", ko:"…로 가주세요", vi:"Cho tôi đi đến …", pr:"쩌 또이 디 덴 …", note:"목적지 말하면 됨" },
+      { cat:"교통/이동", ko:"여기서 내려주세요", vi:"Dừng ở đây", pr:"중 어다이", note:"택시/그랩" },
+      { cat:"교통/이동", ko:"…로 가주세요", vi:"Cho tôi đi đến …", pr:"쪼 또이 디 덴 …", note:"목적지 말하면 됨" },
 
       { cat:"숙소/응급", ko:"의사가 필요해요", vi:"Tôi cần bác sĩ", pr:"또이 껀 박씨", note:"" },
       { cat:"숙소/응급", ko:"도와주세요", vi:"Giúp tôi với!", pr:"줍 또이 보이!", note:"긴급/부탁" },
