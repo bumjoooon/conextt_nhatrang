@@ -260,6 +260,7 @@ tr:last-child td{ border-bottom:none; }
   border-radius: 12px;
   background: white;
   padding: 10px 12px;
+  margin-bottom: 5px; /* 원하는 만큼 */
 }
 .event .meta{
   display:flex;
