@@ -240,6 +240,21 @@ tr:last-child td{ border-bottom:none; }
   flex-direction:column;
   gap:10px;
 }
+
+.day-group {
+  margin-bottom: 24px;
+}
+
+.day-header {
+  margin: 0 0 12px 0;
+  padding: 8px 12px;
+  background: linear-gradient(135deg, var(--primary), #9333ea);
+  color: white;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 800;
+}
+
 .event{
   border: 1px solid var(--border);
   border-radius: 12px;
