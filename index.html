@@ -10,26 +10,34 @@
   <style>
     /* 추가 스타일 */
     .time-display {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
       background: white;
       border: 1px solid var(--border);
       border-radius: 12px;
-      font-weight: 700;
+      overflow: hidden;
+    }
+    .time-display .time-col {
+      padding: 12px;
+      text-align: center;
+    }
+    .time-display .time-col:first-child {
+      border-right: 1px solid var(--border);
     }
     .time-display .country {
+      display: block;
       color: var(--muted);
-      min-width: 100px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 8px;
     }
     .time-display .time-value {
+      display: block;
       color: var(--text);
       font-family: ui-monospace, monospace;
-    }
-    .time-display .divider {
-      color: var(--border);
-      font-weight: 400;
+      font-size: 16px;
+      font-weight: 800;
     }
 
     .vn-quick-btns {
@@ -56,6 +64,16 @@
       border-color: var(--primary);
       background: var(--primary-weak);
       color: var(--primary);
+    }
+    
+    /* 모바일 반응형 */
+    @media(max-width: 760px) {
+      .grid-2 {
+        grid-template-columns: 1fr !important;
+      }
+      .vn-quick-btns {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
     @media(max-width: 520px) {
       .vn-quick-btns {
@@ -91,11 +109,14 @@
         <section class="card">
           <h2>현재 시간</h2>
           <div class="time-display">
-            <span class="country">🇻🇳 베트남(나트랑)</span>
-            <span class="time-value" data-clock="vn">-</span>
-            <span class="divider">|</span>
-            <span class="country">🇰🇷 한국</span>
-            <span class="time-value" data-clock="kr">-</span>
+            <div class="time-col">
+              <span class="country">🇻🇳 베트남(나트랑)</span>
+              <span class="time-value" data-clock="vn">-</span>
+            </div>
+            <div class="time-col">
+              <span class="country">🇰🇷 한국</span>
+              <span class="time-value" data-clock="kr">-</span>
+            </div>
           </div>
 
           <div class="hr"></div>
@@ -179,14 +200,6 @@
               <h3>비상 연락처</h3>
               <p>대사관/병원/긴급번호.</p>
             </a>
-          </div>
-
-          <div class="hr"></div>
-
-          <h3>기초 베트남어</h3>
-          <div class="btns">
-            <a class="btn primary" href="vietnamese.html">베트남어 페이지</a>
-            <a class="btn" href="vietnamese.html#sections">카테고리 보기</a>
           </div>
         </section>
       </div>
