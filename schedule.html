@@ -2,264 +2,501 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Conextt - 여행 일정</title>
-  <style>
-    :root{
-      --bg:#ffffff; --ink:#111827; --muted:#6b7280;
-      --border:#e5e7eb; --card:#f9fafb; --pill:#eef2ff;
-      --radius:14px; --shadow:0 8px 30px rgba(0,0,0,.06);
-      --max:1100px;
-    }
-    *{ box-sizing:border-box; }
-    body{ margin:0; font-family:system-ui,-apple-system,sans-serif; color:var(--ink); background:var(--bg); }
-    a{ color:inherit; text-decoration:none; }
-    .wrap{ max-width:var(--max); margin:0 auto; padding:14px; }
-
-    .topbar{
-      position:sticky; top:0; z-index:1000;
-      background:rgba(255,255,255,.9);
-      backdrop-filter: blur(10px);
-      border-bottom:1px solid var(--border);
-    }
-    .topbar__inner{
-      max-width:var(--max); margin:0 auto;
-      padding:12px 14px;
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:900;
-      padding:8px 10px; border-radius:999px;
-      border:1px solid var(--border);
-      background:#fff;
-    }
-    .menu{ display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
-    .menu a{
-      border:1px solid var(--border);
-      background:#fff;
-      padding:8px 10px;
-      border-radius:999px;
-      font-size:13px;
-    }
-    .menu a.active{ background:var(--pill); border-color:#c7d2fe; }
-
-    .card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:12px;
-      box-shadow: var(--shadow);
-    }
-    h1{ margin:0; font-size:22px; }
-    h2{ margin:0 0 8px; font-size:14px; }
-    .muted{ color:var(--muted); font-size:12px; line-height:1.4; }
-
-    label{ display:block; font-size:12px; color:#374151; margin:10px 0 6px; }
-    input, textarea{
-      width:100%;
-      border:1px solid var(--border);
-      border-radius:12px;
-      padding:10px 12px;
-      font-size:14px;
-      background:#fff;
-    }
-    textarea{ min-height:80px; resize:vertical; }
-
-    .row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between; }
-    .btn{
-      border:1px solid var(--border);
-      background:#fff;
-      padding:8px 10px;
-      border-radius:12px;
-      cursor:pointer;
-      font-size:13px;
-      width:auto;
-    }
-    .btn.primary{ background:#111827; color:#fff; border-color:#111827; }
-
-    .list{ display:grid; gap:10px; margin-top:10px; }
-    .item{
-      background:#fff;
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:10px;
-    }
-    .item .top{ display:flex; gap:10px; justify-content:space-between; align-items:flex-start; }
-    .tag{
-      font-size:12px; padding:3px 8px; border-radius:999px;
-      background:var(--pill); border:1px solid #c7d2fe;
-      white-space:nowrap;
-    }
-    .small{ font-size:12px; color:var(--muted); }
-    .actions{ display:flex; gap:8px; justify-content:flex-end; margin-top:8px; }
-  </style>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>여행 | Conextt Travel</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <script src="assets/data.js" defer></script>
+  <script src="assets/app.js" defer></script>
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar__inner">
-      <a class="brand" href="index.html">Conextt</a>
-      <nav class="menu" aria-label="Pages">
-        <a href="index.html" data-nav="index">Main</a>
-        <a href="schedule.html" data-nav="schedule">여행 일정</a>
-        <a href="vietnamese.html" data-nav="vn">여행 베트남어</a>
-        <a href="photos.html" data-nav="photos">사진</a>
-        <a href="videos.html" data-nav="videos">영상</a>
+  <header class="header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <div class="brand-badge">C</div>
+        <div>
+          Conextt Travel<br />
+          <small>여행 탭</small>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html">Main</a>
+        <a href="schedule.html">여행</a>
+        <a href="vietnamese.html">베트남어</a>
+        <a href="photos.html">사진</a>
+        <a href="videos.html">영상</a>
       </nav>
     </div>
   </header>
 
-  <main class="wrap">
-    <div class="row" style="margin-bottom:8px;">
-      <h1>여행 일정</h1>
-      <div class="muted">Main의 “현재 일정”은 여기 데이터를 기반으로 표시됩니다.</div>
-    </div>
+  <main class="page">
+    <div class="container">
+      <section class="card">
+        <h2>여행</h2>
+        <div class="pills">
+          <span class="pill primary">베트남(나트랑)</span>
+          <span class="pill"><span class="kbd" data-clock="vn">-</span></span>
+          <span class="pill">한국</span>
+          <span class="pill"><span class="kbd" data-clock="kr">-</span></span>
+        </div>
+        <div class="hr"></div>
 
-    <section class="card">
-      <h2>일정 추가</h2>
-      <label>일시</label>
-      <input id="dt" type="datetime-local" />
+        <h3>현재 일정</h3>
+        <div data-current-schedule></div>
+      </section>
 
-      <label>제목</label>
-      <input id="title" placeholder="예) 공항 도착 / 호텔 체크인 / 마사지 예약" />
+      <section class="card" data-tabs>
+        <div class="tabs" role="tablist" aria-label="여행 탭">
+          <button role="tab" data-tab="prep" aria-selected="false">여행 준비물</button>
+          <button role="tab" data-tab="itinerary" aria-selected="false">일정표</button>
+          <button role="tab" data-tab="stay" aria-selected="false">숙소</button>
+          <button role="tab" data-tab="food" aria-selected="false">식사정보</button>
+          <button role="tab" data-tab="spots" aria-selected="false">관광지정보</button>
+          <button role="tab" data-tab="emergency" aria-selected="false">비상연락처</button>
+        </div>
 
-      <label>메모(선택)</label>
-      <textarea id="note" placeholder="예) 택시 Grab / 예약번호 1234"></textarea>
-
-      <div class="row" style="margin-top:10px;">
-        <button class="btn primary" id="addBtn">추가</button>
-        <button class="btn" id="clearBtn">전체 삭제</button>
-      </div>
-
-      <div class="muted" style="margin-top:10px;">
-        <!-- 일정 입력 UI를 더 예쁘게 바꾸고 싶으면 여기 섹션만 수정하면 됩니다. -->
-        * 일정은 브라우저(localStorage)에 저장됩니다.
-      </div>
-    </section>
-
-    <section class="card" style="margin-top:12px;">
-      <h2>일정 목록</h2>
-      <div class="small" id="count">-</div>
-      <div class="list" id="list"></div>
-    </section>
-  </main>
-
-  <script>
-    // nav active
-    (() => {
-      const path = (location.pathname.split("/").pop() || "index.html").toLowerCase();
-      const map = {
-        "index.html":"index",
-        "schedule.html":"schedule",
-        "vietnamese.html":"vn",
-        "photos.html":"photos",
-        "videos.html":"videos",
-      };
-      const key = map[path];
-      document.querySelectorAll("[data-nav]").forEach(a => {
-        if (a.getAttribute("data-nav") === key) a.classList.add("active");
-      });
-    })();
-
-    const KEY = "conextt_schedule_v1";
-    const $ = (id) => document.getElementById(id);
-
-    function load(){
-      try{
-        const raw = localStorage.getItem(KEY);
-        const arr = raw ? JSON.parse(raw) : [];
-        return Array.isArray(arr) ? arr : [];
-      } catch { return []; }
-    }
-    function save(arr){
-      localStorage.setItem(KEY, JSON.stringify(arr));
-    }
-    function uid(){
-      return (crypto.randomUUID && crypto.randomUUID()) || String(Date.now() + Math.random());
-    }
-    function escapeHtml(s){
-      return (s ?? "").replace(/[&<>"']/g, m => ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[m]));
-    }
-
-    let items = load();
-
-    function fmtKST(dtStr){
-      const d = new Date(dtStr);
-      if (Number.isNaN(d.getTime())) return "-";
-      return new Intl.DateTimeFormat("ko-KR", {
-        timeZone:"Asia/Seoul",
-        year:"numeric", month:"2-digit", day:"2-digit",
-        hour:"2-digit", minute:"2-digit",
-        hour12:false
-      }).format(d);
-    }
-
-    function render(){
-      items = items
-        .filter(x => x && x.dt && x.title)
-        .map(x => ({...x, t: new Date(x.dt).getTime()}))
-        .filter(x => !Number.isNaN(x.t))
-        .sort((a,b) => a.t - b.t);
-
-      save(items);
-
-      $("count").textContent = `총 ${items.length}개`;
-
-      if (!items.length){
-        $("list").innerHTML = `<div class="muted">등록된 일정이 없습니다.</div>`;
-        return;
-      }
-
-      const now = Date.now();
-      const nextId = (items.find(x => x.t >= now) || items[0]).id;
-
-      $("list").innerHTML = items.map(it => `
-        <div class="item">
-          <div class="top">
-            <div>
-              <div style="font-weight:900;">${escapeHtml(it.title)}</div>
-              <div class="small">${fmtKST(it.dt)}${it.note ? " · " + escapeHtml(it.note) : ""}</div>
-            </div>
-            <div class="tag">${it.id === nextId ? "가장 가까운 일정" : "일정"}</div>
+        <!-- 1) 준비물 -->
+        <div class="tabpanel" role="tabpanel" data-panel="prep">
+          <div class="notice">
+            ★ 2025년 3월 1일부터 베트남 모든 공항에서 “긴급여권” 입국이 제한됩니다.<br/>
+            (긴급여권으로 베트남 입국 불가)
           </div>
-          <div class="actions">
-            <button class="btn" data-del="${it.id}">삭제</button>
+
+          <div class="hr"></div>
+
+          <h3>체크리스트</h3>
+          <p>체크는 브라우저에 저장됩니다.</p>
+
+          <div class="checklist">
+            <div class="check">
+              <input id="p1" type="checkbox" data-store="prep.passport" />
+              <label for="p1">
+                여권 / 항공권 / 일정표 / 확정서 / 비상연락처
+                <span class="sub">출발/리턴에 필요한 필수 서류</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p2" type="checkbox" data-store="prep.bag1" />
+              <label for="p2">
+                캐리어(바퀴) + 보조가방(가볍게 멜 것)
+                <span class="sub">짐 분리/이동 편하게</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p3" type="checkbox" data-store="prep.toiletry" />
+              <label for="p3">
+                세면도구(치약/칫솔/빗/면도기/샴푸/린스)
+                <span class="sub">호텔에도 있지만 개인 준비 추천</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p4" type="checkbox" data-store="prep.clothes" />
+              <label for="p4">
+                의류(반팔/바지/모자/운동화/속옷/양말/가디건/선글라스/외투)
+                <span class="sub">12월 나트랑: 평균 23~27℃(서울 여름 수준)</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p5" type="checkbox" data-store="prep.cosmetic" />
+              <label for="p5">
+                화장품(기초/헤어/자외선차단제)
+                <span class="sub">야외활동 많아서 자외선 차단 필수</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p6" type="checkbox" data-store="prep.med" />
+              <label for="p6">
+                의약품(감기약/소화제/여행용 약/일회용 밴드)
+                <span class="sub">지병 약은 처방전 지참 권장</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p7" type="checkbox" data-store="prep.food" />
+              <label for="p7">
+                음식(컵라면/김/튜브고추장)
+                <span class="sub">현지 음식 적응이 어려울 때 대비</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p8" type="checkbox" data-store="prep.etc" />
+              <label for="p8">
+                기타(카메라/충전기/콘센트/손선풍기/비닐봉투/계산기/손목시계)
+                <span class="sub">비닐봉투: 젖은 옷/짐 분리</span>
+              </label>
+            </div>
+
+            <div class="check">
+              <input id="p9" type="checkbox" data-store="prep.money" />
+              <label for="p9">
+                환전(현지화폐) + 카드(VISA/MASTER)
+                <span class="sub">한국에서 USD100 환전 → 현지에서 VND로 재환전 추천</span>
+              </label>
+            </div>
           </div>
         </div>
-      `).join("");
 
-      document.querySelectorAll("[data-del]").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const id = btn.getAttribute("data-del");
-          items = items.filter(x => x.id !== id);
-          render();
-        });
-      });
-    }
+        <!-- 2) 일정표 -->
+        <div class="tabpanel" role="tabpanel" data-panel="itinerary">
+          <h3>일정 타임라인 (핵심)</h3>
+          <p>상단 “현재 일정” 카드와 연동되어, 진행중인 이벤트는 보라색으로 표시됩니다.</p>
 
-    $("addBtn").addEventListener("click", () => {
-      const dt = $("dt").value;
-      const title = $("title").value.trim();
-      const note = $("note").value.trim();
+          <div class="timeline">
+            <!-- 1일차 -->
+            <div class="event" data-ev-start="2025-12-26T14:30:00+09:00" data-ev-end="2025-12-26T18:05:00+09:00">
+              <div class="meta"><span class="time">12/26(금) 14:30</span><span class="tag">인천</span></div>
+              <div class="title">인천공항 T2 집결</div>
+              <div class="desc">제2터미널 3층 (1번 출구) 하나투어 미팅테이블</div>
+            </div>
 
-      if (!dt || !title){
-        alert("일시/제목은 필수입니다.");
-        return;
-      }
-      items.push({ id: uid(), dt, title, note });
-      $("title").value = "";
-      $("note").value = "";
-      render();
-    });
+            <div class="event" data-ev-start="2025-12-26T18:05:00+09:00" data-ev-end="2025-12-26T21:35:00+07:00">
+              <div class="meta"><span class="time">12/26(금) 18:05</span><span class="tag">KE465</span></div>
+              <div class="title">인천 출발 → 깜란 도착(21:35)</div>
+              <div class="desc">도착 후 가이드 미팅 → 버스로 호텔 이동(10~15분) → 체크인/휴식</div>
+            </div>
 
-    $("clearBtn").addEventListener("click", () => {
-      if (!confirm("전체 일정을 삭제할까요?")) return;
-      items = [];
-      save(items);
-      render();
-    });
+            <!-- 2일차 -->
+            <div class="event" data-ev-start="2025-12-27T06:50:00+07:00" data-ev-end="2025-12-27T07:20:00+07:00">
+              <div class="meta"><span class="time">12/27(토) 06:50</span><span class="tag">호텔</span></div>
+              <div class="title">조식</div>
+              <div class="desc">호텔식</div>
+            </div>
 
-    render();
-  </script>
+            <div class="event" data-ev-start="2025-12-27T08:20:00+07:00" data-ev-end="2025-12-27T18:00:00+07:00">
+              <div class="meta"><span class="time">12/27(토) 08:20</span><span class="tag">분기</span></div>
+              <div class="title">골프조: 빈펄CC 18홀 / 관광조: 빈원더스 자유</div>
+              <div class="desc">
+                골프조: 18홀 라운딩 1회 (중식: 클럽식)<br/>
+                관광조: 빈원더스(구 빈펄랜드) 자유시간 (케이블카/워터파크/아쿠아리움/놀이공원 등)
+              </div>
+            </div>
+
+            <!-- 3일차 -->
+            <div class="event" data-ev-start="2025-12-28T11:30:00+07:00" data-ev-end="2025-12-28T15:30:00+07:00">
+              <div class="meta"><span class="time">12/28(일) 11:30~15:30</span><span class="tag">투어</span></div>
+              <div class="title">호핑투어 & 스노클링 (4시간)</div>
+              <div class="desc">준비물: 수영복, 슬리퍼/아쿠아슈즈, 선크림, 수건</div>
+            </div>
+
+            <!-- 4일차 -->
+            <div class="event" data-ev-start="2025-12-29T12:00:00+07:00" data-ev-end="2025-12-29T12:30:00+07:00">
+              <div class="meta"><span class="time">12/29(월) 12:00</span><span class="tag">호텔</span></div>
+              <div class="title">체크아웃 & 가이드 미팅</div>
+              <div class="desc">로비 집결</div>
+            </div>
+
+            <div class="event" data-ev-start="2025-12-29T16:30:00+07:00" data-ev-end="2025-12-29T18:30:00+07:00">
+              <div class="meta"><span class="time">12/29(월) 16:30</span><span class="tag">관광</span></div>
+              <div class="title">원숭이섬 & 혼총곶 + 타이마사지(90분)</div>
+              <div class="desc">단체 관광 후 공항 이동</div>
+            </div>
+
+            <div class="event" data-ev-start="2025-12-29T23:05:00+07:00" data-ev-end="2025-12-30T06:05:00+09:00">
+              <div class="meta"><span class="time">12/29(월) 23:05</span><span class="tag">KE466</span></div>
+              <div class="title">깜란 출발 → 인천 도착(06:05)</div>
+              <div class="desc">입국/수하물 수령 후 해산</div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="pills">
+            <span class="pill">※ 상세 일정(식사/이동/메모)은 아래 탭들에 분리해 넣었습니다.</span>
+          </div>
+        </div>
+
+        <!-- 3) 숙소 -->
+        <div class="tabpanel" role="tabpanel" data-panel="stay">
+          <h3>호텔 정보</h3>
+
+          <div class="grid grid-2">
+            <div class="card" style="box-shadow:none;">
+              <h3>모벤픽 리조트 깜란</h3>
+              <p><b>Movenpick Resort Cam Ranh</b></p>
+              <p><b>주소</b><br/>Plot D12 Abc, Cam Hải Đông Cam Ranh, Khánh Hòa 057615</p>
+              <p><b>연락처</b><br/>+84 1800 577745</p>
+              <div class="btns">
+                <a class="btn primary" target="_blank" rel="noreferrer noopener"
+                   href="https://www.google.com/maps/search/?api=1&query=Plot%20D12%20Abc%2C%20Cam%20H%E1%BA%A3i%20%C4%90%C3%B4ng%20Cam%20Ranh%2C%20Kh%C3%A1nh%20H%C3%B2a%20057615">
+                  Google Map 열기
+                </a>
+              </div>
+            </div>
+
+            <div class="card" style="box-shadow:none;">
+              <h3>시설/객실</h3>
+              <p><b>호텔시설</b><br/>레스토랑, 바/라운지, 피트니스센터, 수영장, 전용해변, 편의점, 키즈룸, 카페 등</p>
+              <p><b>객실시설</b><br/>에어컨, 냉장고, 커피/티메이커, 헤어드라이어, TV, 무료 Wi-Fi, 주전자, 미니바 등</p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <h3>방 배정</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>구분</th><th>Room 1</th><th>Room 2</th><th>Room 3</th><th>Room 4</th><th>Room 5</th><th>Room 6</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>1</td><td>공명석(골프)</td><td>강진수</td><td>강수석</td><td>박상준</td><td>김윤호</td><td>조현욱</td></tr>
+                <tr><td>2</td><td>김한겸(골프)</td><td>이유진</td><td>길종호</td><td>이민철</td><td>홍준기</td><td>강현모</td></tr>
+                <tr><td>3</td><td>나종현(골프)</td><td>이준호</td><td>김성연</td><td>유철기</td><td>최승원</td><td>김주호</td></tr>
+                <tr><td>4</td><td>홍종옥(골프)</td><td>장다현</td><td>김재우</td><td>오태현</td><td>김우림</td><td>김동현</td></tr>
+                <tr><td>5</td><td>박건규</td><td>조아라</td><td>김해린</td><td>최예준</td><td>정기순</td><td>김범준</td></tr>
+                <tr><td>6</td><td>김재역</td><td>최성일</td><td>이성준</td><td>나경준</td><td>정봉주</td><td>김정훈</td></tr>
+                <tr><td>7</td><td></td><td></td><td>이한나</td><td>용건호</td><td>박준범</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 4) 식사정보 -->
+        <div class="tabpanel" role="tabpanel" data-panel="food">
+          <h3>식사 정보</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>날짜</th><th>구분1</th><th>구분2</th><th>식당/메뉴</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- 2일차 -->
+                <tr>
+                  <td rowspan="3"><b>2일차<br/>12/27(토)</b></td>
+                  <td>조식</td>
+                  <td>호텔식</td>
+                  <td>호텔뷔페식</td>
+                </tr>
+                <tr>
+                  <td>중식</td>
+                  <td style="color:#dc2626;font-weight:900;">불포함</td>
+                  <td>
+                    • 중식(빈원더스) 조별 or 개인별 중식비 전달 예정<br/>
+                    골프조: 클럽식 / 관광조: 자유
+                  </td>
+                </tr>
+                <tr>
+                  <td>석식</td>
+                  <td>한식</td>
+                  <td>
+                    고구려(★4.2): https://g.co/kgs/Mtv1GKo<br/>
+                    소갈비찜, 김치전골, 해물파전, 각종 밑반찬
+                  </td>
+                </tr>
+
+                <!-- 3일차 -->
+                <tr>
+                  <td rowspan="3"><b>3일차<br/>12/28(일)</b></td>
+                  <td>조식</td>
+                  <td>호텔식</td>
+                  <td>호텔뷔페식</td>
+                </tr>
+                <tr>
+                  <td>중식</td>
+                  <td>현지식</td>
+                  <td>
+                    호핑식<br/>
+                    모닝글로리볶음, 새우구이, 해산물볶음밥, 스프링롤, 생선튀김,
+                    돼지고기구이, 어묵국수
+                  </td>
+                </tr>
+                <tr>
+                  <td>석식</td>
+                  <td>현지식</td>
+                  <td>
+                    군신씨푸드(★4.0): https://g.co/kgs/W1Akbi6<br/>
+                    게살스프, 샐러드, 해산물 스프링롤, 생선찜, 해산물볶음밥,
+                    마늘 야채 볶음, 디저트(아이스크림), 차
+                  </td>
+                </tr>
+
+                <!-- 4일차 -->
+                <tr>
+                  <td rowspan="3"><b>4일차<br/>12/29(월)</b></td>
+                  <td>조식</td>
+                  <td>호텔식</td>
+                  <td>호텔뷔페식</td>
+                </tr>
+                <tr>
+                  <td>중식</td>
+                  <td>한식/현지식</td>
+                  <td>
+                    관광조: 정원(★4.5): https://g.co/kgs/joLM2pT<br/>
+                    차돌된장전골, 제육볶음, 파전, 오징어무침<br/>
+                    골프조: 클럽식
+                  </td>
+                </tr>
+                <tr>
+                  <td>석식</td>
+                  <td>현지식</td>
+                  <td>
+                    짜오마오 씨푸드(★4.8): https://g.co/kgs/doAMuKY<br/>
+                    맛조개볶음, 매운해산물 미광, 계란볶음밥, 모닝글로리, 조개구이(굴 치즈 구이),
+                    생선찜, 닭스터미(?) + 디저트(바나나/서비스)
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="hr"></div>
+          <p><small>※ 상기 식사 메뉴는 현지 재료수급 등의 이유로 변경될 수 있습니다.</small></p>
+        </div>
+
+        <!-- 5) 관광지정보 -->
+        <div class="tabpanel" role="tabpanel" data-panel="spots">
+          <h3>빈원더스(구 빈펄랜드) 조 편성</h3>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>A조</th><th>B조</th><th>C조</th><th>D조</th><th>E조</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>박상준<br/>이민철<br/>김재역<br/>박건규</td>
+                  <td>이준호<br/>김승규<br/>길종호<br/>정기순</td>
+                  <td>정봉주<br/>박준범<br/>나경준<br/>최승원</td>
+                  <td>김제우(?)<br/>강현모<br/>조현욱<br/>이우진<br/>이성준</td>
+                  <td>김동현<br/>김성연<br/>강진수<br/>장다현<br/>김해린</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="hr"></div>
+
+          <h3>워터파크 조 (13명)</h3>
+          <div class="card" style="box-shadow:none;">
+            강수석, 김범준, 김윤호, 김정호, 오태현, 홍건호, 유철기, 이한나,
+            최성연, 최예준, 홍준기, 조아라, 김우림
+          </div>
+
+          <div class="hr"></div>
+
+          <h3>워터파크 준비물</h3>
+          <div class="pills">
+            <span class="pill primary">수영복/래쉬가드</span>
+            <span class="pill primary">방수팩</span>
+            <span class="pill primary">아쿠아슈즈/슬리퍼</span>
+            <span class="pill primary">선크림</span>
+            <span class="pill">모자</span>
+            <span class="pill">세면도구</span>
+            <span class="pill">현금</span>
+            <span class="pill danger">락커/수건대여는 현금만 가능</span>
+          </div>
+
+          <div class="hr"></div>
+
+          <h3>골프장 정보</h3>
+          <div class="grid grid-2">
+            <div class="card" style="box-shadow:none;">
+              <h3>Vinpearl Golf Club</h3>
+              <p><b>주소</b><br/>Hon Tre island, Vĩnh Nguyên, Tp. Nha Trang, Khánh Hòa, Vietnam</p>
+              <p><b>전화</b><br/>+84 814 982 828</p>
+              <p><b>편의시설</b><br/>프로샵/드라이빙레인지/치핑·퍼팅그린/연습벙커/레스토랑(06:00~18:00)</p>
+              <p><b>홈페이지</b><br/>https://vinpearl.com/vi/vinpearl-golf</p>
+            </div>
+
+            <div class="card" style="box-shadow:none;">
+              <h3>KN Golf Links – Cam Ranh</h3>
+              <p><b>주소</b><br/>KN Paradise / KN Golf Links Road, Cam Nghĩa, Cam Ranh, Khánh Hòa</p>
+              <p><b>전화</b><br/>+84 258 3999 666</p>
+              <p><b>편의시설</b><br/>프로샵/드라이빙레인지/치핑·퍼팅그린/연습벙커/레스토랑(05:30~19:00)</p>
+              <p><b>홈페이지</b><br/>https://www.kngolflinks.com/</p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <h3>관광 포인트 요약</h3>
+          <div class="grid grid-2">
+            <div class="card" style="box-shadow:none;">
+              <h3>콩카페</h3>
+              <p>나트랑 대표 카페. 코코넛커피/연유커피가 유명.</p>
+            </div>
+            <div class="card" style="box-shadow:none;">
+              <h3>원숭이섬</h3>
+              <p>약 1,200마리 원숭이 서식. 체험/공연/포토 포인트.</p>
+            </div>
+            <div class="card" style="box-shadow:none;">
+              <h3>혼총곶</h3>
+              <p>바위 해변 명소. 파도+바다 풍경이 좋은 포인트.</p>
+            </div>
+            <div class="card" style="box-shadow:none;">
+              <h3>호핑투어</h3>
+              <p>스노클링/해변 휴식/BBQ 등. 젖는 일정이니 방수 대비 필수.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6) 비상연락처 -->
+        <div class="tabpanel" role="tabpanel" data-panel="emergency">
+          <h3>응급상황 시 비상 연락처</h3>
+
+          <div class="grid grid-2">
+            <div class="card" style="box-shadow:none;">
+              <h3>주베트남 대한민국 대사관(하노이)</h3>
+              <p><b>주소</b><br/>S4Q, Do Nhuan, Khu Ngoai Giao Doan, Xuan Tao, Bac Tu Liem, Hanoi, Vietnam</p>
+              <p><b>대표(근무시간)</b><br/>(84) 24-3771-0404</p>
+              <p><b>긴급(24시간)</b><br/>(84) 90-402-6126</p>
+              <p><b>Email</b><br/>korembviet@mofa.go.kr</p>
+            </div>
+
+            <div class="card" style="box-shadow:none;">
+              <h3>주호치민 대한민국 총영사관</h3>
+              <p><b>주소</b><br/>107 Nguyen Du St., Dist 1, Ho Chi Minh city, VietNam</p>
+              <p><b>대표(근무시간)</b><br/>(84) 28-3822-5757</p>
+              <p><b>긴급(24시간)</b><br/>(84) 93-850-0238</p>
+              <p><b>Email</b><br/>hcm02@mofa.go.kr</p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="card" style="box-shadow:none;">
+            <h3>현지 긴급번호</h3>
+            <div class="pills">
+              <span class="pill">범죄신고: <b>113</b></span>
+              <span class="pill">화재신고: <b>114</b></span>
+              <span class="pill">응급환자(앰뷸런스): <b>115</b></span>
+            </div>
+            <p><small>※ 대부분 베트남어 대응이며, 구급차 이용 요금이 발생할 수 있습니다.</small></p>
+          </div>
+
+          <div class="hr"></div>
+
+          <h3>나트랑 종합병원</h3>
+          <div class="grid grid-2">
+            <div class="card" style="box-shadow:none;">
+              <h3>나트랑 빈멕 국제종합병원</h3>
+              <p><b>주소</b><br/>Vĩnh Nguyên, Nha Trang, Khánh Hòa 650000</p>
+              <p><b>운영</b><br/>24시간</p>
+              <p><b>전화</b><br/>+84 258 3900 168</p>
+              <p><b>이동</b><br/>모벤픽 호텔 차량 약 40분</p>
+            </div>
+
+            <div class="card" style="box-shadow:none;">
+              <h3>22-12 Hospital</h3>
+              <p><b>주소</b><br/>34/4 Nguyễn Thiện Thuật, Tân Tiến, Nha Trang, Khánh Hòa 650000</p>
+              <p><b>운영</b><br/>24시간</p>
+              <p><b>전화</b><br/>+84 258 3528 857</p>
+              <p><b>이동</b><br/>모벤픽 호텔 차량 약 45분</p>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </main>
 </body>
 </html>
