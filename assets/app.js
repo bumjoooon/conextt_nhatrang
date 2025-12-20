@@ -80,15 +80,11 @@
       return;
     }
 
+    // badge를 클릭 가능한 링크로 변경
     const badge =
       type === "current" ? `<span class="pill primary">지금 진행중</span>` :
-      type === "next"    ? `<span class="pill">다음 일정</span>` :
+      type === "next"    ? `<a class="pill" href="schedule.html#tab=itinerary" style="cursor:pointer;text-decoration:none;">다음 일정</a>` :
                            `<span class="pill">마지막 일정</span>`;
-
-    // "다음 일정" 버튼 추가
-    const nextBtn = type === "next" || type === "current" 
-      ? `<div style="margin-top:12px;"><a class="btn primary" href="schedule.html#tab=itinerary">일정표 바로가기</a></div>`
-      : '';
 
     host.innerHTML = `
       <div class="event ${type==='current' ? 'current':''}">
@@ -98,7 +94,6 @@
         </div>
         <div class="title">${ev.title}</div>
         <div class="desc">${ev.place || ""}${ev.note ? `<br><small>※ ${ev.note}</small>` : ""}</div>
-        ${nextBtn}
       </div>
     `;
   }
