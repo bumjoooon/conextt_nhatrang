@@ -7,6 +7,62 @@
   <link rel="stylesheet" href="assets/style.css" />
   <script src="assets/data.js" defer></script>
   <script src="assets/app.js" defer></script>
+  <style>
+    /* 추가 스타일 */
+    .time-display {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-weight: 700;
+    }
+    .time-display .country {
+      color: var(--muted);
+      min-width: 100px;
+    }
+    .time-display .time-value {
+      color: var(--text);
+      font-family: ui-monospace, monospace;
+    }
+    .time-display .divider {
+      color: var(--border);
+      font-weight: 400;
+    }
+
+    .vn-quick-btns {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .vn-quick-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 12px;
+      background: white;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 15px;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+    .vn-quick-btn:hover {
+      border-color: var(--primary);
+      background: var(--primary-weak);
+      color: var(--primary);
+    }
+    @media(max-width: 520px) {
+      .vn-quick-btns {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="header">
@@ -34,13 +90,12 @@
       <div class="grid grid-2">
         <section class="card">
           <h2>현재 시간</h2>
-          <div class="pills">
-            <span class="pill primary">베트남(나트랑)</span>
-            <span class="pill"><span class="kbd" data-clock="vn">-</span></span>
-          </div>
-          <div class="pills" style="margin-top:8px;">
-            <span class="pill">한국</span>
-            <span class="pill"><span class="kbd" data-clock="kr">-</span></span>
+          <div class="time-display">
+            <span class="country">🇻🇳 베트남(나트랑)</span>
+            <span class="time-value" data-clock="vn">-</span>
+            <span class="divider">|</span>
+            <span class="country">🇰🇷 한국</span>
+            <span class="time-value" data-clock="kr">-</span>
           </div>
 
           <div class="hr"></div>
@@ -50,23 +105,58 @@
 
           <div class="hr"></div>
 
-          <div class="btns">
-            <a class="btn primary" href="schedule.html">여행 페이지로</a>
-            <a class="btn" href="schedule.html#tab=itinerary">일정표 바로가기</a>
+          <h3>환율 (실시간)</h3>
+          <div class="fx-box" id="fx-box">
+            <div class="fx-head">
+              <div>
+                <div class="fx-rate" id="fx-rate">불러오는 중…</div>
+                <div class="muted"><small id="fx-updated"></small></div>
+              </div>
+              <button class="btn" id="fx-refresh" type="button">새로고침</button>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="fx-grid">
+              <label class="fx-field">
+                <span class="muted"><small>금액</small></span>
+                <input id="fx-amount" inputmode="decimal" placeholder="예: 10000" />
+              </label>
+
+              <label class="fx-field">
+                <span class="muted"><small>변환</small></span>
+                <select id="fx-direction">
+                  <option value="KRW_TO_VND">KRW → VND</option>
+                  <option value="VND_TO_KRW">VND → KRW</option>
+                </select>
+              </label>
+
+              <div class="fx-result" id="fx-result">—</div>
+            </div>
+
+            <p class="muted"><small id="fx-note"></small></p>
           </div>
+
           <div class="hr"></div>
+
           <div class="mini-block">
             <div class="mini-title">베트남어 빠른 이동</div>
-            <div class="pills mini-tabs">
-              <a class="pill" href="vietnamese.html">전체</a>
-              <a class="pill" href="vietnamese.html?cat=%EA%B8%B0%EB%B3%B8%20%EC%9D%B8%EC%82%AC">기본</a>
-              <a class="pill" href="vietnamese.html?cat=%EA%B0%80%EA%B2%8C%2F%EC%A3%BC%EB%AC%B8">가게/주문</a>
-              <a class="pill" href="vietnamese.html?cat=%EA%B5%90%ED%86%B5%2F%EC%9D%B4%EB%8F%99">교통/이동</a>
-              <a class="pill" href="vietnamese.html?cat=%EC%88%99%EC%86%8C%2F%EC%9D%91%EA%B8%89">숙소/응급</a>
+            <div class="vn-quick-btns">
+              <a class="vn-quick-btn" href="vietnamese.html?cat=%EA%B8%B0%EB%B3%B8%20%EC%9D%B8%EC%82%AC">
+                기본 인사
+              </a>
+              <a class="vn-quick-btn" href="vietnamese.html?cat=%EA%B0%80%EA%B2%8C%2F%EC%A3%BC%EB%AC%B8">
+                가게/주문
+              </a>
+              <a class="vn-quick-btn" href="vietnamese.html?cat=%EA%B5%90%ED%86%B5%2F%EC%9D%B4%EB%8F%99">
+                교통/이동
+              </a>
+              <a class="vn-quick-btn" href="vietnamese.html?cat=%EC%88%99%EC%86%8C%2F%EC%9D%91%EA%B8%89">
+                숙소/응급
+              </a>
             </div>
           </div>
-      </div>
-    </section>
+        </section>
 
         <section class="card">
           <h2>빠른 이동</h2>
@@ -98,46 +188,9 @@
             <a class="btn primary" href="vietnamese.html">베트남어 페이지</a>
             <a class="btn" href="vietnamese.html#sections">카테고리 보기</a>
           </div>
-
-          <div class="hr"></div>
-
-          <h3>환율 메모 (선택)</h3>
-          <p>
-            환율은 수시로 바뀌어서 자동 반영은 안 넣었습니다.<br/>
-            필요하시면 다음 요청에 “계산기(동↔원) + 저장” UI도 더 깔끔하게 붙여드릴게요.
-          <h3>환율 (실시간)</h3>
-              <div class="fx-box" id="fx-box">
-                <div class="fx-head">
-                  <div>
-                    <div class="fx-rate" id="fx-rate">불러오는 중…</div>
-                    <div class="muted"><small id="fx-updated"></small></div>
-                  </div>
-                  <button class="btn" id="fx-refresh" type="button">새로고침</button>
-                </div>
-
-                <div class="hr"></div>
-
-               <div class="fx-grid">
-                  <label class="fx-field">
-                    <span class="muted"><small>금액</small></span>
-                    <input id="fx-amount" inputmode="decimal" placeholder="예: 10000" />
-                  </label>
-
-                  <label class="fx-field">
-                    <span class="muted"><small>변환</small></span>
-                    <select id="fx-direction">
-                      <option value="KRW_TO_VND">KRW → VND</option>
-                      <option value="VND_TO_KRW">VND → KRW</option>
-                    </select>
-                  </label>
-
-                  <div class="fx-result" id="fx-result">—</div>
-                </div>
-
-                <p class="muted"><small id="fx-note"></small></p>
-              </div>
         </section>
+      </div>
+    </div>
   </main>
 </body>
 </html>
-
