@@ -261,12 +261,125 @@
 
     render(list, "전체");
   }
+  // ----- Exchange rate (KRW <-> VND) -----
+  function initFx() {
+    // index.html 에만 존재 (없으면 조용히 return)
+    const rateEl = $("#fx-rate");
+    if (!rateEl) return;
+
+    const updatedEl = $("#fx-updated");
+    const noteEl = $("#fx-note");
+    const refreshBtn = $("#fx-refresh");
+    const amountEl = $("#fx-amount");
+    const dirEl = $("#fx-direction");
+    const resultEl = $("#fx-result");
+
+    // 무료 환율 API (USD 기준) -> KRW/VND 교차환산
+    const API = "https://open.er-api.com/v6/latest/USD";
+    const CACHE_KEY = "conextt_fx_cache_v1";
+
+    const fmtKRW = new Intl.NumberFormat("ko-KR", { maximumFractionDigits: 0 });
+    const fmtVND = new Intl.NumberFormat("ko-KR", { maximumFractionDigits: 0 });
+
+    let fx = null; // { vndPerKrw, krwPerVnd, updatedAtMs }
+
+    function showRate() {
+      if (!fx) return;
+      rateEl.textContent =
+        `1 KRW ≈ ${fx.vndPerKrw.toFixed(2)} VND · 1,000 VND ≈ ${fmtKRW.format(Math.round(fx.krwPerVnd * 1000))} KRW`;
+
+      if (updatedEl) {
+        updatedEl.textContent = `업데이트: ${new Date(fx.updatedAtMs).toLocaleString("ko-KR")}`;
+      }
+      if (noteEl) {
+        noteEl.textContent = "출처: open.er-api.com (USD 기준 교차환산)";
+      }
+    }
+
+    function compute() {
+      if (!fx || !amountEl || !dirEl || !resultEl) return;
+
+      const raw = (amountEl.value || "").replace(/,/g, "").trim();
+      if (!raw) {
+        resultEl.textContent = "—";
+        return;
+      }
+
+      const amount = Number(raw);
+      if (!Number.isFinite(amount)) {
+        resultEl.textContent = "숫자를 입력해주세요";
+        return;
+      }
+
+      const dir = dirEl.value || "KRW_TO_VND";
+      if (dir === "KRW_TO_VND") {
+        const vnd = amount * fx.vndPerKrw;
+        resultEl.textContent = `${fmtKRW.format(amount)} KRW ≈ ${fmtVND.format(Math.round(vnd))} VND`;
+      } else {
+        const krw = amount * fx.krwPerVnd;
+        resultEl.textContent = `${fmtVND.format(amount)} VND ≈ ${fmtKRW.format(Math.round(krw))} KRW`;
+      }
+    }
+
+    async function load() {
+      rateEl.textContent = "불러오는 중…";
+      if (updatedEl) updatedEl.textContent = "";
+      if (noteEl) noteEl.textContent = "";
+
+      try {
+        const res = await fetch(API, { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+
+        if (data.result !== "success" || !data.rates) {
+          throw new Error("API 응답 형식이 예상과 다릅니다.");
+        }
+
+        const usdToKrw = data.rates.KRW;
+        const usdToVnd = data.rates.VND;
+        if (!usdToKrw || !usdToVnd) {
+          throw new Error("KRW/VND 환율 정보를 찾지 못했습니다.");
+        }
+
+        fx = {
+          vndPerKrw: usdToVnd / usdToKrw,
+          krwPerVnd: usdToKrw / usdToVnd,
+          updatedAtMs: (data.time_last_update_unix || Date.now() / 1000) * 1000,
+        };
+
+        localStorage.setItem(CACHE_KEY, JSON.stringify(fx));
+        showRate();
+        compute();
+      } catch (e) {
+        console.error(e);
+        rateEl.textContent = "환율을 불러오지 못했습니다.";
+        if (noteEl) noteEl.textContent = "네트워크 상태를 확인하거나, 잠시 후 다시 시도해주세요.";
+      }
+    }
+
+    // 캐시 먼저 표시 (오프라인/느린 네트워크 대비)
+    try {
+      const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
+      if (cached && cached.vndPerKrw && cached.krwPerVnd && cached.updatedAtMs) {
+        fx = cached;
+        showRate();
+      }
+    } catch (_) {}
+
+    if (refreshBtn) refreshBtn.addEventListener("click", load);
+    if (amountEl) amountEl.addEventListener("input", compute);
+    if (dirEl) dirEl.addEventListener("change", compute);
+
+    // 최초 1회 최신값 갱신 시도
+    load();
+  }
 
   // ----- Init -----
   markActiveNav();
   initTabs();
   initChecklist();
   initVietnamese();
+  initFx();
 
   tickClocks();
   renderCurrentSchedule();
