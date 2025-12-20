@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Conextt - 여행 일정</title>
+  <style>
+    :root{
+      --bg:#ffffff; --ink:#111827; --muted:#6b7280;
+      --border:#e5e7eb; --card:#f9fafb; --pill:#eef2ff;
+      --radius:14px; --shadow:0 8px 30px rgba(0,0,0,.06);
+      --max:1100px;
+    }
+    *{ box-sizing:border-box; }
+    body{ margin:0; font-family:system-ui,-apple-system,sans-serif; color:var(--ink); background:var(--bg); }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding:14px; }
+
+    .topbar{
+      position:sticky; top:0; z-index:1000;
+      background:rgba(255,255,255,.9);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .topbar__inner{
+      max-width:var(--max); margin:0 auto;
+      padding:12px 14px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:900;
+      padding:8px 10px; border-radius:999px;
+      border:1px solid var(--border);
+      background:#fff;
+    }
+    .menu{ display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+    .menu a{
+      border:1px solid var(--border);
+      background:#fff;
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:13px;
+    }
+    .menu a.active{ background:var(--pill); border-color:#c7d2fe; }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:12px;
+      box-shadow: var(--shadow);
+    }
+    h1{ margin:0; font-size:22px; }
+    h2{ margin:0 0 8px; font-size:14px; }
+    .muted{ color:var(--muted); font-size:12px; line-height:1.4; }
+
+    label{ display:block; font-size:12px; color:#374151; margin:10px 0 6px; }
+    input, textarea{
+      width:100%;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:10px 12px;
+      font-size:14px;
+      background:#fff;
+    }
+    textarea{ min-height:80px; resize:vertical; }
+
+    .row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between; }
+    .btn{
+      border:1px solid var(--border);
+      background:#fff;
+      padding:8px 10px;
+      border-radius:12px;
+      cursor:pointer;
+      font-size:13px;
+      width:auto;
+    }
+    .btn.primary{ background:#111827; color:#fff; border-color:#111827; }
+
+    .list{ display:grid; gap:10px; margin-top:10px; }
+    .item{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:10px;
+    }
+    .item .top{ display:flex; gap:10px; justify-content:space-between; align-items:flex-start; }
+    .tag{
+      font-size:12px; padding:3px 8px; border-radius:999px;
+      background:var(--pill); border:1px solid #c7d2fe;
+      white-space:nowrap;
+    }
+    .small{ font-size:12px; color:var(--muted); }
+    .actions{ display:flex; gap:8px; justify-content:flex-end; margin-top:8px; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a class="brand" href="index.html">Conextt</a>
+      <nav class="menu" aria-label="Pages">
+        <a href="index.html" data-nav="index">Main</a>
+        <a href="schedule.html" data-nav="schedule">여행 일정</a>
+        <a href="vietnamese.html" data-nav="vn">여행 베트남어</a>
+        <a href="photos.html" data-nav="photos">사진</a>
+        <a href="videos.html" data-nav="videos">영상</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="row" style="margin-bottom:8px;">
+      <h1>여행 일정</h1>
+      <div class="muted">Main의 “현재 일정”은 여기 데이터를 기반으로 표시됩니다.</div>
+    </div>
+
+    <section class="card">
+      <h2>일정 추가</h2>
+      <label>일시</label>
+      <input id="dt" type="datetime-local" />
+
+      <label>제목</label>
+      <input id="title" placeholder="예) 공항 도착 / 호텔 체크인 / 마사지 예약" />
+
+      <label>메모(선택)</label>
+      <textarea id="note" placeholder="예) 택시 Grab / 예약번호 1234"></textarea>
+
+      <div class="row" style="margin-top:10px;">
+        <button class="btn primary" id="addBtn">추가</button>
+        <button class="btn" id="clearBtn">전체 삭제</button>
+      </div>
+
+      <div class="muted" style="margin-top:10px;">
+        <!-- 일정 입력 UI를 더 예쁘게 바꾸고 싶으면 여기 섹션만 수정하면 됩니다. -->
+        * 일정은 브라우저(localStorage)에 저장됩니다.
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:12px;">
+      <h2>일정 목록</h2>
+      <div class="small" id="count">-</div>
+      <div class="list" id="list"></div>
+    </section>
+  </main>
+
+  <script>
+    // nav active
+    (() => {
+      const path = (location.pathname.split("/").pop() || "index.html").toLowerCase();
+      const map = {
+        "index.html":"index",
+        "schedule.html":"schedule",
+        "vietnamese.html":"vn",
+        "photos.html":"photos",
+        "videos.html":"videos",
+      };
+      const key = map[path];
+      document.querySelectorAll("[data-nav]").forEach(a => {
+        if (a.getAttribute("data-nav") === key) a.classList.add("active");
+      });
+    })();
+
+    const KEY = "conextt_schedule_v1";
+    const $ = (id) => document.getElementById(id);
+
+    function load(){
+      try{
+        const raw = localStorage.getItem(KEY);
+        const arr = raw ? JSON.parse(raw) : [];
+        return Array.isArray(arr) ? arr : [];
+      } catch { return []; }
+    }
+    function save(arr){
+      localStorage.setItem(KEY, JSON.stringify(arr));
+    }
+    function uid(){
+      return (crypto.randomUUID && crypto.randomUUID()) || String(Date.now() + Math.random());
+    }
+    function escapeHtml(s){
+      return (s ?? "").replace(/[&<>"']/g, m => ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[m]));
+    }
+
+    let items = load();
+
+    function fmtKST(dtStr){
+      const d = new Date(dtStr);
+      if (Number.isNaN(d.getTime())) return "-";
+      return new Intl.DateTimeFormat("ko-KR", {
+        timeZone:"Asia/Seoul",
+        year:"numeric", month:"2-digit", day:"2-digit",
+        hour:"2-digit", minute:"2-digit",
+        hour12:false
+      }).format(d);
+    }
+
+    function render(){
+      items = items
+        .filter(x => x && x.dt && x.title)
+        .map(x => ({...x, t: new Date(x.dt).getTime()}))
+        .filter(x => !Number.isNaN(x.t))
+        .sort((a,b) => a.t - b.t);
+
+      save(items);
+
+      $("count").textContent = `총 ${items.length}개`;
+
+      if (!items.length){
+        $("list").innerHTML = `<div class="muted">등록된 일정이 없습니다.</div>`;
+        return;
+      }
+
+      const now = Date.now();
+      const nextId = (items.find(x => x.t >= now) || items[0]).id;
+
+      $("list").innerHTML = items.map(it => `
+        <div class="item">
+          <div class="top">
+            <div>
+              <div style="font-weight:900;">${escapeHtml(it.title)}</div>
+              <div class="small">${fmtKST(it.dt)}${it.note ? " · " + escapeHtml(it.note) : ""}</div>
+            </div>
+            <div class="tag">${it.id === nextId ? "가장 가까운 일정" : "일정"}</div>
+          </div>
+          <div class="actions">
+            <button class="btn" data-del="${it.id}">삭제</button>
+          </div>
+        </div>
+      `).join("");
+
+      document.querySelectorAll("[data-del]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-del");
+          items = items.filter(x => x.id !== id);
+          render();
+        });
+      });
+    }
+
+    $("addBtn").addEventListener("click", () => {
+      const dt = $("dt").value;
+      const title = $("title").value.trim();
+      const note = $("note").value.trim();
+
+      if (!dt || !title){
+        alert("일시/제목은 필수입니다.");
+        return;
+      }
+      items.push({ id: uid(), dt, title, note });
+      $("title").value = "";
+      $("note").value = "";
+      render();
+    });
+
+    $("clearBtn").addEventListener("click", () => {
+      if (!confirm("전체 일정을 삭제할까요?")) return;
+      items = [];
+      save(items);
+      render();
+    });
+
+    render();
+  </script>
+</body>
+</html>
