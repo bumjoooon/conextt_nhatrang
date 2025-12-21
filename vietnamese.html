@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
@@ -15,10 +16,10 @@
         <div class="brand-badge">C</div>
         <div>
           Conextt Travel<br />
-          <small>베트남어(저장형)</small>
+          <small>베트남어</small>
         </div>
       </a>
-
+    
       <nav class="nav">
         <a href="index.html">Main</a>
         <a href="schedule.html">여행</a>
@@ -27,48 +28,31 @@
         <a href="videos.html">영상</a>
       </nav>
     </div>
+
   </header>
 
   <main class="page">
     <div class="container">
       <section class="card" id="sections">
         <h2>베트남어</h2>
-        <p>문장 추가/삭제는 브라우저(LocalStorage)에 저장됩니다.</p>
-
+        <p>여행에 필요한 베트남어 문장 모음입니다.</p>
+        
         <div class="hr"></div>
-
-        <h3>빠른 번역(구글 번역 열기)</h3>
+    
+        <h3>빠른 번역 (구글 번역 열기)</h3>
         <div class="btns">
           <input id="vn-gt-input" class="btn" style="flex:1; min-width:260px;" placeholder="한국어 입력 → 버튼 누르면 구글번역(ko→vi) 열림" />
           <button id="vn-gt-btn" class="btn primary" type="button">번역 열기</button>
         </div>
       </section>
-
+    
       <section class="card" id="vn-phrases">
-        <div class="grid grid-2">
-          <div>
-            <h3>문장 목록</h3>
-            <div class="pills">
-              <span class="pill">필터</span>
-              <select id="vn-filter" class="btn" style="padding:8px 10px;"></select>
-            </div>
-          </div>
-
-          <div>
-            <h3>문장 추가</h3>
-            <form id="vn-add" class="grid">
-              <input id="vn-cat" class="btn" placeholder="카테고리(예: 기본 인사/가게/교통/응급)" />
-              <input id="vn-ko" class="btn" placeholder="한국어(필수)" />
-              <input id="vn-vi" class="btn" placeholder="베트남어(필수)" />
-              <input id="vn-pr" class="btn" placeholder="발음(선택)" />
-              <input id="vn-note" class="btn" placeholder="메모(선택)" />
-              <button class="btn primary" type="submit">추가</button>
-            </form>
-          </div>
+        <h3>문장 목록</h3>
+        <div class="pills" style="margin-bottom: 14px;">
+          <span class="pill">필터</span>
+          <select id="vn-filter" class="btn" style="padding:8px 10px;"></select>
         </div>
-
-        <div class="hr"></div>
-
+    
         <div class="table-wrap">
           <table>
             <thead>
@@ -78,7 +62,6 @@
                 <th>베트남어</th>
                 <th>발음</th>
                 <th>메모</th>
-                <th>관리</th>
               </tr>
             </thead>
             <tbody id="vn-list"></tbody>
