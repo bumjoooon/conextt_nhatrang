@@ -4,8 +4,8 @@
   --text:#1f2937;
   --muted:#6b7280;
   --border:#e5e7eb;
-  --primary:#6d28d9; /* 보라 */
-  --primary-weak:#ede9fe;
+  --primary:#f97316; /* 주황 */
+  --primary-weak:#ffedd5;
   --danger:#dc2626;
   --ok:#16a34a;
   --shadow: 0 8px 24px rgba(0,0,0,.08);
@@ -52,7 +52,7 @@ small{ color:var(--muted); }
 .brand-badge{
   width:36px; height:36px;
   border-radius:12px;
-  background: linear-gradient(135deg, var(--primary), #9333ea);
+  background: linear-gradient(135deg, var(--primary), #fb923c);
   display:grid; place-items:center;
   color:white;
   font-weight:900;
@@ -73,7 +73,7 @@ small{ color:var(--muted); }
 .nav a[aria-current="page"]{
   color: var(--primary);
   background: var(--primary-weak);
-  border-color: #ddd6fe;
+  border-color: #fed7aa;
   font-weight:700;
 }
 
@@ -177,7 +177,8 @@ small{ color:var(--muted); }
   border:1px solid var(--border);
   font-size: 13px;
 }
-.pill.primary{ background: var(--primary-weak); color: var(--primary); border-color:#ddd6fe; }
+.pill.primary{ background: var(--primary-weak); color: var(--primary); border-color:#fed7aa; }
+
 .pill.danger{ background:#fee2e2; color: var(--danger); border-color:#fecaca; }
 
 .btns{ display:flex; gap:10px; flex-wrap:wrap; }
@@ -223,7 +224,7 @@ small{ color:var(--muted); }
 .tabs button[aria-selected="true"]{
   color: var(--primary);
   background: var(--primary-weak);
-  border-color:#ddd6fe;
+  border-color:#fed7aa;
 }
 .tabpanel{ display:none; }
 .tabpanel.active{ display:block; }
@@ -261,7 +262,7 @@ tr:last-child td{ border-bottom:none; }
 .day-header {
   margin: 0 0 12px 0;
   padding: 8px 12px;
-  background: linear-gradient(135deg, var(--primary), #9333ea);
+  background: linear-gradient(135deg, var(--primary), #fb923c);
   color: white;
   border-radius: 12px;
   font-size: 16px;
@@ -294,8 +295,8 @@ tr:last-child td{ border-bottom:none; }
   color:#374151;
 }
 .event.current{
-  border-color:#c4b5fd;
-  background: #f5f3ff;
+  border-color:#fdba74;
+  background: #fff7ed;
 }
 .event .title{ margin: 6px 0 0 0; font-weight:800; }
 .event .desc{ margin: 6px 0 0 0; color: var(--muted); }
