@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
@@ -8,6 +7,80 @@
   <link rel="stylesheet" href="assets/style.css" />
   <script src="assets/data.js" defer></script>
   <script src="assets/app.js" defer></script>
+  <style>
+    /* 관광조/골프조 분리 레이아웃 */
+    .split-schedule {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    @media(max-width: 760px) {
+      .split-schedule {
+        grid-template-columns: 1fr;
+      }
+    }
+    .split-col {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: white;
+    }
+    .split-header {
+      padding: 10px 14px;
+      font-weight: 800;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .split-header.tour {
+      background: linear-gradient(135deg, #3b82f6, #60a5fa);
+      color: white;
+    }
+    .split-header.golf {
+      background: linear-gradient(135deg, #22c55e, #4ade80);
+      color: white;
+    }
+    .split-body {
+      padding: 12px;
+    }
+    .split-event {
+      padding: 8px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .split-event:last-child {
+      border-bottom: none;
+    }
+    .split-event .time {
+      font-weight: 800;
+      color: var(--text);
+      font-size: 13px;
+    }
+    .split-event .title {
+      font-weight: 700;
+      margin-top: 2px;
+    }
+    .split-event .desc {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+    
+    /* 공통 일정 헤더 */
+    .common-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, #f97316, #fb923c);
+      color: white;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
   <header class="header">
@@ -28,14 +101,12 @@
         <a href="videos.html">영상</a>
       </nav>
     </div>
-
   </header>
 
   <main class="page">
     <div class="container">
       <section class="card">
         <h2>여행</h2>
-
         <h3>현재 일정</h3>
         <div data-current-schedule></div>
       </section>
@@ -181,19 +252,15 @@
             </div>
             <div class="check">
               <input id="p30" type="checkbox" data-store="prep.plastic" />
-              <label for="p30">비닐봉투 (여러 장)<span class="sub">젖은 옷/짐 분리용</span></label>
+              <label for="p30">비닐봉지 (2~3개)<span class="sub">젖은 옷/쓰레기용</span></label>
             </div>
             <div class="check">
-              <input id="p31" type="checkbox" data-store="prep.watch" />
-              <label for="p31">손목시계 (방수)<span class="sub">워터파크/해변 활동용</span></label>
+              <input id="p31" type="checkbox" data-store="prep.swimsuit" />
+              <label for="p31">수영복/래쉬가드<span class="sub">워터파크/해변 필수</span></label>
             </div>
             <div class="check">
-              <input id="p32" type="checkbox" data-store="prep.usd" />
-              <label for="p32">환전 (USD 100달러)<span class="sub">한국에서 USD 환전 후 현지에서 VND로</span></label>
-            </div>
-            <div class="check">
-              <input id="p33" type="checkbox" data-store="prep.card" />
-              <label for="p33">카드 (VISA/MASTER)<span class="sub">해외결제 가능 카드 2장 이상</span></label>
+              <input id="p32" type="checkbox" data-store="prep.aqua" />
+              <label for="p32">아쿠아슈즈<span class="sub">호핑투어/해변용</span></label>
             </div>
           </div>
         </div>
@@ -204,50 +271,92 @@
           <p>진행중인 이벤트는 주황색으로 표시됩니다.</p>
     
           <div class="timeline">
+            <!-- ========== 1일차 (공통) ========== -->
             <div class="day-group">
               <h4 class="day-header">12/26 (금) - 1일차</h4>
               
               <div class="event" data-ev-start="2025-12-26T14:30:00+09:00" data-ev-end="2025-12-26T18:05:00+09:00">
                 <div class="meta"><span class="time">14:30</span><span class="tag">인천</span></div>
                 <div class="title">인천공항 T2 집결</div>
-                <div class="desc">제2터미널 3층 (1번 출구) 하나투어 미팅테이블<br/> !!여권/항공권 확인!!</div>
+                <div class="desc">제2터미널 3층 (1번 출구) 하나투어 미팅테이블<br/>⚠️ 여권/항공권 확인 필수!</div>
               </div>
-    
+
               <div class="event" data-ev-start="2025-12-26T18:05:00+09:00" data-ev-end="2025-12-26T21:35:00+07:00">
                 <div class="meta"><span class="time">18:05</span><span class="tag">KE467</span></div>
-                <div class="title">인천 출발 - 깜란 도착 (5시간 30분)</div>
+                <div class="title">인천 출발 → 깜란 도착 (5시간 30분)</div>
                 <div class="desc">깜란 국제공항 21:35 도착<br/>가이드 미팅 후 호텔 이동(10~15분)<br/><small>HOTEL: 모벤픽 리조트 깜란</small></div>
               </div>
             </div>
-    
+
+            <!-- ========== 2일차 (관광조/골프조 분리) ========== -->
             <div class="day-group">
               <h4 class="day-header">12/27 (토) - 2일차</h4>
               
-              <div class="event" data-ev-start="2025-12-27T06:50:00+07:00" data-ev-end="2025-12-27T07:20:00+07:00">
-                <div class="meta"><span class="time">06:50</span><span class="tag">호텔</span></div>
-                <div class="title">조식</div>
-                <div class="desc">호텔 뷔페식</div>
+              <!-- 관광조 | 골프조 분리 -->
+              <div class="split-schedule">
+                <!-- 관광조 -->
+                <div class="split-col">
+                  <div class="split-header tour">🎢 관광조</div>
+                  <div class="split-body">
+                    <div class="split-event">
+                      <div class="time">06:00~08:20</div>
+                      <div class="title">조식</div>
+                      <div class="desc">호텔 뷔페</div>
+                    </div>
+                    <div class="split-event">
+                      <div class="time">08:20~09:00</div>
+                      <div class="title">로비에서 미팅 후 빈원더스 이동</div>
+                    </div>
+                    <div class="split-event">
+                      <div class="time">09:00~18:30</div>
+                      <div class="title">빈원더스(구. 빈펄랜드) 자유시간</div>
+                      <div class="desc">3,320m 케이블카 탑승 후 테마파크 이동<br/>놀이공원, 워터파크, 아쿠아리움, 동물원, 식물원 등 자유롭게 이용<br/>* 낮 시간에는 워터파크, 해가 지면 놀이공원 추천</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- 골프조 -->
+                <div class="split-col">
+                  <div class="split-header golf">🏌️ 골프조</div>
+                  <div class="split-body">
+                    <div class="split-event">
+                      <div class="time">06:00~06:50</div>
+                      <div class="title">조식</div>
+                      <div class="desc">호텔 뷔페</div>
+                    </div>
+                    <div class="split-event">
+                      <div class="time">06:50~07:30</div>
+                      <div class="title">로비에서 가이드 미팅하여 골프장 이동</div>
+                    </div>
+                    <div class="split-event">
+                      <div class="time">07:30~07:48</div>
+                      <div class="title">선착장 도착 후 스피드보트 이동</div>
+                    </div>
+                    <div class="split-event">
+                      <div class="time">07:48~18:30</div>
+                      <div class="title">빈펄CC 18홀 라운딩</div>
+                      <div class="desc">1회(1조) 라운딩 후 중식 (클럽식)</div>
+                    </div>
+                  </div>
+                </div>
               </div>
-    
-              <div class="event" data-ev-start="2025-12-27T07:30:00+07:00" data-ev-end="2025-12-27T07:48:00+07:00">
-                <div class="meta"><span class="time">07:30</span><span class="tag">이동</span></div>
-                <div class="title">가이드 미팅 후 이동</div>
-                <div class="desc">골프조: 골프장 / 관광조: 선착장</div>
-              </div>
-    
-              <div class="event" data-ev-start="2025-12-27T07:48:00+07:00" data-ev-end="2025-12-27T18:00:00+07:00">
-                <div class="meta"><span class="time">07:48~18:00</span><span class="tag">분기</span></div>
-                <div class="title">빈펄CC 라운딩 / 빈원더스(관광조)</div>
-                <div class="desc">[골프조] 18홀 라운딩 (중식: 클럽식)<br/>[관광조] 빈원더스 자유시간 (케이블카/워터파크/아쿠아리움)</div>
-              </div>
-    
+
+              <!-- 공통 일정 -->
+              <div class="common-header">📍 공통 일정</div>
+              
               <div class="event" data-ev-start="2025-12-27T18:30:00+07:00" data-ev-end="2025-12-27T19:30:00+07:00">
-                <div class="meta"><span class="time">18:30</span><span class="tag">식사</span></div>
-                <div class="title">석식 (관광조)</div>
-                <div class="desc">나트랑 시내 (한식)</div>
+                <div class="meta"><span class="time">18:30~19:30</span><span class="tag">식사</span></div>
+                <div class="title">나트랑 시내 귀환 후 석식</div>
+                <div class="desc">골프조 & 관광조 합류 (한식)</div>
+              </div>
+
+              <div class="event">
+                <div class="meta"><span class="time">19:30~</span><span class="tag">호텔</span></div>
+                <div class="title">석식 후 호텔 투숙 및 휴식</div>
               </div>
             </div>
-    
+
+            <!-- ========== 3일차 (공통) ========== -->
             <div class="day-group">
               <h4 class="day-header">12/28 (일) - 3일차</h4>
               
@@ -256,60 +365,96 @@
                 <div class="title">조식</div>
                 <div class="desc">호텔 뷔페식</div>
               </div>
-    
+
               <div class="event" data-ev-start="2025-12-28T11:30:00+07:00" data-ev-end="2025-12-28T15:30:00+07:00">
                 <div class="meta"><span class="time">11:30~15:30</span><span class="tag">투어</span></div>
                 <div class="title">호핑투어 및 스노클링</div>
                 <div class="desc">준비물: 수영복, 아쿠아슈즈, 선크림, 수건</div>
               </div>
-    
+
               <div class="event" data-ev-start="2025-12-28T17:50:00+07:00" data-ev-end="2025-12-28T19:10:00+07:00">
                 <div class="meta"><span class="time">17:50</span><span class="tag">식사</span></div>
                 <div class="title">석식 (단독룸)</div>
                 <div class="desc">현지식</div>
               </div>
             </div>
-    
+
+            <!-- ========== 4일차 (관광조/골프조 분리) ========== -->
             <div class="day-group">
               <h4 class="day-header">12/29 (월) - 4일차</h4>
               
-              <div class="event" data-ev-start="2025-12-29T06:50:00+07:00" data-ev-end="2025-12-29T08:20:00+07:00">
-                <div class="meta"><span class="time">06:50</span><span class="tag">호텔</span></div>
-                <div class="title">조식</div>
-                <div class="desc">호텔 뷔페식</div>
+              <!-- 관광조 | 골프조 분리 -->
+              <div class="split-schedule">
+                <!-- 관광조 -->
+                <div class="split-col">
+                  <div class="split-header tour">🎢 관광조</div>
+                  <div class="split-body">
+                    <div class="split-event">
+                      <div class="time">06:00~12:00</div>
+                      <div class="title">오전 자유시간</div>
+                      <div class="desc">리조트 부대시설 이용 및 휴식</div>
+                    </div>
+                    <div class="split-event">
+                      <div class="time">12:00~13:00</div>
+                      <div class="title">체크아웃 후 가이드 미팅</div>
+                    </div>
+                    <div class="split-event">
+                      <div class="time">13:00~14:00</div>
+                      <div class="title">콩카페 방문 (음료 1잔)</div>
+                      <div class="desc">베트남 대표 카페 콩카페 방문</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- 골프조 -->
+                <div class="split-col">
+                  <div class="split-header golf">🏌️ 골프조</div>
+                  <div class="split-body">
+                    <div class="split-event">
+                      <div class="time">06:00~08:20</div>
+                      <div class="title">조식</div>
+                      <div class="desc">호텔 뷔페</div>
+                    </div>
+                    <div class="split-event">
+                      <div class="time">08:20~08:50</div>
+                      <div class="title">로비에서 기사 미팅하여 골프장 이동</div>
+                    </div>
+                    <div class="split-event">
+                      <div class="time">08:50~14:00</div>
+                      <div class="title">KN Golf Links 18홀 라운딩</div>
+                      <div class="desc">1회(1조) 라운딩 후 중식 (클럽식)<br/><small>* 나트랑 자연의 선물로 이루어진 가족친 18홀 링크스 코스</small></div>
+                    </div>
+                  </div>
+                </div>
               </div>
-    
-              <div class="event" data-ev-start="2025-12-29T08:50:00+07:00" data-ev-end="2025-12-29T12:00:00+07:00">
-                <div class="meta"><span class="time">08:50~12:00</span><span class="tag">분기</span></div>
-                <div class="title">KN Golf Links 라운딩 / 오전 자유(관광조)</div>
-                <div class="desc">[골프조] 18홀 라운딩<br/>[관광조] 리조트 자유시간</div>
-              </div>
-    
-              <div class="event" data-ev-start="2025-12-29T12:00:00+07:00" data-ev-end="2025-12-29T13:00:00+07:00">
-                <div class="meta"><span class="time">12:00</span><span class="tag">호텔</span></div>
-                <div class="title">체크아웃</div>
-                <div class="desc">로비에서 가이드 미팅</div>
-              </div>
-    
+
+              <!-- 공통 일정 -->
+              <div class="common-header">📍 공통 일정</div>
+
               <div class="event" data-ev-start="2025-12-29T14:00:00+07:00" data-ev-end="2025-12-29T16:30:00+07:00">
-                <div class="meta"><span class="time">14:00</span><span class="tag">관광</span></div>
-                <div class="title">콩카페 방문 (음료 1잔)</div>
-                <div class="desc">나트랑 시내</div>
+                <div class="meta"><span class="time">14:00~16:30</span><span class="tag">관광</span></div>
+                <div class="title">원숭이섬 & 혼총곶 관광</div>
+                <div class="desc">약 1,200마리 원숭이 서식, 먹이주기 체험 가능</div>
               </div>
-    
-              <div class="event" data-ev-start="2025-12-29T16:30:00+07:00" data-ev-end="2025-12-29T18:30:00+07:00">
-                <div class="meta"><span class="time">16:30</span><span class="tag">관광</span></div>
-                <div class="title">원숭이섬 및 혼총곶</div>
-                <div class="desc">단체 관광</div>
+
+              <div class="event" data-ev-start="2025-12-29T16:30:00+07:00" data-ev-end="2025-12-29T18:00:00+07:00">
+                <div class="meta"><span class="time">16:30~18:00</span><span class="tag">마사지</span></div>
+                <div class="title">전신 마사지 (90분)</div>
               </div>
-    
+
+              <div class="event">
+                <div class="meta"><span class="time">18:00~23:05</span><span class="tag">이동</span></div>
+                <div class="title">석식 후 공항으로 이동 및 출국준비</div>
+              </div>
+
               <div class="event" data-ev-start="2025-12-29T23:05:00+07:00" data-ev-end="2025-12-30T06:05:00+09:00">
                 <div class="meta"><span class="time">23:05</span><span class="tag">KE468</span></div>
-                <div class="title">깜란 출발 - 인천 도착 (5시간)</div>
+                <div class="title">깜란 국제공항 출발 (5시간)</div>
                 <div class="desc">항공 이동</div>
               </div>
             </div>
-    
+
+            <!-- ========== 5일차 (공통) ========== -->
             <div class="day-group">
               <h4 class="day-header">12/30 (화) - 5일차</h4>
               
@@ -330,7 +475,7 @@
         <!-- 3) 숙소 -->
         <div class="tabpanel" role="tabpanel" data-panel="stay">
           <h3>호텔 정보</h3>
-    
+
           <div class="card" style="box-shadow:none;">
             <h3>모벤픽 리조트 깜란</h3>
             <p><b>Movenpick Resort Cam Ranh</b></p>
@@ -340,9 +485,9 @@
               <a class="btn primary" target="_blank" rel="noreferrer noopener" href="https://www.google.com/maps/search/?api=1&query=Movenpick+Resort+Cam+Ranh">Google Map 열기</a>
             </div>
           </div>
-    
+
           <div class="hr"></div>
-    
+
           <h3>방 배정</h3>
           <div class="table-wrap">
             <table>
@@ -357,6 +502,7 @@
                 <tr><td>5</td><td>박건규</td><td>조아라</td><td>김해린</td><td>최예준</td><td>정기순</td><td>김범준</td></tr>
                 <tr><td>6</td><td>김재억</td><td>최성일</td><td>이성준</td><td>나경준</td><td>정봉주</td><td>김정훈</td></tr>
                 <tr><td>7</td><td></td><td></td><td>이한나</td><td>용건호</td><td>박준범</td><td></td></tr>
+                <tr><td>8</td><td></td><td></td><td></td><td>김승규</td><td></td><td></td></tr>
               </tbody>
             </table>
           </div>
@@ -431,16 +577,16 @@
               </tbody>
             </table>
           </div>
-    
+
           <div class="hr"></div>
-    
+
           <h3>워터파크 조 (13명)</h3>
           <div class="card" style="box-shadow:none;">
             강수선, 김범준, 김윤호, 김정훈, 오태현, 용건호, 유철기, 이한나, 최성일, 최예준, 홍준기, 조아라, 김우림
           </div>
-    
+
           <div class="hr"></div>
-    
+
           <h3>워터파크 준비물</h3>
           <div class="pills">
             <span class="pill primary">수영복/래쉬가드</span>
@@ -451,9 +597,9 @@
             <span class="pill">현금</span>
             <span class="pill danger">락커/수건대여는 현금만 가능</span>
           </div>
-    
+
           <div class="hr"></div>
-    
+
           <h3>관광 포인트</h3>
           <div class="grid grid-2">
             <div class="card" style="box-shadow:none;">
@@ -478,7 +624,7 @@
         <!-- 6) 비상연락처 -->
         <div class="tabpanel" role="tabpanel" data-panel="emergency">
           <h2 style="color:#dc2626; text-align:center; margin-bottom:20px;">응급상황 시 비상 연락처</h2>
-    
+
           <div class="grid grid-2">
             <div class="card" style="box-shadow:none; border-left:4px solid var(--primary);">
               <h3>대사관 연락처 (하노이)</h3>
@@ -487,7 +633,7 @@
               <p><b>긴급연락처 (24시간)</b><br/><span style="color:#dc2626; font-weight:900;">(84) 90-402-6126</span></p>
               <p><b>E-mail</b><br/>korembviet@mofa.go.kr</p>
             </div>
-    
+
             <div class="card" style="box-shadow:none; border-left:4px solid var(--primary);">
               <h3>호치민총영사관</h3>
               <p><b>주소</b><br/>107 Nguyen Du St., Dist 1, Ho Chi Minh city</p>
@@ -496,9 +642,9 @@
               <p><b>E-mail</b><br/>hcm02@mofa.go.kr</p>
             </div>
           </div>
-    
+
           <div class="hr"></div>
-    
+
           <div class="card" style="box-shadow:none; border-left:4px solid #dc2626;">
             <h3>주재국 긴급신고</h3>
             <div class="grid grid-3" style="gap:10px; margin-top:10px;">
@@ -514,9 +660,9 @@
             </div>
             <p style="margin-top:12px;"><small>* 긴급전화는 대부분 베트남어로만 가능하며, 구급차 요금이 발생할 수 있습니다.</small></p>
           </div>
-    
+
           <div class="hr"></div>
-    
+
           <h3>나트랑 종합병원</h3>
           <div class="grid grid-2">
             <div class="card" style="box-shadow:none; border-left:4px solid #16a34a;">
@@ -534,18 +680,17 @@
               <p><small>(모벤픽 호텔에서 차량 약 45분)</small></p>
             </div>
           </div>
-    
+
           <div class="hr"></div>
-    
+
           <div class="notice">
-            * 응급상황 발생 시, 먼저 가이드에게 연락하시고,<br/>
-            연락이 안 될 경우 위 연락처로 직접 연락해주세요.
+            * 응급상황 발생 시 가이드에게 먼저 연락하세요.<br/>
+            * 여행자보험 가입 확인 및 보험사 연락처를 미리 저장해두세요.
           </div>
         </div>
-    
+
       </section>
     </div>
-
   </main>
 </body>
 </html>
