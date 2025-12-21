@@ -19,17 +19,15 @@
           <small>여행 탭</small>
         </div>
       </a>
-
-```
-  <nav class="nav">
-    <a href="index.html">Main</a>
-    <a href="schedule.html">여행</a>
-    <a href="vietnamese.html">베트남어</a>
-    <a href="photos.html">사진</a>
-    <a href="videos.html">영상</a>
-  </nav>
-</div>
-```
+    
+      <nav class="nav">
+        <a href="index.html">Main</a>
+        <a href="schedule.html">여행</a>
+        <a href="vietnamese.html">베트남어</a>
+        <a href="photos.html">사진</a>
+        <a href="videos.html">영상</a>
+      </nav>
+    </div>
 
   </header>
 
@@ -38,517 +36,515 @@
       <section class="card">
         <h2>여행</h2>
 
-```
-    <h3>현재 일정</h3>
-    <div data-current-schedule></div>
-  </section>
-
-  <section class="card" data-tabs>
-    <div class="tabs" role="tablist" aria-label="여행 탭">
-      <button role="tab" data-tab="prep" aria-selected="false">여행 준비물</button>
-      <button role="tab" data-tab="itinerary" aria-selected="false">일정표</button>
-      <button role="tab" data-tab="stay" aria-selected="false">숙소</button>
-      <button role="tab" data-tab="food" aria-selected="false">식사정보</button>
-      <button role="tab" data-tab="spots" aria-selected="false">관광지정보</button>
-      <button role="tab" data-tab="emergency" aria-selected="false">비상연락처</button>
+        <h3>현재 일정</h3>
+        <div data-current-schedule></div>
+      </section>
+    
+      <section class="card" data-tabs>
+        <div class="tabs" role="tablist" aria-label="여행 탭">
+          <button role="tab" data-tab="prep" aria-selected="false">여행 준비물</button>
+          <button role="tab" data-tab="itinerary" aria-selected="false">일정표</button>
+          <button role="tab" data-tab="stay" aria-selected="false">숙소</button>
+          <button role="tab" data-tab="food" aria-selected="false">식사정보</button>
+          <button role="tab" data-tab="spots" aria-selected="false">관광지정보</button>
+          <button role="tab" data-tab="emergency" aria-selected="false">비상연락처</button>
+        </div>
+    
+        <!-- 1) 준비물 -->
+        <div class="tabpanel" role="tabpanel" data-panel="prep">
+          <div class="notice">
+            * 2025년 3월 1일부터 베트남 모든 공항에서 "긴급여권" 입국이 제한됩니다.<br/>
+            (긴급여권으로 베트남 입국 불가)
+          </div>
+    
+          <div class="hr"></div>
+    
+          <h3>체크리스트</h3>
+          <p>체크는 브라우저에 저장됩니다.</p>
+    
+          <div class="checklist">
+            <div class="check">
+              <input id="p1" type="checkbox" data-store="prep.passport" />
+              <label for="p1">여권<span class="sub">유효기간 6개월 이상 확인 필수</span></label>
+            </div>
+            <div class="check">
+              <input id="p2" type="checkbox" data-store="prep.ticket" />
+              <label for="p2">항공권 (e-티켓)<span class="sub">출력 또는 모바일에 저장</span></label>
+            </div>
+            <div class="check">
+              <input id="p3" type="checkbox" data-store="prep.schedule" />
+              <label for="p3">일정표 및 확정서<span class="sub">오프라인 저장 권장</span></label>
+            </div>
+            <div class="check">
+              <input id="p4" type="checkbox" data-store="prep.emergency" />
+              <label for="p4">비상연락처 메모<span class="sub">대사관/병원/가이드 번호</span></label>
+            </div>
+            <div class="check">
+              <input id="p5" type="checkbox" data-store="prep.carrier" />
+              <label for="p5">캐리어<span class="sub">바퀴 상태 점검</span></label>
+            </div>
+            <div class="check">
+              <input id="p6" type="checkbox" data-store="prep.backpack" />
+              <label for="p6">보조가방<span class="sub">기내 반입용</span></label>
+            </div>
+            <div class="check">
+              <input id="p7" type="checkbox" data-store="prep.toothbrush" />
+              <label for="p7">칫솔/치약<span class="sub">호텔 제공 품질 낮을 수 있음</span></label>
+            </div>
+            <div class="check">
+              <input id="p8" type="checkbox" data-store="prep.shampoo" />
+              <label for="p8">샴푸/린스/바디워시<span class="sub">개인 제품 권장</span></label>
+            </div>
+            <div class="check">
+              <input id="p9" type="checkbox" data-store="prep.comb" />
+              <label for="p9">빗/면도기<span class="sub">개인 위생용품</span></label>
+            </div>
+            <div class="check">
+              <input id="p10" type="checkbox" data-store="prep.tshirt" />
+              <label for="p10">반팔 티셔츠 (3~4벌)<span class="sub">12월 나트랑: 평균 23~27도</span></label>
+            </div>
+            <div class="check">
+              <input id="p11" type="checkbox" data-store="prep.pants" />
+              <label for="p11">바지/반바지 (2~3벌)<span class="sub">편한 활동복 권장</span></label>
+            </div>
+            <div class="check">
+              <input id="p12" type="checkbox" data-store="prep.shoes" />
+              <label for="p12">운동화/슬리퍼<span class="sub">워터파크/해변용 슬리퍼 필수</span></label>
+            </div>
+            <div class="check">
+              <input id="p13" type="checkbox" data-store="prep.underwear" />
+              <label for="p13">속옷/양말<span class="sub">일정 일수 +1~2벌 권장</span></label>
+            </div>
+            <div class="check">
+              <input id="p14" type="checkbox" data-store="prep.outer" />
+              <label for="p14">얇은 가디건/외투<span class="sub">실내 에어컨 대비용</span></label>
+            </div>
+            <div class="check">
+              <input id="p15" type="checkbox" data-store="prep.hat" />
+              <label for="p15">모자/선글라스<span class="sub">강한 햇빛 차단용</span></label>
+            </div>
+            <div class="check">
+              <input id="p16" type="checkbox" data-store="prep.skincare" />
+              <label for="p16">기초 화장품<span class="sub">여행용 소용량 추천</span></label>
+            </div>
+            <div class="check">
+              <input id="p17" type="checkbox" data-store="prep.sunscreen" />
+              <label for="p17">자외선 차단제 (SPF50+)<span class="sub">야외활동 많아서 필수</span></label>
+            </div>
+            <div class="check">
+              <input id="p18" type="checkbox" data-store="prep.hair" />
+              <label for="p18">헤어 제품<span class="sub">습도 높아 헤어 관리 필요</span></label>
+            </div>
+            <div class="check">
+              <input id="p19" type="checkbox" data-store="prep.coldmed" />
+              <label for="p19">감기약/해열제<span class="sub">냉방병 대비</span></label>
+            </div>
+            <div class="check">
+              <input id="p20" type="checkbox" data-store="prep.digest" />
+              <label for="p20">소화제/지사제<span class="sub">현지 음식 적응 대비</span></label>
+            </div>
+            <div class="check">
+              <input id="p21" type="checkbox" data-store="prep.bandaid" />
+              <label for="p21">밴드/연고<span class="sub">가벼운 상처 치료용</span></label>
+            </div>
+            <div class="check">
+              <input id="p22" type="checkbox" data-store="prep.personal" />
+              <label for="p22">개인 처방약<span class="sub">여유있게 준비</span></label>
+            </div>
+            <div class="check">
+              <input id="p23" type="checkbox" data-store="prep.ramen" />
+              <label for="p23">컵라면 (1~2개)<span class="sub">현지 음식 적응 어려울 때</span></label>
+            </div>
+            <div class="check">
+              <input id="p24" type="checkbox" data-store="prep.snack" />
+              <label for="p24">김/과자 간식<span class="sub">한국 음식 그리울 때</span></label>
+            </div>
+            <div class="check">
+              <input id="p25" type="checkbox" data-store="prep.gochujang" />
+              <label for="p25">튜브 고추장/간장<span class="sub">현지 음식에 추가용</span></label>
+            </div>
+            <div class="check">
+              <input id="p26" type="checkbox" data-store="prep.camera" />
+              <label for="p26">카메라/충전기<span class="sub">추억 기록용</span></label>
+            </div>
+            <div class="check">
+              <input id="p27" type="checkbox" data-store="prep.charger" />
+              <label for="p27">스마트폰 충전기/보조배터리<span class="sub">하루 종일 사용 대비</span></label>
+            </div>
+            <div class="check">
+              <input id="p28" type="checkbox" data-store="prep.adapter" />
+              <label for="p28">멀티탭/충전 케이블<span class="sub">여러 기기 동시 충전용</span></label>
+            </div>
+            <div class="check">
+              <input id="p29" type="checkbox" data-store="prep.fan" />
+              <label for="p29">손선풍기 (선택)<span class="sub">더울 때 유용</span></label>
+            </div>
+            <div class="check">
+              <input id="p30" type="checkbox" data-store="prep.plastic" />
+              <label for="p30">비닐봉투 (여러 장)<span class="sub">젖은 옷/짐 분리용</span></label>
+            </div>
+            <div class="check">
+              <input id="p31" type="checkbox" data-store="prep.watch" />
+              <label for="p31">손목시계 (방수)<span class="sub">워터파크/해변 활동용</span></label>
+            </div>
+            <div class="check">
+              <input id="p32" type="checkbox" data-store="prep.usd" />
+              <label for="p32">환전 (USD 100달러)<span class="sub">한국에서 USD 환전 후 현지에서 VND로</span></label>
+            </div>
+            <div class="check">
+              <input id="p33" type="checkbox" data-store="prep.card" />
+              <label for="p33">카드 (VISA/MASTER)<span class="sub">해외결제 가능 카드 2장 이상</span></label>
+            </div>
+          </div>
+        </div>
+    
+        <!-- 2) 일정표 -->
+        <div class="tabpanel" role="tabpanel" data-panel="itinerary">
+          <h3>일정 타임라인</h3>
+          <p>진행중인 이벤트는 보라색으로 표시됩니다.</p>
+    
+          <div class="timeline">
+            <div class="day-group">
+              <h4 class="day-header">12/26 (금) - 1일차</h4>
+              
+              <div class="event" data-ev-start="2025-12-26T14:30:00+09:00" data-ev-end="2025-12-26T18:05:00+09:00">
+                <div class="meta"><span class="time">14:30</span><span class="tag">인천</span></div>
+                <div class="title">인천공항 T2 집결</div>
+                <div class="desc">제2터미널 3층 (1번 출구) 하나투어 미팅테이블<br/>출발 6회차 + 여권/항공권 확인</div>
+              </div>
+    
+              <div class="event" data-ev-start="2025-12-26T18:05:00+09:00" data-ev-end="2025-12-26T21:35:00+07:00">
+                <div class="meta"><span class="time">18:05</span><span class="tag">KE465</span></div>
+                <div class="title">인천 출발 - 깜란 도착 (5시간 30분)</div>
+                <div class="desc">깜란 국제공항 21:35 도착<br/>가이드 미팅 후 호텔 이동(10~15분)<br/><small>HOTEL: 모벤픽 리조트 깜란</small></div>
+              </div>
+            </div>
+    
+            <div class="day-group">
+              <h4 class="day-header">12/27 (토) - 2일차</h4>
+              
+              <div class="event" data-ev-start="2025-12-27T06:50:00+07:00" data-ev-end="2025-12-27T07:20:00+07:00">
+                <div class="meta"><span class="time">06:50</span><span class="tag">호텔</span></div>
+                <div class="title">조식</div>
+                <div class="desc">호텔 뷔페식</div>
+              </div>
+    
+              <div class="event" data-ev-start="2025-12-27T07:30:00+07:00" data-ev-end="2025-12-27T07:48:00+07:00">
+                <div class="meta"><span class="time">07:30</span><span class="tag">이동</span></div>
+                <div class="title">가이드 미팅 후 이동</div>
+                <div class="desc">골프조: 골프장 / 관광조: 선착장</div>
+              </div>
+    
+              <div class="event" data-ev-start="2025-12-27T07:48:00+07:00" data-ev-end="2025-12-27T18:00:00+07:00">
+                <div class="meta"><span class="time">07:48~18:00</span><span class="tag">분기</span></div>
+                <div class="title">빈펄CC 라운딩 / 빈원더스(관광조)</div>
+                <div class="desc">[골프조] 18홀 라운딩 (중식: 클럽식)<br/>[관광조] 빈원더스 자유시간 (케이블카/워터파크/아쿠아리움)</div>
+              </div>
+    
+              <div class="event" data-ev-start="2025-12-27T18:30:00+07:00" data-ev-end="2025-12-27T19:30:00+07:00">
+                <div class="meta"><span class="time">18:30</span><span class="tag">식사</span></div>
+                <div class="title">석식 (관광조)</div>
+                <div class="desc">나트랑 시내 (한식)</div>
+              </div>
+            </div>
+    
+            <div class="day-group">
+              <h4 class="day-header">12/28 (일) - 3일차</h4>
+              
+              <div class="event" data-ev-start="2025-12-28T06:50:00+07:00" data-ev-end="2025-12-28T07:20:00+07:00">
+                <div class="meta"><span class="time">06:50</span><span class="tag">호텔</span></div>
+                <div class="title">조식</div>
+                <div class="desc">호텔 뷔페식</div>
+              </div>
+    
+              <div class="event" data-ev-start="2025-12-28T11:30:00+07:00" data-ev-end="2025-12-28T15:30:00+07:00">
+                <div class="meta"><span class="time">11:30~15:30</span><span class="tag">투어</span></div>
+                <div class="title">호핑투어 및 스노클링</div>
+                <div class="desc">준비물: 수영복, 아쿠아슈즈, 선크림, 수건</div>
+              </div>
+    
+              <div class="event" data-ev-start="2025-12-28T17:50:00+07:00" data-ev-end="2025-12-28T19:10:00+07:00">
+                <div class="meta"><span class="time">17:50</span><span class="tag">식사</span></div>
+                <div class="title">석식 (단독룸)</div>
+                <div class="desc">현지식</div>
+              </div>
+            </div>
+    
+            <div class="day-group">
+              <h4 class="day-header">12/29 (월) - 4일차</h4>
+              
+              <div class="event" data-ev-start="2025-12-29T06:50:00+07:00" data-ev-end="2025-12-29T08:20:00+07:00">
+                <div class="meta"><span class="time">06:50</span><span class="tag">호텔</span></div>
+                <div class="title">조식</div>
+                <div class="desc">호텔 뷔페식</div>
+              </div>
+    
+              <div class="event" data-ev-start="2025-12-29T08:50:00+07:00" data-ev-end="2025-12-29T12:00:00+07:00">
+                <div class="meta"><span class="time">08:50~12:00</span><span class="tag">분기</span></div>
+                <div class="title">KN Golf Links 라운딩 / 오전 자유(관광조)</div>
+                <div class="desc">[골프조] 18홀 라운딩<br/>[관광조] 리조트 자유시간</div>
+              </div>
+    
+              <div class="event" data-ev-start="2025-12-29T12:00:00+07:00" data-ev-end="2025-12-29T13:00:00+07:00">
+                <div class="meta"><span class="time">12:00</span><span class="tag">호텔</span></div>
+                <div class="title">체크아웃</div>
+                <div class="desc">로비에서 가이드 미팅</div>
+              </div>
+    
+              <div class="event" data-ev-start="2025-12-29T14:00:00+07:00" data-ev-end="2025-12-29T16:30:00+07:00">
+                <div class="meta"><span class="time">14:00</span><span class="tag">관광</span></div>
+                <div class="title">콩카페 방문 (음료 1잔)</div>
+                <div class="desc">나트랑 시내</div>
+              </div>
+    
+              <div class="event" data-ev-start="2025-12-29T16:30:00+07:00" data-ev-end="2025-12-29T18:30:00+07:00">
+                <div class="meta"><span class="time">16:30</span><span class="tag">관광</span></div>
+                <div class="title">원숭이섬 및 혼총곶</div>
+                <div class="desc">단체 관광</div>
+              </div>
+    
+              <div class="event" data-ev-start="2025-12-29T23:05:00+07:00" data-ev-end="2025-12-30T06:05:00+09:00">
+                <div class="meta"><span class="time">23:05</span><span class="tag">KE466</span></div>
+                <div class="title">깜란 출발 - 인천 도착 (5시간)</div>
+                <div class="desc">항공 이동</div>
+              </div>
+            </div>
+    
+            <div class="day-group">
+              <h4 class="day-header">12/30 (화) - 5일차</h4>
+              
+              <div class="event" data-ev-start="2025-12-30T06:05:00+09:00" data-ev-end="2025-12-30T07:00:00+09:00">
+                <div class="meta"><span class="time">06:05</span><span class="tag">인천</span></div>
+                <div class="title">인천국제공항 도착</div>
+                <div class="desc">수하물 수령 후 해산</div>
+              </div>
+            </div>
+          </div>
+    
+          <div class="hr"></div>
+          <div class="pills">
+            <span class="pill">* 일정은 현지 사정으로 변경될 수 있습니다.</span>
+          </div>
+        </div>
+    
+        <!-- 3) 숙소 -->
+        <div class="tabpanel" role="tabpanel" data-panel="stay">
+          <h3>호텔 정보</h3>
+    
+          <div class="card" style="box-shadow:none;">
+            <h3>모벤픽 리조트 깜란</h3>
+            <p><b>Movenpick Resort Cam Ranh</b></p>
+            <p><b>주소</b><br/>Plot D12 Abc, Cam Hai Dong Cam Ranh, Khanh Hoa 057615</p>
+            <p><b>연락처</b><br/>+84 1800 577745</p>
+            <div class="btns">
+              <a class="btn primary" target="_blank" rel="noreferrer noopener" href="https://www.google.com/maps/search/?api=1&query=Movenpick+Resort+Cam+Ranh">Google Map 열기</a>
+            </div>
+          </div>
+    
+          <div class="hr"></div>
+    
+          <h3>방 배정</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>구분</th><th>Room 1</th><th>Room 2</th><th>Room 3</th><th>Room 4</th><th>Room 5</th><th>Room 6</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>1</td><td>공명선(골프)</td><td>강진수</td><td>강수선</td><td>박상준</td><td>김윤호</td><td>조현욱</td></tr>
+                <tr><td>2</td><td>김한겸(골프)</td><td>이유진</td><td>길종호</td><td>이민철</td><td>홍준기</td><td>강현모</td></tr>
+                <tr><td>3</td><td>나종현(골프)</td><td>이준호</td><td>김성연</td><td>유철기</td><td>최승원</td><td>김주호</td></tr>
+                <tr><td>4</td><td>홍종옥(골프)</td><td>장다현</td><td>김재우</td><td>오태현</td><td>김우림</td><td>김동현</td></tr>
+                <tr><td>5</td><td>박건규</td><td>조아라</td><td>김해린</td><td>최예준</td><td>정기순</td><td>김범준</td></tr>
+                <tr><td>6</td><td>김재역</td><td>최성일</td><td>이성준</td><td>나경준</td><td>정봉주</td><td>김정훈</td></tr>
+                <tr><td>7</td><td></td><td></td><td>이한나</td><td>용건호</td><td>박준범</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+    
+        <!-- 4) 식사정보 -->
+        <div class="tabpanel" role="tabpanel" data-panel="food">
+          <h3>식사 정보</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>날짜</th><th>구분</th><th>종류</th><th>식당/메뉴</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td rowspan="3"><b>2일차<br/>12/27(토)</b></td>
+                  <td>조식</td><td>호텔식</td><td>호텔 뷔페</td>
+                </tr>
+                <tr>
+                  <td>중식</td><td style="color:#dc2626;font-weight:900;">불포함</td>
+                  <td>골프조: 클럽식 / 관광조: 자유</td>
+                </tr>
+                <tr>
+                  <td>석식</td><td>한식</td>
+                  <td>고구려: 소갈비찜, 김치전골, 해물파전</td>
+                </tr>
+                <tr>
+                  <td rowspan="3"><b>3일차<br/>12/28(일)</b></td>
+                  <td>조식</td><td>호텔식</td><td>호텔 뷔페</td>
+                </tr>
+                <tr>
+                  <td>중식</td><td>현지식</td>
+                  <td>호핑식: 모닝글로리볶음, 새우구이, 해산물볶음밥</td>
+                </tr>
+                <tr>
+                  <td>석식</td><td>현지식</td>
+                  <td>군신 씨푸드: 게살스프, 해산물 스프링롤, 생선찜</td>
+                </tr>
+                <tr>
+                  <td rowspan="3"><b>4일차<br/>12/29(월)</b></td>
+                  <td>조식</td><td>호텔식</td><td>호텔 뷔페</td>
+                </tr>
+                <tr>
+                  <td>중식</td><td>한식/현지식</td>
+                  <td>관광조: 정원 (차돌된장전골, 제육볶음)<br/>골프조: 클럽식</td>
+                </tr>
+                <tr>
+                  <td>석식</td><td>현지식</td>
+                  <td>짜오마오 씨푸드: 맛조개볶음, 굴 치즈 구이, 생선찜</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="hr"></div>
+          <p><small>* 메뉴는 현지 재료 수급에 따라 변경될 수 있습니다.</small></p>
+        </div>
+    
+        <!-- 5) 관광지정보 -->
+        <div class="tabpanel" role="tabpanel" data-panel="spots">
+          <h3>빈원더스 조 편성</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>A조</th><th>B조</th><th>C조</th><th>D조</th><th>E조</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td>박상준<br/>이민철<br/>김재역<br/>박건규</td>
+                  <td>이준호<br/>김승규<br/>길종호<br/>정기순</td>
+                  <td>정봉주<br/>박준범<br/>나경준<br/>최승원</td>
+                  <td>김재우<br/>강현모<br/>조현욱<br/>이우진<br/>이성준</td>
+                  <td>김동현<br/>김성연<br/>강진수<br/>장다현<br/>김해린</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+    
+          <div class="hr"></div>
+    
+          <h3>워터파크 조 (13명)</h3>
+          <div class="card" style="box-shadow:none;">
+            강수선, 김범준, 김윤호, 김정호, 오태현, 홍건호, 유철기, 이한나, 최성연, 최예준, 홍준기, 조아라, 김우림
+          </div>
+    
+          <div class="hr"></div>
+    
+          <h3>워터파크 준비물</h3>
+          <div class="pills">
+            <span class="pill primary">수영복/래쉬가드</span>
+            <span class="pill primary">방수팩</span>
+            <span class="pill primary">아쿠아슈즈/슬리퍼</span>
+            <span class="pill primary">선크림</span>
+            <span class="pill">모자</span>
+            <span class="pill">현금</span>
+            <span class="pill danger">락커/수건대여는 현금만 가능</span>
+          </div>
+    
+          <div class="hr"></div>
+    
+          <h3>관광 포인트</h3>
+          <div class="grid grid-2">
+            <div class="card" style="box-shadow:none;">
+              <h3>빈원더스</h3>
+              <p>3,320m 케이블카, 워터파크, 놀이공원, 아쿠아리움</p>
+            </div>
+            <div class="card" style="box-shadow:none;">
+              <h3>호핑투어</h3>
+              <p>스노클링, 해변 BBQ, 신선한 과일</p>
+            </div>
+            <div class="card" style="box-shadow:none;">
+              <h3>콩카페</h3>
+              <p>코코넛 커피 (시그니처), 연유 커피</p>
+            </div>
+            <div class="card" style="box-shadow:none;">
+              <h3>원숭이섬</h3>
+              <p>약 1,200마리 원숭이, 먹이주기 체험</p>
+            </div>
+          </div>
+        </div>
+    
+        <!-- 6) 비상연락처 -->
+        <div class="tabpanel" role="tabpanel" data-panel="emergency">
+          <h2 style="color:#dc2626; text-align:center; margin-bottom:20px;">응급상황 시 비상 연락처</h2>
+    
+          <div class="grid grid-2">
+            <div class="card" style="box-shadow:none; border-left:4px solid #6d28d9;">
+              <h3>대사관 연락처 (하노이)</h3>
+              <p><b>주소</b><br/>SQ4, Do Nhuan, Khu Ngoai Giao Doan, Xuan Tao, Bac Tu Liem, Hanoi</p>
+              <p><b>대표번호 (근무시간)</b><br/>(84) 24-3771-0404</p>
+              <p><b>긴급연락처 (24시간)</b><br/><span style="color:#dc2626; font-weight:900;">(84) 90-402-6126</span></p>
+              <p><b>E-mail</b><br/>korembviet@mofa.go.kr</p>
+            </div>
+    
+            <div class="card" style="box-shadow:none; border-left:4px solid #6d28d9;">
+              <h3>호치민총영사관</h3>
+              <p><b>주소</b><br/>107 Nguyen Du St., Dist 1, Ho Chi Minh city</p>
+              <p><b>대표번호 (근무시간)</b><br/>(84) 28-3822-5757</p>
+              <p><b>긴급연락처 (24시간)</b><br/><span style="color:#dc2626; font-weight:900;">(84) 93-850-0238</span></p>
+              <p><b>E-mail</b><br/>hcm02@mofa.go.kr</p>
+            </div>
+          </div>
+    
+          <div class="hr"></div>
+    
+          <div class="card" style="box-shadow:none; border-left:4px solid #dc2626;">
+            <h3>주재국 긴급신고</h3>
+            <div class="grid grid-3" style="gap:10px; margin-top:10px;">
+              <div class="pill" style="text-align:center; padding:12px;">
+                <b>범죄신고</b><br/><span style="font-size:20px; font-weight:900;">113</span>
+              </div>
+              <div class="pill" style="text-align:center; padding:12px;">
+                <b>화재신고</b><br/><span style="font-size:20px; font-weight:900;">114</span>
+              </div>
+              <div class="pill" style="text-align:center; padding:12px;">
+                <b>응급환자</b><br/><span style="font-size:20px; font-weight:900;">115</span>
+              </div>
+            </div>
+            <p style="margin-top:12px;"><small>* 긴급전화는 대부분 베트남어로만 가능하며, 구급차 요금이 발생할 수 있습니다.</small></p>
+          </div>
+    
+          <div class="hr"></div>
+    
+          <h3>나트랑 종합병원</h3>
+          <div class="grid grid-2">
+            <div class="card" style="box-shadow:none; border-left:4px solid #16a34a;">
+              <h3>나트랑 빈멕 국제종합병원</h3>
+              <p><b>주소</b><br/>Vinh Nguyen, Nha Trang, Khanh Hoa 650000</p>
+              <p><b>영업시간</b><br/>24시간</p>
+              <p><b>전화번호</b><br/>+84 258 3900 168</p>
+              <p><small>(모벤픽 호텔에서 차량 약 40분)</small></p>
+            </div>
+            <div class="card" style="box-shadow:none; border-left:4px solid #16a34a;">
+              <h3>22-12 Hospital</h3>
+              <p><b>주소</b><br/>34/4 Nguyen Thien Thuat, Tan Tien, Nha Trang</p>
+              <p><b>영업시간</b><br/>24시간</p>
+              <p><b>전화번호</b><br/>+84 258 3528 857</p>
+              <p><small>(모벤픽 호텔에서 차량 약 45분)</small></p>
+            </div>
+          </div>
+    
+          <div class="hr"></div>
+    
+          <div class="notice">
+            * 응급상황 발생 시, 먼저 가이드에게 연락하시고,<br/>
+            연락이 안 될 경우 위 연락처로 직접 연락해주세요.
+          </div>
+        </div>
+    
+      </section>
     </div>
-
-    <!-- 1) 준비물 -->
-    <div class="tabpanel" role="tabpanel" data-panel="prep">
-      <div class="notice">
-        * 2025년 3월 1일부터 베트남 모든 공항에서 "긴급여권" 입국이 제한됩니다.<br/>
-        (긴급여권으로 베트남 입국 불가)
-      </div>
-
-      <div class="hr"></div>
-
-      <h3>체크리스트</h3>
-      <p>체크는 브라우저에 저장됩니다.</p>
-
-      <div class="checklist">
-        <div class="check">
-          <input id="p1" type="checkbox" data-store="prep.passport" />
-          <label for="p1">여권<span class="sub">유효기간 6개월 이상 확인 필수</span></label>
-        </div>
-        <div class="check">
-          <input id="p2" type="checkbox" data-store="prep.ticket" />
-          <label for="p2">항공권 (e-티켓)<span class="sub">출력 또는 모바일에 저장</span></label>
-        </div>
-        <div class="check">
-          <input id="p3" type="checkbox" data-store="prep.schedule" />
-          <label for="p3">일정표 및 확정서<span class="sub">오프라인 저장 권장</span></label>
-        </div>
-        <div class="check">
-          <input id="p4" type="checkbox" data-store="prep.emergency" />
-          <label for="p4">비상연락처 메모<span class="sub">대사관/병원/가이드 번호</span></label>
-        </div>
-        <div class="check">
-          <input id="p5" type="checkbox" data-store="prep.carrier" />
-          <label for="p5">캐리어<span class="sub">바퀴 상태 점검</span></label>
-        </div>
-        <div class="check">
-          <input id="p6" type="checkbox" data-store="prep.backpack" />
-          <label for="p6">보조가방<span class="sub">기내 반입용</span></label>
-        </div>
-        <div class="check">
-          <input id="p7" type="checkbox" data-store="prep.toothbrush" />
-          <label for="p7">칫솔/치약<span class="sub">호텔 제공 품질 낮을 수 있음</span></label>
-        </div>
-        <div class="check">
-          <input id="p8" type="checkbox" data-store="prep.shampoo" />
-          <label for="p8">샴푸/린스/바디워시<span class="sub">개인 제품 권장</span></label>
-        </div>
-        <div class="check">
-          <input id="p9" type="checkbox" data-store="prep.comb" />
-          <label for="p9">빗/면도기<span class="sub">개인 위생용품</span></label>
-        </div>
-        <div class="check">
-          <input id="p10" type="checkbox" data-store="prep.tshirt" />
-          <label for="p10">반팔 티셔츠 (3~4벌)<span class="sub">12월 나트랑: 평균 23~27도</span></label>
-        </div>
-        <div class="check">
-          <input id="p11" type="checkbox" data-store="prep.pants" />
-          <label for="p11">바지/반바지 (2~3벌)<span class="sub">편한 활동복 권장</span></label>
-        </div>
-        <div class="check">
-          <input id="p12" type="checkbox" data-store="prep.shoes" />
-          <label for="p12">운동화/슬리퍼<span class="sub">워터파크/해변용 슬리퍼 필수</span></label>
-        </div>
-        <div class="check">
-          <input id="p13" type="checkbox" data-store="prep.underwear" />
-          <label for="p13">속옷/양말<span class="sub">일정 일수 +1~2벌 권장</span></label>
-        </div>
-        <div class="check">
-          <input id="p14" type="checkbox" data-store="prep.outer" />
-          <label for="p14">얇은 가디건/외투<span class="sub">실내 에어컨 대비용</span></label>
-        </div>
-        <div class="check">
-          <input id="p15" type="checkbox" data-store="prep.hat" />
-          <label for="p15">모자/선글라스<span class="sub">강한 햇빛 차단용</span></label>
-        </div>
-        <div class="check">
-          <input id="p16" type="checkbox" data-store="prep.skincare" />
-          <label for="p16">기초 화장품<span class="sub">여행용 소용량 추천</span></label>
-        </div>
-        <div class="check">
-          <input id="p17" type="checkbox" data-store="prep.sunscreen" />
-          <label for="p17">자외선 차단제 (SPF50+)<span class="sub">야외활동 많아서 필수</span></label>
-        </div>
-        <div class="check">
-          <input id="p18" type="checkbox" data-store="prep.hair" />
-          <label for="p18">헤어 제품<span class="sub">습도 높아 헤어 관리 필요</span></label>
-        </div>
-        <div class="check">
-          <input id="p19" type="checkbox" data-store="prep.coldmed" />
-          <label for="p19">감기약/해열제<span class="sub">냉방병 대비</span></label>
-        </div>
-        <div class="check">
-          <input id="p20" type="checkbox" data-store="prep.digest" />
-          <label for="p20">소화제/지사제<span class="sub">현지 음식 적응 대비</span></label>
-        </div>
-        <div class="check">
-          <input id="p21" type="checkbox" data-store="prep.bandaid" />
-          <label for="p21">밴드/연고<span class="sub">가벼운 상처 치료용</span></label>
-        </div>
-        <div class="check">
-          <input id="p22" type="checkbox" data-store="prep.personal" />
-          <label for="p22">개인 처방약<span class="sub">여유있게 준비</span></label>
-        </div>
-        <div class="check">
-          <input id="p23" type="checkbox" data-store="prep.ramen" />
-          <label for="p23">컵라면 (1~2개)<span class="sub">현지 음식 적응 어려울 때</span></label>
-        </div>
-        <div class="check">
-          <input id="p24" type="checkbox" data-store="prep.snack" />
-          <label for="p24">김/과자 간식<span class="sub">한국 음식 그리울 때</span></label>
-        </div>
-        <div class="check">
-          <input id="p25" type="checkbox" data-store="prep.gochujang" />
-          <label for="p25">튜브 고추장/간장<span class="sub">현지 음식에 추가용</span></label>
-        </div>
-        <div class="check">
-          <input id="p26" type="checkbox" data-store="prep.camera" />
-          <label for="p26">카메라/충전기<span class="sub">추억 기록용</span></label>
-        </div>
-        <div class="check">
-          <input id="p27" type="checkbox" data-store="prep.charger" />
-          <label for="p27">스마트폰 충전기/보조배터리<span class="sub">하루 종일 사용 대비</span></label>
-        </div>
-        <div class="check">
-          <input id="p28" type="checkbox" data-store="prep.adapter" />
-          <label for="p28">멀티탭/충전 케이블<span class="sub">여러 기기 동시 충전용</span></label>
-        </div>
-        <div class="check">
-          <input id="p29" type="checkbox" data-store="prep.fan" />
-          <label for="p29">손선풍기 (선택)<span class="sub">더울 때 유용</span></label>
-        </div>
-        <div class="check">
-          <input id="p30" type="checkbox" data-store="prep.plastic" />
-          <label for="p30">비닐봉투 (여러 장)<span class="sub">젖은 옷/짐 분리용</span></label>
-        </div>
-        <div class="check">
-          <input id="p31" type="checkbox" data-store="prep.watch" />
-          <label for="p31">손목시계 (방수)<span class="sub">워터파크/해변 활동용</span></label>
-        </div>
-        <div class="check">
-          <input id="p32" type="checkbox" data-store="prep.usd" />
-          <label for="p32">환전 (USD 100달러)<span class="sub">한국에서 USD 환전 후 현지에서 VND로</span></label>
-        </div>
-        <div class="check">
-          <input id="p33" type="checkbox" data-store="prep.card" />
-          <label for="p33">카드 (VISA/MASTER)<span class="sub">해외결제 가능 카드 2장 이상</span></label>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2) 일정표 -->
-    <div class="tabpanel" role="tabpanel" data-panel="itinerary">
-      <h3>일정 타임라인</h3>
-      <p>진행중인 이벤트는 보라색으로 표시됩니다.</p>
-
-      <div class="timeline">
-        <div class="day-group">
-          <h4 class="day-header">12/26 (금) - 1일차</h4>
-          
-          <div class="event" data-ev-start="2025-12-26T14:30:00+09:00" data-ev-end="2025-12-26T18:05:00+09:00">
-            <div class="meta"><span class="time">14:30</span><span class="tag">인천</span></div>
-            <div class="title">인천공항 T2 집결</div>
-            <div class="desc">제2터미널 3층 (1번 출구) 하나투어 미팅테이블<br/>출발 6회차 + 여권/항공권 확인</div>
-          </div>
-
-          <div class="event" data-ev-start="2025-12-26T18:05:00+09:00" data-ev-end="2025-12-26T21:35:00+07:00">
-            <div class="meta"><span class="time">18:05</span><span class="tag">KE465</span></div>
-            <div class="title">인천 출발 - 깜란 도착 (5시간 30분)</div>
-            <div class="desc">깜란 국제공항 21:35 도착<br/>가이드 미팅 후 호텔 이동(10~15분)<br/><small>HOTEL: 모벤픽 리조트 깜란</small></div>
-          </div>
-        </div>
-
-        <div class="day-group">
-          <h4 class="day-header">12/27 (토) - 2일차</h4>
-          
-          <div class="event" data-ev-start="2025-12-27T06:50:00+07:00" data-ev-end="2025-12-27T07:20:00+07:00">
-            <div class="meta"><span class="time">06:50</span><span class="tag">호텔</span></div>
-            <div class="title">조식</div>
-            <div class="desc">호텔 뷔페식</div>
-          </div>
-
-          <div class="event" data-ev-start="2025-12-27T07:30:00+07:00" data-ev-end="2025-12-27T07:48:00+07:00">
-            <div class="meta"><span class="time">07:30</span><span class="tag">이동</span></div>
-            <div class="title">가이드 미팅 후 이동</div>
-            <div class="desc">골프조: 골프장 / 관광조: 선착장</div>
-          </div>
-
-          <div class="event" data-ev-start="2025-12-27T07:48:00+07:00" data-ev-end="2025-12-27T18:00:00+07:00">
-            <div class="meta"><span class="time">07:48~18:00</span><span class="tag">분기</span></div>
-            <div class="title">빈펄CC 라운딩 / 빈원더스(관광조)</div>
-            <div class="desc">[골프조] 18홀 라운딩 (중식: 클럽식)<br/>[관광조] 빈원더스 자유시간 (케이블카/워터파크/아쿠아리움)</div>
-          </div>
-
-          <div class="event" data-ev-start="2025-12-27T18:30:00+07:00" data-ev-end="2025-12-27T19:30:00+07:00">
-            <div class="meta"><span class="time">18:30</span><span class="tag">식사</span></div>
-            <div class="title">석식 (관광조)</div>
-            <div class="desc">나트랑 시내 (한식)</div>
-          </div>
-        </div>
-
-        <div class="day-group">
-          <h4 class="day-header">12/28 (일) - 3일차</h4>
-          
-          <div class="event" data-ev-start="2025-12-28T06:50:00+07:00" data-ev-end="2025-12-28T07:20:00+07:00">
-            <div class="meta"><span class="time">06:50</span><span class="tag">호텔</span></div>
-            <div class="title">조식</div>
-            <div class="desc">호텔 뷔페식</div>
-          </div>
-
-          <div class="event" data-ev-start="2025-12-28T11:30:00+07:00" data-ev-end="2025-12-28T15:30:00+07:00">
-            <div class="meta"><span class="time">11:30~15:30</span><span class="tag">투어</span></div>
-            <div class="title">호핑투어 및 스노클링</div>
-            <div class="desc">준비물: 수영복, 아쿠아슈즈, 선크림, 수건</div>
-          </div>
-
-          <div class="event" data-ev-start="2025-12-28T17:50:00+07:00" data-ev-end="2025-12-28T19:10:00+07:00">
-            <div class="meta"><span class="time">17:50</span><span class="tag">식사</span></div>
-            <div class="title">석식 (단독룸)</div>
-            <div class="desc">현지식</div>
-          </div>
-        </div>
-
-        <div class="day-group">
-          <h4 class="day-header">12/29 (월) - 4일차</h4>
-          
-          <div class="event" data-ev-start="2025-12-29T06:50:00+07:00" data-ev-end="2025-12-29T08:20:00+07:00">
-            <div class="meta"><span class="time">06:50</span><span class="tag">호텔</span></div>
-            <div class="title">조식</div>
-            <div class="desc">호텔 뷔페식</div>
-          </div>
-
-          <div class="event" data-ev-start="2025-12-29T08:50:00+07:00" data-ev-end="2025-12-29T12:00:00+07:00">
-            <div class="meta"><span class="time">08:50~12:00</span><span class="tag">분기</span></div>
-            <div class="title">KN Golf Links 라운딩 / 오전 자유(관광조)</div>
-            <div class="desc">[골프조] 18홀 라운딩<br/>[관광조] 리조트 자유시간</div>
-          </div>
-
-          <div class="event" data-ev-start="2025-12-29T12:00:00+07:00" data-ev-end="2025-12-29T13:00:00+07:00">
-            <div class="meta"><span class="time">12:00</span><span class="tag">호텔</span></div>
-            <div class="title">체크아웃</div>
-            <div class="desc">로비에서 가이드 미팅</div>
-          </div>
-
-          <div class="event" data-ev-start="2025-12-29T14:00:00+07:00" data-ev-end="2025-12-29T16:30:00+07:00">
-            <div class="meta"><span class="time">14:00</span><span class="tag">관광</span></div>
-            <div class="title">콩카페 방문 (음료 1잔)</div>
-            <div class="desc">나트랑 시내</div>
-          </div>
-
-          <div class="event" data-ev-start="2025-12-29T16:30:00+07:00" data-ev-end="2025-12-29T18:30:00+07:00">
-            <div class="meta"><span class="time">16:30</span><span class="tag">관광</span></div>
-            <div class="title">원숭이섬 및 혼총곶</div>
-            <div class="desc">단체 관광</div>
-          </div>
-
-          <div class="event" data-ev-start="2025-12-29T23:05:00+07:00" data-ev-end="2025-12-30T06:05:00+09:00">
-            <div class="meta"><span class="time">23:05</span><span class="tag">KE466</span></div>
-            <div class="title">깜란 출발 - 인천 도착 (5시간)</div>
-            <div class="desc">항공 이동</div>
-          </div>
-        </div>
-
-        <div class="day-group">
-          <h4 class="day-header">12/30 (화) - 5일차</h4>
-          
-          <div class="event" data-ev-start="2025-12-30T06:05:00+09:00" data-ev-end="2025-12-30T07:00:00+09:00">
-            <div class="meta"><span class="time">06:05</span><span class="tag">인천</span></div>
-            <div class="title">인천국제공항 도착</div>
-            <div class="desc">수하물 수령 후 해산</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="hr"></div>
-      <div class="pills">
-        <span class="pill">* 일정은 현지 사정으로 변경될 수 있습니다.</span>
-      </div>
-    </div>
-
-    <!-- 3) 숙소 -->
-    <div class="tabpanel" role="tabpanel" data-panel="stay">
-      <h3>호텔 정보</h3>
-
-      <div class="card" style="box-shadow:none;">
-        <h3>모벤픽 리조트 깜란</h3>
-        <p><b>Movenpick Resort Cam Ranh</b></p>
-        <p><b>주소</b><br/>Plot D12 Abc, Cam Hai Dong Cam Ranh, Khanh Hoa 057615</p>
-        <p><b>연락처</b><br/>+84 1800 577745</p>
-        <div class="btns">
-          <a class="btn primary" target="_blank" rel="noreferrer noopener" href="https://www.google.com/maps/search/?api=1&query=Movenpick+Resort+Cam+Ranh">Google Map 열기</a>
-        </div>
-      </div>
-
-      <div class="hr"></div>
-
-      <h3>방 배정</h3>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr><th>구분</th><th>Room 1</th><th>Room 2</th><th>Room 3</th><th>Room 4</th><th>Room 5</th><th>Room 6</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>1</td><td>공명선(골프)</td><td>강진수</td><td>강수선</td><td>박상준</td><td>김윤호</td><td>조현욱</td></tr>
-            <tr><td>2</td><td>김한겸(골프)</td><td>이유진</td><td>길종호</td><td>이민철</td><td>홍준기</td><td>강현모</td></tr>
-            <tr><td>3</td><td>나종현(골프)</td><td>이준호</td><td>김성연</td><td>유철기</td><td>최승원</td><td>김주호</td></tr>
-            <tr><td>4</td><td>홍종옥(골프)</td><td>장다현</td><td>김재우</td><td>오태현</td><td>김우림</td><td>김동현</td></tr>
-            <tr><td>5</td><td>박건규</td><td>조아라</td><td>김해린</td><td>최예준</td><td>정기순</td><td>김범준</td></tr>
-            <tr><td>6</td><td>김재역</td><td>최성일</td><td>이성준</td><td>나경준</td><td>정봉주</td><td>김정훈</td></tr>
-            <tr><td>7</td><td></td><td></td><td>이한나</td><td>용건호</td><td>박준범</td><td></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- 4) 식사정보 -->
-    <div class="tabpanel" role="tabpanel" data-panel="food">
-      <h3>식사 정보</h3>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr><th>날짜</th><th>구분</th><th>종류</th><th>식당/메뉴</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td rowspan="3"><b>2일차<br/>12/27(토)</b></td>
-              <td>조식</td><td>호텔식</td><td>호텔 뷔페</td>
-            </tr>
-            <tr>
-              <td>중식</td><td style="color:#dc2626;font-weight:900;">불포함</td>
-              <td>골프조: 클럽식 / 관광조: 자유</td>
-            </tr>
-            <tr>
-              <td>석식</td><td>한식</td>
-              <td>고구려: 소갈비찜, 김치전골, 해물파전</td>
-            </tr>
-            <tr>
-              <td rowspan="3"><b>3일차<br/>12/28(일)</b></td>
-              <td>조식</td><td>호텔식</td><td>호텔 뷔페</td>
-            </tr>
-            <tr>
-              <td>중식</td><td>현지식</td>
-              <td>호핑식: 모닝글로리볶음, 새우구이, 해산물볶음밥</td>
-            </tr>
-            <tr>
-              <td>석식</td><td>현지식</td>
-              <td>군신 씨푸드: 게살스프, 해산물 스프링롤, 생선찜</td>
-            </tr>
-            <tr>
-              <td rowspan="3"><b>4일차<br/>12/29(월)</b></td>
-              <td>조식</td><td>호텔식</td><td>호텔 뷔페</td>
-            </tr>
-            <tr>
-              <td>중식</td><td>한식/현지식</td>
-              <td>관광조: 정원 (차돌된장전골, 제육볶음)<br/>골프조: 클럽식</td>
-            </tr>
-            <tr>
-              <td>석식</td><td>현지식</td>
-              <td>짜오마오 씨푸드: 맛조개볶음, 굴 치즈 구이, 생선찜</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="hr"></div>
-      <p><small>* 메뉴는 현지 재료 수급에 따라 변경될 수 있습니다.</small></p>
-    </div>
-
-    <!-- 5) 관광지정보 -->
-    <div class="tabpanel" role="tabpanel" data-panel="spots">
-      <h3>빈원더스 조 편성</h3>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>A조</th><th>B조</th><th>C조</th><th>D조</th><th>E조</th></tr></thead>
-          <tbody>
-            <tr>
-              <td>박상준<br/>이민철<br/>김재역<br/>박건규</td>
-              <td>이준호<br/>김승규<br/>길종호<br/>정기순</td>
-              <td>정봉주<br/>박준범<br/>나경준<br/>최승원</td>
-              <td>김재우<br/>강현모<br/>조현욱<br/>이우진<br/>이성준</td>
-              <td>김동현<br/>김성연<br/>강진수<br/>장다현<br/>김해린</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="hr"></div>
-
-      <h3>워터파크 조 (13명)</h3>
-      <div class="card" style="box-shadow:none;">
-        강수선, 김범준, 김윤호, 김정호, 오태현, 홍건호, 유철기, 이한나, 최성연, 최예준, 홍준기, 조아라, 김우림
-      </div>
-
-      <div class="hr"></div>
-
-      <h3>워터파크 준비물</h3>
-      <div class="pills">
-        <span class="pill primary">수영복/래쉬가드</span>
-        <span class="pill primary">방수팩</span>
-        <span class="pill primary">아쿠아슈즈/슬리퍼</span>
-        <span class="pill primary">선크림</span>
-        <span class="pill">모자</span>
-        <span class="pill">현금</span>
-        <span class="pill danger">락커/수건대여는 현금만 가능</span>
-      </div>
-
-      <div class="hr"></div>
-
-      <h3>관광 포인트</h3>
-      <div class="grid grid-2">
-        <div class="card" style="box-shadow:none;">
-          <h3>빈원더스</h3>
-          <p>3,320m 케이블카, 워터파크, 놀이공원, 아쿠아리움</p>
-        </div>
-        <div class="card" style="box-shadow:none;">
-          <h3>호핑투어</h3>
-          <p>스노클링, 해변 BBQ, 신선한 과일</p>
-        </div>
-        <div class="card" style="box-shadow:none;">
-          <h3>콩카페</h3>
-          <p>코코넛 커피 (시그니처), 연유 커피</p>
-        </div>
-        <div class="card" style="box-shadow:none;">
-          <h3>원숭이섬</h3>
-          <p>약 1,200마리 원숭이, 먹이주기 체험</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- 6) 비상연락처 -->
-    <div class="tabpanel" role="tabpanel" data-panel="emergency">
-      <h2 style="color:#dc2626; text-align:center; margin-bottom:20px;">응급상황 시 비상 연락처</h2>
-
-      <div class="grid grid-2">
-        <div class="card" style="box-shadow:none; border-left:4px solid #6d28d9;">
-          <h3>대사관 연락처 (하노이)</h3>
-          <p><b>주소</b><br/>SQ4, Do Nhuan, Khu Ngoai Giao Doan, Xuan Tao, Bac Tu Liem, Hanoi</p>
-          <p><b>대표번호 (근무시간)</b><br/>(84) 24-3771-0404</p>
-          <p><b>긴급연락처 (24시간)</b><br/><span style="color:#dc2626; font-weight:900;">(84) 90-402-6126</span></p>
-          <p><b>E-mail</b><br/>korembviet@mofa.go.kr</p>
-        </div>
-
-        <div class="card" style="box-shadow:none; border-left:4px solid #6d28d9;">
-          <h3>호치민총영사관</h3>
-          <p><b>주소</b><br/>107 Nguyen Du St., Dist 1, Ho Chi Minh city</p>
-          <p><b>대표번호 (근무시간)</b><br/>(84) 28-3822-5757</p>
-          <p><b>긴급연락처 (24시간)</b><br/><span style="color:#dc2626; font-weight:900;">(84) 93-850-0238</span></p>
-          <p><b>E-mail</b><br/>hcm02@mofa.go.kr</p>
-        </div>
-      </div>
-
-      <div class="hr"></div>
-
-      <div class="card" style="box-shadow:none; border-left:4px solid #dc2626;">
-        <h3>주재국 긴급신고</h3>
-        <div class="grid grid-3" style="gap:10px; margin-top:10px;">
-          <div class="pill" style="text-align:center; padding:12px;">
-            <b>범죄신고</b><br/><span style="font-size:20px; font-weight:900;">113</span>
-          </div>
-          <div class="pill" style="text-align:center; padding:12px;">
-            <b>화재신고</b><br/><span style="font-size:20px; font-weight:900;">114</span>
-          </div>
-          <div class="pill" style="text-align:center; padding:12px;">
-            <b>응급환자</b><br/><span style="font-size:20px; font-weight:900;">115</span>
-          </div>
-        </div>
-        <p style="margin-top:12px;"><small>* 긴급전화는 대부분 베트남어로만 가능하며, 구급차 요금이 발생할 수 있습니다.</small></p>
-      </div>
-
-      <div class="hr"></div>
-
-      <h3>나트랑 종합병원</h3>
-      <div class="grid grid-2">
-        <div class="card" style="box-shadow:none; border-left:4px solid #16a34a;">
-          <h3>나트랑 빈멕 국제종합병원</h3>
-          <p><b>주소</b><br/>Vinh Nguyen, Nha Trang, Khanh Hoa 650000</p>
-          <p><b>영업시간</b><br/>24시간</p>
-          <p><b>전화번호</b><br/>+84 258 3900 168</p>
-          <p><small>(모벤픽 호텔에서 차량 약 40분)</small></p>
-        </div>
-        <div class="card" style="box-shadow:none; border-left:4px solid #16a34a;">
-          <h3>22-12 Hospital</h3>
-          <p><b>주소</b><br/>34/4 Nguyen Thien Thuat, Tan Tien, Nha Trang</p>
-          <p><b>영업시간</b><br/>24시간</p>
-          <p><b>전화번호</b><br/>+84 258 3528 857</p>
-          <p><small>(모벤픽 호텔에서 차량 약 45분)</small></p>
-        </div>
-      </div>
-
-      <div class="hr"></div>
-
-      <div class="notice">
-        * 응급상황 발생 시, 먼저 가이드에게 연락하시고,<br/>
-        연락이 안 될 경우 위 연락처로 직접 연락해주세요.
-      </div>
-    </div>
-
-  </section>
-</div>
-```
 
   </main>
 </body>
