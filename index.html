@@ -65,6 +65,61 @@
       background: var(--primary-weak);
       color: var(--primary);
     }
+
+    /* PDF 다운로드 섹션 */
+    .download-section {
+      background: linear-gradient(135deg, var(--primary), #9333ea);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 18px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .download-section .download-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .download-section .download-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    .download-section .download-title {
+      font-weight: 900;
+      font-size: 17px;
+      margin-bottom: 4px;
+    }
+    .download-section .download-sub {
+      font-size: 13px;
+      opacity: 0.85;
+    }
+    .download-section .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background: white;
+      color: var(--primary);
+      border-radius: 12px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .download-section .download-btn:hover {
+      background: var(--primary-weak);
+      transform: translateY(-2px);
+    }
     
     /* 모바일 반응형 */
     @media(max-width: 760px) {
@@ -73,6 +128,13 @@
       }
       .vn-quick-btns {
         grid-template-columns: repeat(2, 1fr);
+      }
+      .download-section {
+        flex-direction: column;
+        text-align: center;
+      }
+      .download-section .download-info {
+        flex-direction: column;
       }
     }
     @media(max-width: 520px) {
@@ -105,6 +167,21 @@
 
   <main class="page">
     <div class="container">
+
+      <!-- PDF 다운로드 섹션 -->
+      <div class="download-section">
+        <div class="download-info">
+          <div class="download-icon">📄</div>
+          <div>
+            <div class="download-title">커넥스트 나트랑 안내문</div>
+            <div class="download-sub">여행 전 필독! 전체 일정 및 안내사항</div>
+          </div>
+        </div>
+        <a class="download-btn" href="https://conextt.sharepoint.com/:b:/s/-/IQA6IV63vGvwS6AJl-8AReqtARUwIOkndU-8TzoHN--tKr8" target="_blank" rel="noopener noreferrer">
+          📥 다운로드
+        </a>
+      </div>
+
       <div class="grid grid-2">
         <section class="card">
           <h2>현재 시간</h2>
