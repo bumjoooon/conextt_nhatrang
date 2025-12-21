@@ -255,8 +255,8 @@
         return "<tr>" +
           "<td>" + x.cat + "</td>" +
           "<td><b>" + x.ko + "</b></td>" +
-          "<td>" + x.vi + "</td>" +
           "<td>" + (x.pr || "") + "</td>" +
+          "<td>" + x.vi + "</td>" +
           "<td>" + (x.note || "") + "</td>" +
           "</tr>";
       }).join("");
