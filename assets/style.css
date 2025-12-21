@@ -78,7 +78,20 @@ small{ color:var(--muted); }
 }
 
 .page{
-  padding-top: 70px; /* fixed header space */
+  padding-top: 70px; /* fixed header space - 데스크톱 */
+}
+
+/* 모바일에서 헤더가 2줄로 되면서 높아지므로 padding-top 증가 */
+@media(max-width: 760px){
+  .page{
+    padding-top: 110px;
+  }
+}
+
+@media(max-width: 520px){
+  .page{
+    padding-top: 120px;
+  }
 }
 
 .grid{
