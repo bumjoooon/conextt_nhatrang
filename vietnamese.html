@@ -20,16 +20,16 @@
         </div>
       </a>
 
-```
-  <nav class="nav">
-    <a href="index.html">Main</a>
-    <a href="schedule.html">여행</a>
-    <a href="vietnamese.html">베트남어</a>
-    <a href="photos.html">사진</a>
-    <a href="videos.html">영상</a>
-  </nav>
-</div>
-```
+
+      <nav class="nav">
+        <a href="index.html">Main</a>
+        <a href="schedule.html">여행</a>
+        <a href="vietnamese.html">베트남어</a>
+        <a href="photos.html">사진</a>
+        <a href="videos.html">영상</a>
+      </nav>
+    </div>
+
 
   </header>
 
@@ -39,40 +39,38 @@
         <h2>베트남어</h2>
         <p>여행에 필요한 베트남어 문장 모음입니다.</p>
 
-```
-    <div class="hr"></div>
-
-    <h3>빠른 번역 (구글 번역 열기)</h3>
-    <div class="btns">
-      <input id="vn-gt-input" class="btn" style="flex:1; min-width:260px;" placeholder="한국어 입력 → 버튼 누르면 구글번역(ko→vi) 열림" />
-      <button id="vn-gt-btn" class="btn primary" type="button">번역 열기</button>
+        <div class="hr"></div>
+    
+        <h3>빠른 번역 (구글 번역 열기)</h3>
+        <div class="btns">
+          <input id="vn-gt-input" class="btn" style="flex:1; min-width:260px;" placeholder="한국어 입력 → 버튼 누르면 구글번역(ko→vi) 열림" />
+          <button id="vn-gt-btn" class="btn primary" type="button">번역 열기</button>
+        </div>
+      </section>
+    
+      <section class="card" id="vn-phrases">
+        <h3>문장 목록</h3>
+        <div class="pills" style="margin-bottom: 14px;">
+          <span class="pill">필터</span>
+          <select id="vn-filter" class="btn" style="padding:8px 10px;"></select>
+        </div>
+    
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>카테고리</th>
+                <th>한국어</th>
+                <th>베트남어</th>
+                <th>발음</th>
+                <th>메모</th>
+              </tr>
+            </thead>
+            <tbody id="vn-list"></tbody>
+          </table>
+        </div>
+      </section>
     </div>
-  </section>
-
-  <section class="card" id="vn-phrases">
-    <h3>문장 목록</h3>
-    <div class="pills" style="margin-bottom: 14px;">
-      <span class="pill">필터</span>
-      <select id="vn-filter" class="btn" style="padding:8px 10px;"></select>
-    </div>
-
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>카테고리</th>
-            <th>한국어</th>
-            <th>베트남어</th>
-            <th>발음</th>
-            <th>메모</th>
-          </tr>
-        </thead>
-        <tbody id="vn-list"></tbody>
-      </table>
-    </div>
-  </section>
-</div>
-```
 
   </main>
 </body>
