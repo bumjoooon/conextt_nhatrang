@@ -71,7 +71,17 @@
     return { type: "done", ev: sorted[sorted.length - 1] || null };
   }
 
-  function formatInVN(iso) {
+  function formatTime(iso) {
+    var d = new Date(iso);
+    return new Intl.DateTimeFormat("ko-KR", {
+      timeZone: "Asia/Ho_Chi_Minh",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false
+    }).format(d);
+  }
+
+  function formatDateTime(iso) {
     var d = new Date(iso);
     return new Intl.DateTimeFormat("ko-KR", {
       timeZone: "Asia/Ho_Chi_Minh",
@@ -92,33 +102,69 @@
     var ev = result.ev;
 
     if (!ev) {
-      host.innerHTML = '<div class="event"><div class="title">일정 데이터가 없습니다.</div></div>';
+      host.innerHTML = '<div class="current-event-box"><div class="current-event-title">일정 데이터가 없습니다.</div></div>';
       return;
     }
 
-    var badge = "";
+    var statusBadge = "";
+    var statusClass = "";
     if (type === "current") {
-      badge = '<span class="pill primary">지금 진행중</span>';
-    } else if (type === "done") {
-      badge = '<span class="pill">마지막 일정</span>';
+      statusBadge = '<span class="current-badge current">진행중</span>';
+      statusClass = "active";
+    } else if (type === "next") {
+      statusBadge = '<span class="current-badge next">다음 일정</span>';
+      statusClass = "";
+    } else {
+      statusBadge = '<span class="current-badge done">마지막 일정</span>';
+      statusClass = "";
     }
 
-    var scheduleBtn = "";
-    if (type === "next" || type === "current") {
-      scheduleBtn = '<div style="margin-top:12px;"><a class="btn primary" href="schedule.html#tab=itinerary">일정표 바로가기</a></div>';
-    }
+    var html = "";
 
-    var currentClass = type === "current" ? "current" : "";
-    var noteHtml = ev.note ? "<br><small>* " + ev.note + "</small>" : "";
-
-    host.innerHTML = '<div class="event ' + currentClass + '">' +
-      '<div class="meta">' + badge +
-      '<span class="tag">' + formatInVN(ev.start) + " ~ " + formatInVN(ev.end) + '</span>' +
-      '</div>' +
-      '<div class="title">' + ev.title + '</div>' +
-      '<div class="desc">' + (ev.place || "") + noteHtml + '</div>' +
-      scheduleBtn +
+    // 분리 일정 (관광조/골프조)
+    if (ev.type === "split") {
+      html = '<div class="current-event-box ' + statusClass + '">' +
+        '<div class="current-event-header">' + statusBadge + '</div>' +
+        '<div class="current-split-schedule">' +
+          // 관광조
+          '<div class="current-split-col">' +
+            '<div class="current-split-header">🎢 관광조</div>' +
+            '<div class="current-split-body">' +
+              '<div class="current-split-time">' + ev.tour.times + '</div>' +
+              '<div class="current-split-title">' + ev.tour.title + '</div>' +
+              '<div class="current-split-place">' + ev.tour.place + '</div>' +
+            '</div>' +
+          '</div>' +
+          // 골프조
+          '<div class="current-split-col">' +
+            '<div class="current-split-header">🏌️ 골프조</div>' +
+            '<div class="current-split-body">' +
+              '<div class="current-split-time">' + ev.golf.times + '</div>' +
+              '<div class="current-split-title">' + ev.golf.title + '</div>' +
+              '<div class="current-split-place">' + ev.golf.place + '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+        '<a class="btn primary" href="schedule.html#tab=itinerary" style="margin-top:12px;">일정표 바로가기</a>' +
       '</div>';
+    } 
+    // 공통 일정
+    else {
+      var noteHtml = ev.note ? '<div class="current-event-note">* ' + ev.note + '</div>' : '';
+      
+      html = '<div class="current-event-box ' + statusClass + '">' +
+        '<div class="current-event-header">' + statusBadge + '</div>' +
+        '<div class="current-event-content">' +
+          '<div class="current-event-time">' + formatDateTime(ev.start) + ' ~ ' + formatDateTime(ev.end) + '</div>' +
+          '<div class="current-event-title">' + ev.title + '</div>' +
+          '<div class="current-event-place">' + (ev.place || '') + '</div>' +
+          noteHtml +
+        '</div>' +
+        '<a class="btn primary" href="schedule.html#tab=itinerary" style="margin-top:12px;">일정표 바로가기</a>' +
+      '</div>';
+    }
+
+    host.innerHTML = html;
   }
 
   // Highlight timeline items (schedule page)
