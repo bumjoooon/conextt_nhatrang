@@ -13,7 +13,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
     @media(max-width: 760px) {
       .split-schedule {
@@ -28,19 +28,14 @@
     }
     .split-header {
       padding: 10px 14px;
-      font-weight: 800;
+      font-weight: 900;
       font-size: 15px;
       display: flex;
       align-items: center;
       gap: 8px;
-    }
-    .split-header.tour {
-      background: linear-gradient(135deg, #3b82f6, #60a5fa);
-      color: white;
-    }
-    .split-header.golf {
-      background: linear-gradient(135deg, #22c55e, #4ade80);
-      color: white;
+      border-bottom: 1px solid var(--border);
+      background: #fafafa;
+      color: var(--text);
     }
     .split-body {
       padding: 12px;
@@ -67,18 +62,30 @@
       margin-top: 2px;
     }
     
-    /* 공통 일정 헤더 */
+    /* 공통 일정 박스 */
+    .common-box {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: white;
+      margin-bottom: 5px;
+    }
     .common-header {
       display: flex;
       align-items: center;
       gap: 8px;
       padding: 10px 14px;
-      background: linear-gradient(135deg, #f97316, #fb923c);
-      color: white;
-      border-radius: 12px;
-      font-weight: 800;
+      background: #fafafa;
+      border-bottom: 1px solid var(--border);
+      font-weight: 900;
       font-size: 15px;
-      margin-bottom: 10px;
+      color: var(--text);
+    }
+    .common-body {
+      padding: 12px;
+    }
+    .common-body .split-event:last-child {
+      border-bottom: none;
     }
   </style>
 </head>
@@ -296,7 +303,7 @@
               <div class="split-schedule">
                 <!-- 관광조 -->
                 <div class="split-col">
-                  <div class="split-header tour">🎢 관광조</div>
+                  <div class="split-header">🎢 관광조</div>
                   <div class="split-body">
                     <div class="split-event">
                       <div class="time">06:00~08:20</div>
@@ -317,7 +324,7 @@
                 
                 <!-- 골프조 -->
                 <div class="split-col">
-                  <div class="split-header golf">🏌️ 골프조</div>
+                  <div class="split-header">🏌️ 골프조</div>
                   <div class="split-body">
                     <div class="split-event">
                       <div class="time">06:00~06:50</div>
@@ -342,17 +349,19 @@
               </div>
 
               <!-- 공통 일정 -->
-              <div class="common-header">📍 공통 일정</div>
-              
-              <div class="event" data-ev-start="2025-12-27T18:30:00+07:00" data-ev-end="2025-12-27T19:30:00+07:00">
-                <div class="meta"><span class="time">18:30~19:30</span><span class="tag">식사</span></div>
-                <div class="title">나트랑 시내 귀환 후 석식</div>
-                <div class="desc">골프조 & 관광조 합류 (한식)</div>
-              </div>
-
-              <div class="event">
-                <div class="meta"><span class="time">19:30~</span><span class="tag">호텔</span></div>
-                <div class="title">석식 후 호텔 투숙 및 휴식</div>
+              <div class="common-box">
+                <div class="common-header">📍 공통 일정</div>
+                <div class="common-body">
+                  <div class="split-event">
+                    <div class="time">18:30~19:30</div>
+                    <div class="title">나트랑 시내 귀환 후 석식</div>
+                    <div class="desc">골프조 & 관광조 합류 (한식)</div>
+                  </div>
+                  <div class="split-event">
+                    <div class="time">19:30~</div>
+                    <div class="title">석식 후 호텔 투숙 및 휴식</div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -387,7 +396,7 @@
               <div class="split-schedule">
                 <!-- 관광조 -->
                 <div class="split-col">
-                  <div class="split-header tour">🎢 관광조</div>
+                  <div class="split-header">🎢 관광조</div>
                   <div class="split-body">
                     <div class="split-event">
                       <div class="time">06:00~12:00</div>
@@ -408,7 +417,7 @@
                 
                 <!-- 골프조 -->
                 <div class="split-col">
-                  <div class="split-header golf">🏌️ 골프조</div>
+                  <div class="split-header">🏌️ 골프조</div>
                   <div class="split-body">
                     <div class="split-event">
                       <div class="time">06:00~08:20</div>
@@ -429,28 +438,28 @@
               </div>
 
               <!-- 공통 일정 -->
-              <div class="common-header">📍 공통 일정</div>
-
-              <div class="event" data-ev-start="2025-12-29T14:00:00+07:00" data-ev-end="2025-12-29T16:30:00+07:00">
-                <div class="meta"><span class="time">14:00~16:30</span><span class="tag">관광</span></div>
-                <div class="title">원숭이섬 & 혼총곶 관광</div>
-                <div class="desc">약 1,200마리 원숭이 서식, 먹이주기 체험 가능</div>
-              </div>
-
-              <div class="event" data-ev-start="2025-12-29T16:30:00+07:00" data-ev-end="2025-12-29T18:00:00+07:00">
-                <div class="meta"><span class="time">16:30~18:00</span><span class="tag">마사지</span></div>
-                <div class="title">전신 마사지 (90분)</div>
-              </div>
-
-              <div class="event">
-                <div class="meta"><span class="time">18:00~23:05</span><span class="tag">이동</span></div>
-                <div class="title">석식 후 공항으로 이동 및 출국준비</div>
-              </div>
-
-              <div class="event" data-ev-start="2025-12-29T23:05:00+07:00" data-ev-end="2025-12-30T06:05:00+09:00">
-                <div class="meta"><span class="time">23:05</span><span class="tag">KE468</span></div>
-                <div class="title">깜란 국제공항 출발 (5시간)</div>
-                <div class="desc">항공 이동</div>
+              <div class="common-box">
+                <div class="common-header">📍 공통 일정</div>
+                <div class="common-body">
+                  <div class="split-event">
+                    <div class="time">14:00~16:30</div>
+                    <div class="title">원숭이섬 & 혼총곶 관광</div>
+                    <div class="desc">약 1,200마리 원숭이 서식, 먹이주기 체험 가능</div>
+                  </div>
+                  <div class="split-event">
+                    <div class="time">16:30~18:00</div>
+                    <div class="title">전신 마사지 (90분)</div>
+                  </div>
+                  <div class="split-event">
+                    <div class="time">18:00~23:05</div>
+                    <div class="title">석식 후 공항으로 이동 및 출국준비</div>
+                  </div>
+                  <div class="split-event">
+                    <div class="time">23:05</div>
+                    <div class="title">깜란 국제공항 출발 (5시간)</div>
+                    <div class="desc">항공 이동</div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -631,7 +640,7 @@
               <p><b>주소</b><br/>SQ4, Do Nhuan, Khu Ngoai Giao Doan, Xuan Tao, Bac Tu Liem, Hanoi</p>
               <p><b>대표번호 (근무시간)</b><br/>(84) 24-3771-0404</p>
               <p><b>긴급연락처 (24시간)</b><br/><span style="color:#dc2626; font-weight:900;">(84) 90-402-6126</span></p>
-              <p><b>E-mail</b><br/>korembviet@mofa.go.kr</p>
+              <p><b>E-mail</b><br/><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="543f3b26313936223d312014393b32357a333b7a3f26">[email&#160;protected]</a></p>
             </div>
 
             <div class="card" style="box-shadow:none; border-left:4px solid var(--primary);">
@@ -639,7 +648,7 @@
               <p><b>주소</b><br/>107 Nguyen Du St., Dist 1, Ho Chi Minh city</p>
               <p><b>대표번호 (근무시간)</b><br/>(84) 28-3822-5757</p>
               <p><b>긴급연락처 (24시간)</b><br/><span style="color:#dc2626; font-weight:900;">(84) 93-850-0238</span></p>
-              <p><b>E-mail</b><br/>hcm02@mofa.go.kr</p>
+              <p><b>E-mail</b><br/><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3c545f510c0e7c51535a5d125b5312574e">[email&#160;protected]</a></p>
             </div>
           </div>
 
@@ -684,13 +693,4 @@
           <div class="hr"></div>
 
           <div class="notice">
-            * 응급상황 발생 시 가이드에게 먼저 연락하세요.<br/>
-            * 여행자보험 가입 확인 및 보험사 연락처를 미리 저장해두세요.
-          </div>
-        </div>
-
-      </section>
-    </div>
-  </main>
-</body>
-</html>
+            * 응급상�
