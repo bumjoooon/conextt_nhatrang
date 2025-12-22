@@ -120,7 +120,118 @@
       background: var(--primary-weak);
       transform: translateY(-2px);
     }
-    
+
+    /* 접이식 안전 유의사항 */
+    .safety-accordion {
+      margin-bottom: 18px;
+      border: 2px solid #dc2626;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: white;
+    }
+    .safety-accordion summary {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: linear-gradient(135deg, #dc2626, #ef4444);
+      color: white;
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      list-style: none;
+    }
+    .safety-accordion summary::-webkit-details-marker {
+      display: none;
+    }
+    .safety-accordion summary::after {
+      content: "▼";
+      margin-left: auto;
+      font-size: 12px;
+      transition: transform 0.2s;
+    }
+    .safety-accordion[open] summary::after {
+      transform: rotate(180deg);
+    }
+    .safety-accordion .safety-icon {
+      width: 32px;
+      height: 32px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+    .safety-content {
+      padding: 16px;
+      background: #fef2f2;
+    }
+    .safety-content .safety-intro {
+      margin-bottom: 14px;
+      padding: 12px;
+      background: white;
+      border-radius: 10px;
+      border-left: 4px solid #dc2626;
+      font-size: 14px;
+      color: #991b1b;
+    }
+    .safety-content .safety-hotel {
+      margin-bottom: 14px;
+      padding: 12px;
+      background: white;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .safety-content .safety-hotel strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #dc2626;
+    }
+    .safety-content .safety-hotel .hotel-name {
+      font-weight: 800;
+      font-size: 15px;
+    }
+    .safety-content .safety-hotel .hotel-addr {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .safety-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .safety-item {
+      background: white;
+      border-radius: 10px;
+      padding: 12px;
+      border: 1px solid var(--border);
+    }
+    .safety-item .item-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      background: #dc2626;
+      color: white;
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: 800;
+      margin-right: 8px;
+    }
+    .safety-item .item-title {
+      font-weight: 800;
+      color: #991b1b;
+    }
+    .safety-item .item-desc {
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
     /* 모바일 반응형 */
     @media(max-width: 760px) {
       .grid-2 {
@@ -181,6 +292,66 @@
           📥 다운로드
         </a>
       </div>
+
+      <!-- 접이식 안전 유의사항 -->
+      <details class="safety-accordion">
+        <summary>
+          <div class="safety-icon">⚠️</div>
+          해외 워크샵 기간 중 안전 유의 사항
+        </summary>
+        <div class="safety-content">
+          <div class="safety-intro">
+            커넥스트 나트랑 해외 워크샵 진행과 관련하여, 안전한 일정 운영을 위해 아래와 같이 안전 유의사항을 안내드리오니 <b>반드시 숙지 및 준수</b>하여 주시기 바랍니다.
+          </div>
+
+          <div class="safety-hotel">
+            <strong>📍 숙소 위치 구글 맵 등 저장</strong>
+            <div class="hotel-name">나트랑 모벤픽 리조트 깜란 (Mövenpick Resort Cam Ranh)</div>
+            <div class="hotel-addr">Plot D 12 Abc, Cam Hải Đông, Cam Ranh, Khánh Hòa 057615 베트남</div>
+          </div>
+
+          <div class="safety-list">
+            <div class="safety-item">
+              <span class="item-num">1</span>
+              <span class="item-title">단독 행동 금지</span>
+              <div class="item-desc">워크샵 기간 중에는 개인 단독 행동은 금지하며, 모든 이동은 동행을 원칙으로 합니다.</div>
+            </div>
+
+            <div class="safety-item">
+              <span class="item-num">2</span>
+              <span class="item-title">자유시간 이동 기준</span>
+              <div class="item-desc">자유시간 및 개별 이동 시에는 반드시 <b>3인 이상 동행</b>하여 이동해 주시기 바랍니다.</div>
+            </div>
+
+            <div class="safety-item">
+              <span class="item-num">3</span>
+              <span class="item-title">사전 동선 공유 및 확인</span>
+              <div class="item-desc">
+                자유시간 중 이동 예정 동선, 방문 장소 등은 사전에 <b>워크샵 단톡방</b>에 공유해 주시고, 자유시간 종료 후에는 숙소 복귀 여부를 함께 공유해 주시기 바랍니다.<br/>
+                <span style="color:#dc2626; font-weight:700;">[ 공유 방식 : 나트랑 워크샵 단톡방 ]</span>
+              </div>
+            </div>
+
+            <div class="safety-item">
+              <span class="item-num">4</span>
+              <span class="item-title">위험 요소 사전 차단</span>
+              <div class="item-desc">
+                현지에서 무리한 이동, 음주 후 외출, 수상·레저 활동 등 안전 사고의 우려가 있는 행동은 반드시 삼가해 주시기 바랍니다.<br/><br/>
+                또한 물놀이 수영장 및 해변 이용시 본인 의사에 반하는 <b>강제 입수 행위는 절대 금지</b>하며, 안전사고 예방을 위해 장난성 행동 또한 삼가해 주시기 바랍니다.
+              </div>
+            </div>
+
+            <div class="safety-item">
+              <span class="item-num">5</span>
+              <span class="item-title">교통 및 이동 시 유의사항</span>
+              <div class="item-desc">
+                현지 렌트 차량 (오토바이, 차량) 운전은 <b>금지</b>합니다.<br/><br/>
+                이동 시에는 <b>Grab</b> 등 정식 앱을 통한 신뢰할 수 있는 교통수단 이용을 권장하며, Grab 호출시 차량 번호와 운전자 정보 확인 후 탑승해 주세요.
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
 
       <div class="grid grid-2">
         <section class="card">
@@ -283,6 +454,3 @@
   </main>
 </body>
 </html>
-
-
-
