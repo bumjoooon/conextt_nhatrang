@@ -295,8 +295,8 @@ tr:last-child td{ border-bottom:none; }
   color:#374151;
 }
 .event.current{
-  border-color:#fdba74;
-  background: #fff7ed;
+  border-color:#86efac;
+  background: #f0fdf4;
 }
 .event .title{ margin: 6px 0 0 0; font-weight:800; }
 .event .desc{ margin: 6px 0 0 0; color: var(--muted); }
