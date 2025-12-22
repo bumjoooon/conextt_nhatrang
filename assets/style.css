@@ -339,3 +339,109 @@ tr:last-child td{ border-bottom:none; }
   color:#991b1b;
   font-weight:700;
 }
+
+/* 현재 일정 표시 박스 */
+.current-event-box {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: white;
+  padding: 14px;
+}
+.current-event-box.active {
+  border-color: #86efac;
+  background: #f0fdf4;
+}
+.current-event-header {
+  margin-bottom: 10px;
+}
+.current-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+}
+.current-badge.current {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #86efac;
+}
+.current-badge.next {
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid var(--border);
+}
+.current-badge.done {
+  background: #f3f4f6;
+  color: #6b7280;
+  border: 1px solid var(--border);
+}
+.current-event-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.current-event-time {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 700;
+}
+.current-event-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text);
+}
+.current-event-place {
+  font-size: 14px;
+  color: var(--muted);
+}
+.current-event-note {
+  font-size: 13px;
+  color: #dc2626;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+/* 현재 일정 - 분리 레이아웃 (관광조/골프조) */
+.current-split-schedule {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+@media(max-width: 520px) {
+  .current-split-schedule {
+    grid-template-columns: 1fr;
+  }
+}
+.current-split-col {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: white;
+}
+.current-split-header {
+  padding: 8px 12px;
+  font-weight: 900;
+  font-size: 14px;
+  background: #fafafa;
+  border-bottom: 1px solid var(--border);
+}
+.current-split-body {
+  padding: 10px 12px;
+}
+.current-split-time {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--muted);
+}
+.current-split-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text);
+  margin-top: 2px;
+}
+.current-split-place {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
