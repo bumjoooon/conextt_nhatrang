@@ -5,7 +5,150 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>영상 | Conextt Travel</title>
   <link rel="stylesheet" href="assets/style.css" />
+  <script src="assets/data.js" defer></script>
+  <script src="assets/gallery-list.js" defer></script>
   <script src="assets/app.js" defer></script>
+  <style>
+    /* 갤러리 탭 */
+    .gallery-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+    }
+    .gallery-tab {
+      padding: 10px 16px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: white;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .gallery-tab:hover {
+      border-color: var(--primary);
+    }
+    .gallery-tab.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+    .gallery-tab .tab-count {
+      display: inline-block;
+      margin-left: 6px;
+      padding: 2px 8px;
+      background: rgba(0,0,0,0.1);
+      border-radius: 999px;
+      font-size: 12px;
+    }
+    .gallery-tab.active .tab-count {
+      background: rgba(255,255,255,0.3);
+    }
+
+    /* 비디오 그리드 */
+    .video-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media(min-width: 768px) {
+      .video-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .video-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: white;
+    }
+    .video-item video {
+      width: 100%;
+      display: block;
+      background: #000;
+    }
+    .video-item .video-info {
+      padding: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .video-item .video-name {
+      font-weight: 700;
+      font-size: 14px;
+      word-break: break-all;
+    }
+
+    /* 빈 상태 */
+    .gallery-empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+    }
+    .gallery-empty .empty-icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+    }
+
+    /* 전체화면 비디오 플레이어 */
+    .video-lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 9999;
+      flex-direction: column;
+    }
+    .video-lightbox.active {
+      display: flex;
+    }
+
+    .video-lightbox-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      color: white;
+    }
+    .video-lightbox-title {
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .video-lightbox-close {
+      width: 44px;
+      height: 44px;
+      border: none;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .video-lightbox-close:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .video-lightbox-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .video-lightbox-content video {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 12px;
+    }
+  </style>
 </head>
 <body>
   <header class="header">
@@ -30,10 +173,179 @@
   <main class="page">
     <div class="container">
       <section class="card">
-        <h2>영상</h2>
-        <p>여행이 끝나고 만나요 !</p>
+        <h2>🎬 영상 갤러리</h2>
+        <p>날짜별로 영상을 확인하세요. 클릭하면 전체화면으로 볼 수 있어요.</p>
+
+        <div class="hr"></div>
+
+        <!-- 날짜 탭 -->
+        <div class="gallery-tabs" id="video-tabs"></div>
+
+        <!-- 비디오 그리드 -->
+        <div class="video-grid" id="video-grid"></div>
+
+        <!-- 빈 상태 -->
+        <div class="gallery-empty" id="video-empty" style="display:none;">
+          <div class="empty-icon">🎬</div>
+          <div><b>아직 영상이 없어요</b></div>
+          <p>여행이 끝나고 만나요!</p>
+        </div>
       </section>
     </div>
   </main>
+
+  <!-- 전체화면 비디오 플레이어 -->
+  <div class="video-lightbox" id="video-lightbox">
+    <div class="video-lightbox-header">
+      <div class="video-lightbox-title" id="video-lightbox-title"></div>
+      <button class="video-lightbox-close" id="video-lightbox-close">×</button>
+    </div>
+    <div class="video-lightbox-content">
+      <video id="video-lightbox-player" controls playsinline>
+        <source id="video-lightbox-source" src="" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+
+  <script>
+  (function() {
+    // 갤러리 데이터 대기
+    function waitForData(callback) {
+      if (window.CONEXTT && window.CONEXTT.gallery) {
+        callback();
+      } else {
+        setTimeout(function() { waitForData(callback); }, 50);
+      }
+    }
+
+    waitForData(function() {
+      var gallery = window.CONEXTT.gallery.videos || {};
+      var dayInfo = window.CONEXTT.dayInfo || {};
+      var folders = Object.keys(gallery).sort();
+
+      var tabsEl = document.getElementById('video-tabs');
+      var gridEl = document.getElementById('video-grid');
+      var emptyEl = document.getElementById('video-empty');
+
+      // 빈 상태 체크
+      if (folders.length === 0) {
+        emptyEl.style.display = 'block';
+        return;
+      }
+
+      // 탭 생성
+      var currentFolder = folders[0];
+
+      function renderTabs() {
+        tabsEl.innerHTML = folders.map(function(folder) {
+          var info = dayInfo[folder] || { day: '?', date: folder };
+          var count = gallery[folder].length;
+          var active = folder === currentFolder ? 'active' : '';
+          return '<button class="gallery-tab ' + active + '" data-folder="' + folder + '">' +
+            info.date + '<span class="tab-count">' + count + '</span></button>';
+        }).join('');
+      }
+
+      function getVideoMimeType(filename) {
+        var ext = filename.split('.').pop().toLowerCase();
+        var types = {
+          'mp4': 'video/mp4',
+          'mov': 'video/quicktime',
+          'm4v': 'video/x-m4v',
+          'webm': 'video/webm',
+          'avi': 'video/x-msvideo',
+          'mkv': 'video/x-matroska'
+        };
+        return types[ext] || 'video/mp4';
+      }
+
+      function renderGrid() {
+        var files = gallery[currentFolder] || [];
+
+        if (files.length === 0) {
+          gridEl.innerHTML = '<div class="gallery-empty"><div class="empty-icon">🎬</div><div>이 날짜에는 영상이 없어요</div></div>';
+          return;
+        }
+
+        gridEl.innerHTML = files.map(function(file, idx) {
+          var src = 'gallery/videos/' + currentFolder + '/' + file;
+          return '<div class="video-item" data-src="' + src + '" data-name="' + file + '">' +
+            '<video preload="metadata" playsinline muted>' +
+              '<source src="' + src + '#t=0.5" type="' + getVideoMimeType(file) + '" />' +
+            '</video>' +
+            '<div class="video-info">' +
+              '<div class="video-name">🎬 ' + file + '</div>' +
+            '</div>' +
+            '</div>';
+        }).join('');
+
+        // 썸네일 포스터 생성 (첫 프레임)
+        gridEl.querySelectorAll('video').forEach(function(video) {
+          video.addEventListener('loadeddata', function() {
+            video.currentTime = 0.5;
+          });
+        });
+      }
+
+      // 탭 클릭
+      tabsEl.addEventListener('click', function(e) {
+        var tab = e.target.closest('.gallery-tab');
+        if (!tab) return;
+        currentFolder = tab.dataset.folder;
+        renderTabs();
+        renderGrid();
+      });
+
+      // 전체화면 플레이어
+      var lightbox = document.getElementById('video-lightbox');
+      var player = document.getElementById('video-lightbox-player');
+      var source = document.getElementById('video-lightbox-source');
+      var title = document.getElementById('video-lightbox-title');
+
+      function openVideo(src, name) {
+        source.src = src;
+        player.load();
+        title.textContent = name;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        player.play();
+      }
+
+      function closeVideo() {
+        player.pause();
+        player.currentTime = 0;
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      // 비디오 아이템 클릭
+      gridEl.addEventListener('click', function(e) {
+        var item = e.target.closest('.video-item');
+        if (!item) return;
+        openVideo(item.dataset.src, item.dataset.name);
+      });
+
+      // 닫기
+      document.getElementById('video-lightbox-close').addEventListener('click', closeVideo);
+
+      // 키보드
+      document.addEventListener('keydown', function(e) {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeVideo();
+      });
+
+      // 배경 클릭으로 닫기
+      lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) {
+          closeVideo();
+        }
+      });
+
+      // 초기 렌더링
+      renderTabs();
+      renderGrid();
+    });
+  })();
+  </script>
 </body>
 </html>
