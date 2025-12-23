@@ -1,5 +1,5 @@
 // 자동 생성됨 - 직접 수정하지 마세요
-// 생성 시간: 2025-12-23 07:06:39
+// 생성 시간: 2025-12-23 07:29:42
 // 사용법: python generate_gallery.py
 
 window.CONEXTT = window.CONEXTT || {};
@@ -43,6 +43,12 @@ window.CONEXTT.gallery = {
   ],
   "DAY3_251228": [
     "말문희막힘.jpeg"
+  ],
+  "DAY4_251229": [
+    "hedgehog-1215140_1920.jpg"
+  ],
+  "DAY5_251230": [
+    "otter-1438378_1920.jpg"
   ]
 },
   videos: {
