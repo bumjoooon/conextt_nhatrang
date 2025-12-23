@@ -1,0 +1,37 @@
+name: 갤러리 목록 자동 생성
+
+# gallery 폴더에 변경이 있을 때 실행
+on:
+  push:
+    paths:
+      - 'gallery/**'
+
+jobs:
+  update-gallery:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # 1. 코드 체크아웃
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      # 2. Python 설정
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      # 3. 갤러리 목록 생성 스크립트 실행
+      - name: Generate gallery list
+        run: python generate_gallery.py
+      
+      # 4. 변경사항 커밋 & 푸시
+      - name: Commit and push
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add assets/gallery-list.js
+          git diff --staged --quiet || git commit -m "🖼️ 갤러리 목록 자동 업데이트"
+          git push
