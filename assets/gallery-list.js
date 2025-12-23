@@ -1,5 +1,5 @@
 // 자동 생성됨 - 직접 수정하지 마세요
-// 생성 시간: 2025-12-23 06:35:59
+// 생성 시간: 2025-12-23 06:50:59
 // 사용법: python generate_gallery.py
 
 window.CONEXTT = window.CONEXTT || {};
@@ -41,5 +41,9 @@ window.CONEXTT.gallery = {
     "말문희막힘.jpeg"
   ]
 },
-  videos: {}
+  videos: {
+  "DAY1_251226": [
+    "KakaoTalk_20250602_214206201.mp4"
+  ]
+}
 };
