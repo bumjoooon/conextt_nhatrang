@@ -1,5 +1,5 @@
 // 자동 생성됨 - 직접 수정하지 마세요
-// 생성 시간: 2025-12-23 07:29:42
+// 생성 시간: 2025-12-23 08:02:13
 // 사용법: python generate_gallery.py
 
 window.CONEXTT = window.CONEXTT || {};
@@ -54,6 +54,18 @@ window.CONEXTT.gallery = {
   videos: {
   "DAY1_251226": [
     "KakaoTalk_20250602_214206201.mp4"
+  ],
+  "DAY2_251227": [
+    "KakaoTalk_20251223_165603855.mp4"
+  ],
+  "DAY3_251228": [
+    "KakaoTalk_20251223_165848335.mp4"
+  ],
+  "DAY4_251229": [
+    "KakaoTalk_20251223_165647831.mp4"
+  ],
+  "DAY5_251230": [
+    "KakaoTalk_20251223_170059882.mp4"
   ]
 }
 };
