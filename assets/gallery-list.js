@@ -1,5 +1,5 @@
 // 자동 생성됨 - 직접 수정하지 마세요
-// 생성 시간: 2025-12-23 08:02:13
+// 생성 시간: 2025-12-23 08:04:22
 // 사용법: python generate_gallery.py
 
 window.CONEXTT = window.CONEXTT || {};
@@ -36,6 +36,7 @@ window.CONEXTT.gallery = {
   photos: {
   "DAY1_251226": [
     "IMG_4179.jpeg",
+    "IMG_4222.jpeg",
     "KakaoTalk_20231225_165440631_07.jpg"
   ],
   "DAY2_251227": [
