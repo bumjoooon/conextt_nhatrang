@@ -5,7 +5,7 @@ window.CONEXTT = window.CONEXTT || {};
 // 시간은 실제 일정표(이미지) 기반 + 시간대(한국 +09 / 베트남 +07) 포함.
 // type: "common" (공통), "split" (관광조/골프조 분리)
 window.CONEXTT.scheduleEvents = [
-  // 1일차 (한국) - 공통
+  // ========== 1일차 (한국 → 베트남) ==========
   {
     id: "d1-meet",
     type: "common",
@@ -27,16 +27,32 @@ window.CONEXTT.scheduleEvents = [
     id: "d1-arrive",
     type: "common",
     start: "2025-12-26T21:35:00+07:00",
-    end: "2025-12-26T23:30:00+07:00",
+    end: "2025-12-26T23:59:00+07:00",
     title: "깜란공항 도착 → 호텔 체크인",
     place: "가이드 미팅 → 호텔 이동(10~15분) → 체크인/휴식"
   },
 
-  // 2일차 (베트남) - 분리 일정
+  // ========== 2일차 (베트남) - 관광조/골프조 분리 ==========
+  {
+    id: "d2-breakfast",
+    type: "split",
+    start: "2025-12-27T05:00:00+07:00",
+    end: "2025-12-27T08:20:00+07:00",
+    tour: {
+      title: "조식 (관광조)",
+      place: "호텔 뷔페",
+      times: "06:00~08:20"
+    },
+    golf: {
+      title: "조식 (골프조)",
+      place: "호텔 뷔페",
+      times: "05:00~05:40"
+    }
+  },
   {
     id: "d2-main",
     type: "split",
-    start: "2025-12-27T06:00:00+07:00",
+    start: "2025-12-27T08:20:00+07:00",
     end: "2025-12-27T18:30:00+07:00",
     tour: {
       title: "빈원더스 자유시간",
@@ -45,7 +61,7 @@ window.CONEXTT.scheduleEvents = [
     },
     golf: {
       title: "빈펄CC 18홀 라운딩",
-      place: "1회(1조) 라운딩 후 중식 (클럽식)",
+      place: "스피드보트 이동 후 라운딩 + 중식 (클럽식)",
       times: "07:48~18:30"
     }
   },
@@ -57,10 +73,18 @@ window.CONEXTT.scheduleEvents = [
     title: "석식 (한식)",
     place: "나트랑 시내, 골프조 & 관광조 합류"
   },
-
-  // 3일차 - 공통
   {
-    id: "d3-bf",
+    id: "d2-free",
+    type: "common",
+    start: "2025-12-27T19:30:00+07:00",
+    end: "2025-12-27T23:59:00+07:00",
+    title: "자유시간 / 휴식",
+    place: "모벤픽 리조트 깜란"
+  },
+
+  // ========== 3일차 (베트남) - 공통 ==========
+  {
+    id: "d3-breakfast",
     type: "common",
     start: "2025-12-28T06:50:00+07:00",
     end: "2025-12-28T07:20:00+07:00",
@@ -83,10 +107,18 @@ window.CONEXTT.scheduleEvents = [
     title: "석식 (단독룸)",
     place: "현지식"
   },
-
-  // 4일차 - 분리 일정
   {
-    id: "d4-main",
+    id: "d3-free",
+    type: "common",
+    start: "2025-12-28T19:10:00+07:00",
+    end: "2025-12-28T23:59:00+07:00",
+    title: "자유시간 / 휴식",
+    place: "모벤픽 리조트 깜란"
+  },
+
+  // ========== 4일차 (베트남 → 한국) - 관광조/골프조 분리 ==========
+  {
+    id: "d4-morning",
     type: "split",
     start: "2025-12-29T06:00:00+07:00",
     end: "2025-12-29T14:00:00+07:00",
@@ -97,8 +129,8 @@ window.CONEXTT.scheduleEvents = [
     },
     golf: {
       title: "KN Golf Links 18홀 라운딩",
-      place: "1회(1조) 라운딩 후 중식 (클럽식)",
-      times: "08:50~14:00"
+      place: "조식 후 골프장 이동 → 라운딩 + 중식 (클럽식)",
+      times: "06:00~14:00"
     }
   },
   {
@@ -118,6 +150,22 @@ window.CONEXTT.scheduleEvents = [
     place: "나트랑 시내"
   },
   {
+    id: "d4-dinner",
+    type: "common",
+    start: "2025-12-29T18:00:00+07:00",
+    end: "2025-12-29T20:00:00+07:00",
+    title: "석식",
+    place: "현지 씨푸드"
+  },
+  {
+    id: "d4-airport",
+    type: "common",
+    start: "2025-12-29T20:00:00+07:00",
+    end: "2025-12-29T23:05:00+07:00",
+    title: "공항 이동 및 출국 준비",
+    place: "깜란 국제공항"
+  },
+  {
     id: "d4-flight",
     type: "common",
     start: "2025-12-29T23:05:00+07:00",
@@ -126,7 +174,7 @@ window.CONEXTT.scheduleEvents = [
     place: "항공 이동 (약 5시간)"
   },
 
-  // 5일차 - 공통
+  // ========== 5일차 (한국) ==========
   {
     id: "d5-arrive",
     type: "common",
